@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import { ToastProvider } from "../components/Toast";
 import Footer from "../components/Footer";
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
 
 
 
@@ -55,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} ${poppins.variable} antialiased min-h-screen flex flex-col`}
+        className="antialiased min-h-screen flex flex-col"
         suppressHydrationWarning={true}
       >
         <ToastProvider>

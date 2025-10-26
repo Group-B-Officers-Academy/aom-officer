@@ -1,4 +1,18 @@
+/* Import Poppins from Google Fonts - Must be at the top */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
+
+/* Font Family Configuration */
+:root {
+  --font-poppins: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-poppins);
+  }
+}
 
 /* Custom Animations */
 @keyframes fade-in-up {
