@@ -257,21 +257,7 @@ const Home = () => {
                 </button>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <p className="text-3xl font-black text-blue-600 mb-1">1000+</p>
-                  <p className="text-gray-600 font-semibold">Students</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl font-black text-purple-600 mb-1">95%</p>
-                  <p className="text-gray-600 font-semibold">Success Rate</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-3xl font-black text-indigo-600 mb-1">10+</p>
-                  <p className="text-gray-600 font-semibold">Years</p>
-                </div>
-              </div>
+              
             </div>
 
             {/* Right Side - Logo */}
