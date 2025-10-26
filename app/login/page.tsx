@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { toast, Toaster } from 'react-hot-toast'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -28,17 +29,30 @@ const Login = () => {
       const result = await response.json()
 
       if (response.ok) {
-        alert(`Login successful! Welcome ${result.user.name} (${result.user.userType})`)
+        // Check if it's admin login
+        if (result.isAdmin) {
+          // Store admin session
+          localStorage.setItem('adminSession', JSON.stringify({ username: 'adminaom', role: 'admin' }))
+          
+          // Dispatch custom event to notify Navbar about admin session update
+          window.dispatchEvent(new Event('adminSessionUpdated'))
+          
+          toast.success('Login Successfully! Redirecting to admin dashboard...')
+          router.push('/admin/dashboard')
+          return
+        }
+        
+        toast.success('Login Successfully!')
         // Here you can redirect to dashboard or store user data
         console.log('User data:', result.user)
         // Redirect to home page or dashboard
         router.push('/')
       } else {
-        alert(`Error: ${result.error}`)
+        toast.error(`Error: ${result.error}`)
       }
     } catch (error) {
       console.error('Error during login:', error)
-      alert('Login failed. Please try again.')
+      toast.error('Login failed. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -52,7 +66,8 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <Toaster position="top-center" />
       <div className="max-w-md w-full space-y-8">
         {/* Logo and Header */}
         <div className="text-center">

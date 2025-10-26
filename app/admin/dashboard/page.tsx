@@ -70,7 +70,7 @@ const AdminDashboard = () => {
       } else {
         console.error('Error fetching messages:', result.error)
         if (response.status === 401) {
-          router.push('/admin/login')
+          router.push('/login')
         }
       }
     } catch (error) {
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
       } else {
         console.error('Error fetching trainees:', result.error)
         if (response.status === 401) {
-          router.push('/admin/login')
+          router.push('/login')
         }
       }
     } catch (error) {
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
       } else {
         console.error('Error fetching experts:', result.error)
         if (response.status === 401) {
-          router.push('/admin/login')
+          router.push('/login')
         }
       }
     } catch (error) {
@@ -134,7 +134,7 @@ const AdminDashboard = () => {
     // Check admin session
     const session = localStorage.getItem('adminSession')
     if (!session) {
-      router.push('/admin/login')
+      router.push('/login')
       return
     }
     
@@ -146,7 +146,8 @@ const AdminDashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('adminSession')
-    router.push('/admin/login')
+    window.dispatchEvent(new Event('adminSessionUpdated'))
+    router.push('/login')
   }
 
   const formatDate = (dateString: string) => {

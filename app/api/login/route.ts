@@ -13,6 +13,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if admin credentials
+    if (email.toLowerCase() === "adminaom@gmail.com" && password === "admin123aom") {
+      return NextResponse.json(
+        {
+          success: true,
+          isAdmin: true,
+          message: "Admin login detected. Redirecting to admin panel.",
+        },
+        { status: 200 }
+      );
+    }
+
     // Connect to database
     const { db } = await connectToDatabase();
 

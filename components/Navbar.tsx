@@ -355,9 +355,6 @@ const Navbar = () => {
             <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
               Login
             </Link>
-            <Link href="/admin/login" className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition-colors duration-200">
-              A
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -719,9 +716,6 @@ const Navbar = () => {
               </div>
               <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
                 Login
-              </Link>
-              <Link href="/admin/login" className="block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors mt-2" onClick={() => setIsMenuOpen(false)}>
-                Admin
               </Link>
             </div>
           </div>
