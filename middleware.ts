@@ -6,13 +6,10 @@ export async function middleware(request: NextRequest) {
 
   // Protected routes that require authentication
   const protectedRoutes = [
-    '/manuals',
     '/materials',
     '/mcq-cbt',
     '/mcq-practice',
-    '/mcq-test',
-    '/crash-course',
-    '/super-crash-course'
+    '/mcq-test'
   ]
 
   // Check if the current path is a protected route
