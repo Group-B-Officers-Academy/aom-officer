@@ -231,21 +231,23 @@ const Home = () => {
           <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Side - Content */}
-            <div className="space-y-8 animate-fade-in">
-              {/* Header */}
-              <div className="space-y-4">
-                <div className="inline-block">
-                  <span className="px-4 py-2 bg-linear-to-r from-teal-100 to-emerald-100 text-teal-700 font-bold rounded-full text-sm uppercase tracking-wide">
+        <div className="max-w-7xl mx-auto px-3 lg:px-8 relative">
+        <div className="text-center">
+                  <span className="px-4 py-3 bg-linear-to-r from-teal-100 to-emerald-100 text-teal-700 font-bold rounded-full lg:text-5xl text-base uppercase tracking-wide">
                     Our Approach to Achieve Success
                   </span>
                 </div>
-                <h2 className="lg:text-3xl text-xl font-black bg-clip-text text-transparent bg-linear-to-r from-teal-600 via-emerald-600 to-green-600 leading-tight">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-10">
+            
+            {/* Left Side - Content */}
+            <div className="space-y-8 animate-fade-in">
+              {/* Header */}
+                
+              <div className="space-y-4">
+                <h2 className="lg:text-xl text-base font-black bg-clip-text text-transparent bg-linear-to-r from-teal-600 via-emerald-600 to-green-600 leading-tight">
                   ✨ GROUP B OFFICERS ACADEMY ✨
                 </h2>
-                <p className="lg:text-xl text-base text-center text-gray-700 font-semibold">
+                <p className="lg:text-xl text-base text-gray-700 font-semibold">
                   (ASPIRE – LEARN – LEAD)
                 </p>
               </div>
