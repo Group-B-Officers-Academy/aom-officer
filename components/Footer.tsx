@@ -2,6 +2,28 @@
 
 import { useState, useEffect } from 'react'
 
+// Digital LED Display Component
+const DigitalDigit = ({ digit }: { digit: string }) => {
+  return (
+    <span className="digital-digit font-mono">
+      {digit}
+    </span>
+  )
+}
+
+const DigitalCounter = ({ count }: { count: number }) => {
+  // Format count to 8 digits with leading zeros
+  const displayCount = count.toString().padStart(8, '0')
+  
+  return (
+    <div className="digital-counter">
+      {displayCount.split('').map((digit, index) => (
+        <DigitalDigit key={index} digit={digit} />
+      ))}
+    </div>
+  )
+}
+
 const Footer = () => {
   const [visitorCount, setVisitorCount] = useState<number>(0)
 
@@ -76,18 +98,20 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white lg:py-8 py-4 lg:px-6 px-4 mt-auto">
-      <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm text-center mb-4 md:mb-0">
-               Group B Officers Academy Copyright © {new Date().getFullYear()}. <br/> All rights reserved.
-            </div>
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-              <div className="text-gray-400 text-sm">
-                Total Visitors: <span className="text-white font-semibold">{visitorCount.toLocaleString()}</span>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="text-gray-400 text-sm text-center mb-4 md:mb-0">
+            Group B Officers Academy Copyright © {new Date().getFullYear()}. <br/> All rights reserved.
+          </div>
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+            <div className="text-gray-400 text-sm flex items-center gap-2">
+              <div className="leading-relaxed">
+                Total Visitors:
               </div>
-              
+              <DigitalCounter count={visitorCount} />
             </div>
           </div>
-    </footer>
+        </div>
+      </footer>
   )
 }
 

@@ -198,3 +198,24 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #2563eb, #4f46e5);
 }
+
+/* Digital LED Counter Styles */
+.digital-counter {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+}
+
+.digital-digit {
+  display: inline-block;
+  width: 18px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #00ff00;
+  background: #1a1a1a;
+  border: 1px solid #00ff00;
+  border-radius: 2px;
+}

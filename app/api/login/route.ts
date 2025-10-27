@@ -56,6 +56,37 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid password" }, { status: 401 });
     }
 
+    // Check user status
+    const userStatus = user.status || 'pending';
+    
+    if (userStatus === 'rejected') {
+      return NextResponse.json(
+        { 
+          error: "Crash Course and Super Crash Course users only allowed. Your registration has been rejected." 
+        },
+        { status: 403 }
+      );
+    }
+
+    if (userStatus === 'pending') {
+      return NextResponse.json(
+        { 
+          error: "Your registration is pending approval. Please wait for admin approval." 
+        },
+        { status: 403 }
+      );
+    }
+
+    // Only approved users can login
+    if (userStatus !== 'approved') {
+      return NextResponse.json(
+        { 
+          error: "Crash Course and Super Crash Course users only allowed." 
+        },
+        { status: 403 }
+      );
+    }
+
     // Return user data (without password)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _password, ...userData } = user;

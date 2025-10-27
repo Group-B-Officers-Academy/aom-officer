@@ -1,7 +1,8 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,6 +28,64 @@ const Navbar = () => {
   const [isMobileMaterialsOpen, setIsMobileMaterialsOpen] = useState(false)
   const [isNotificationsDropdownOpen, setIsNotificationsDropdownOpen] = useState(false)
   const [isMobileNotificationsOpen, setIsMobileNotificationsOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userInfo, setUserInfo] = useState<{name?: string, email?: string, userType?: string} | null>(null)
+  const router = useRouter()
+
+  // Check login status on mount and when session changes
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const userSession = localStorage.getItem('userSession')
+      const adminSession = localStorage.getItem('adminSession')
+      
+      if (userSession || adminSession) {
+        setIsLoggedIn(true)
+        if (userSession) {
+          try {
+            const userData = JSON.parse(userSession)
+            setUserInfo({ name: userData.name, email: userData.email, userType: userData.userType })
+          } catch {
+            setUserInfo(null)
+          }
+        }
+      } else {
+        setIsLoggedIn(false)
+        setUserInfo(null)
+      }
+    }
+
+    checkLoginStatus()
+    
+    // Listen for custom events (admin login, etc.)
+    window.addEventListener('adminSessionUpdated', checkLoginStatus)
+    window.addEventListener('storage', checkLoginStatus)
+
+    return () => {
+      window.removeEventListener('adminSessionUpdated', checkLoginStatus)
+      window.removeEventListener('storage', checkLoginStatus)
+    }
+  }, [])
+
+  // Handle logout
+  const handleLogout = () => {
+    // Clear localStorage
+    localStorage.removeItem('userSession')
+    localStorage.removeItem('adminSession')
+    
+    // Clear cookies
+    document.cookie = 'userSession=; path=/; max-age=0'
+    document.cookie = 'adminSession=; path=/; max-age=0'
+    
+    // Update state
+    setIsLoggedIn(false)
+    setUserInfo(null)
+    
+    // Dispatch event
+    window.dispatchEvent(new Event('adminSessionUpdated'))
+    
+    // Redirect to home
+    router.push('/')
+  }
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -408,9 +467,25 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <div className="flex items-center space-x-3">
+                {userInfo && (
+                  <span className="text-sm text-gray-600">
+                    {userInfo.name || userInfo.email}
+                  </span>
+                )}
+                <button 
+                  onClick={handleLogout}
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -827,9 +902,28 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Login
-              </Link>
+              {isLoggedIn ? (
+                <div className="space-y-2">
+                  {userInfo && (
+                    <div className="px-3 py-2 text-sm text-gray-600">
+                      {userInfo.name || userInfo.email}
+                    </div>
+                  )}
+                  <button 
+                    onClick={() => {
+                      handleLogout()
+                      setIsMenuOpen(false)
+                    }}
+                    className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         )}

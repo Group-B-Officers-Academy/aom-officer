@@ -31,8 +31,12 @@ const Login = () => {
       if (response.ok) {
         // Check if it's admin login
         if (result.isAdmin) {
-          // Store admin session
-          localStorage.setItem('adminSession', JSON.stringify({ username: 'adminaom', role: 'admin' }))
+          // Store admin session in both localStorage (for client-side) and cookies (for middleware)
+          const adminData = { username: 'adminaom', role: 'admin' }
+          localStorage.setItem('adminSession', JSON.stringify(adminData))
+          
+          // Set cookie for middleware
+          document.cookie = `adminSession=${encodeURIComponent(JSON.stringify(adminData))}; path=/; max-age=86400; SameSite=Strict`
           
           // Dispatch custom event to notify Navbar about admin session update
           window.dispatchEvent(new Event('adminSessionUpdated'))
@@ -42,17 +46,64 @@ const Login = () => {
           return
         }
         
+        // Store user session in both localStorage and cookies
+        const userData = {
+          email: result.user.email,
+          userType: result.user.userType,
+          name: result.user.name
+        }
+        localStorage.setItem('userSession', JSON.stringify(userData))
+        
+        // Set cookie for middleware
+        document.cookie = `userSession=${encodeURIComponent(JSON.stringify(userData))}; path=/; max-age=86400; SameSite=Strict`
+        
+        // Dispatch custom event to notify Navbar about user session update
+        window.dispatchEvent(new Event('adminSessionUpdated'))
+        
         toast.success('Login Successfully!')
         // Here you can redirect to dashboard or store user data
         console.log('User data:', result.user)
-        // Redirect to home page or dashboard
-        router.push('/')
+        
+        // Check if there's a redirect parameter
+        const searchParams = new URLSearchParams(window.location.search)
+        const redirectPath = searchParams.get('redirect')
+        
+        // Redirect to home page or the requested page
+        router.push(redirectPath || '/')
       } else {
-        toast.error(`Error: ${result.error}`)
+        // Show error message with better visibility
+        const errorMessage = result.error || 'Invalid credentials. Please try again.'
+        
+        // Increase duration for longer error messages
+        const duration = errorMessage.length > 50 ? 10000 : 7000
+        
+        toast.error(errorMessage, {
+          duration: duration,
+          style: {
+            background: '#fee',
+            color: '#c33',
+            fontSize: '14px',
+            fontWeight: '500',
+            padding: '14px 18px',
+            marginTop: '10px',
+            maxWidth: '400px',
+          }
+        })
       }
     } catch (error) {
       console.error('Error during login:', error)
-      toast.error('Login failed. Please try again.')
+      toast.error('Unable to connect to server. Please check your internet connection and try again.', {
+        duration: 8000,
+        style: {
+          background: '#fee',
+          color: '#c33',
+          fontSize: '14px',
+          fontWeight: '500',
+          padding: '14px 18px',
+          marginTop: '10px',
+          maxWidth: '400px',
+        }
+      })
     } finally {
       setIsLoading(false)
     }
@@ -67,7 +118,29 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <Toaster position="top-center" />
+      <Toaster 
+        position="bottom-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#fff',
+            color: '#363636',
+            fontSize: '14px',
+            padding: '12px 16px',
+          },
+          error: {
+            style: {
+              background: '#fee',
+              color: '#c33',
+              fontWeight: '500',
+            },
+            duration: 10000, // 10 seconds for error messages
+          },
+          success: {
+            duration: 3000,
+          },
+        }}
+      />
       <div className="max-w-md w-full space-y-8">
         {/* Logo and Header */}
         <div className="text-center">
