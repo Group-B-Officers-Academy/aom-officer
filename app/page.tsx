@@ -1,9 +1,55 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      {/* Scrolling Announcement Bar */}
+      <div className="relative bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-4 overflow-hidden z-50 shadow-lg border-b-4 border-yellow-400">
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent pointer-events-none"></div>
+        
+        {/* Animated underline effect */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-yellow-400 to-transparent animate-pulse"></div>
+        
+        <div className="animate-scroll-right-to-left whitespace-nowrap">
+          <div className="inline-flex items-center gap-12">
+            {/* Duplicate content for seamless loop */}
+            <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+              <span className="uppercase">🎓 
+                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
+                {' & '}
+                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
+                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+              </span>
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+            </span>
+            <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+              <span className="uppercase">🎓 
+                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
+                {' & '}
+                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
+                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+              </span>
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+            </span>
+            <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+              <span className="uppercase">🎓 
+                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
+                {' & '}
+                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
+                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+              </span>
+              <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>

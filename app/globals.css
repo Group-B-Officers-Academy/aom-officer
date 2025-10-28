@@ -199,6 +199,81 @@ html {
   background: linear-gradient(180deg, #2563eb, #4f46e5);
 }
 
+/* Scrolling Animation - Right to Left */
+@keyframes scroll-right-to-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-right-to-left {
+  animation: scroll-right-to-left 80s linear infinite;
+  display: inline-block;
+}
+
+/* Scrolling Animation - Bottom to Top (Scroll Up) */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-up {
+  animation: scroll-up 8s linear infinite;
+}
+
+/* Scrolling Animation - Bottom Right to Top (Diagonal) */
+@keyframes scroll-diagonal {
+  0% {
+    transform: translate(50%, 100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-diagonal {
+  animation: scroll-diagonal 6s linear infinite;
+}
+
+/* Scrolling Animation - Bottom Right to Top Right (Floating Box) */
+@keyframes scroll-up-right {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh);
+    opacity: 1;
+  }
+}
+
+.animate-scroll-up-right {
+  animation: scroll-up-right 10s linear infinite;
+}
+
 /* Digital LED Counter Styles */
 .digital-counter {
   display: inline-flex;

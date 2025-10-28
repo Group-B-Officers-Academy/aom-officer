@@ -13,6 +13,7 @@ const TraineeRegister = () => {
     division: '',
     zone: '',
     phone: '',
+    paymentDone: '',
     address: '',
     email: '',
     password: ''
@@ -51,6 +52,7 @@ const TraineeRegister = () => {
           division: '',
           zone: '',
           phone: '',
+          paymentDone: '',
           address: '',
           email: '',
           password: ''
@@ -228,6 +230,24 @@ const TraineeRegister = () => {
                   placeholder="Your phone number"
                 />
               </div>
+            </div>
+
+            {/* Payment Done */}
+            <div className="group">
+              <label className="block text-sm font-semibold text-gray-700 mb-2 group-hover:text-blue-600 transition-colors">
+                Payment Done <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="paymentDone"
+                value={formData.paymentDone}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer"
+              >
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
             </div>
 
             {/* Address */}
