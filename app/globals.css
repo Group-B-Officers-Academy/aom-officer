@@ -202,7 +202,7 @@ html {
 /* Scrolling Animation - Right to Left */
 @keyframes scroll-right-to-left {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-100%);
@@ -210,8 +210,9 @@ html {
 }
 
 .animate-scroll-right-to-left {
-  animation: scroll-right-to-left 80s linear infinite;
+  animation: scroll-right-to-left 40s linear infinite;
   display: inline-block;
+  will-change: transform;
 }
 
 /* Scrolling Animation - Bottom to Top (Scroll Up) */
