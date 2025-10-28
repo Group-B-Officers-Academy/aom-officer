@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
       {/* Scrolling Announcement Bar */}
-      <div className="relative bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-4 overflow-hidden z-50 shadow-lg border-b-4 border-yellow-400">
+      <div className="relative bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-4 overflow-hidden z-0 shadow-lg border-b-4 border-yellow-400">
         {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent pointer-events-none"></div>
         

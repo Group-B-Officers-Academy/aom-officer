@@ -27,7 +27,7 @@ interface TraineeRegistration {
   registrationDate: string
   lastUpdated: string
   status?: string
-  paymentDone?: boolean
+  paymentDone?: string
 }
 
 interface ExpertRegistration {
@@ -454,11 +454,15 @@ const AdminDashboard = () => {
                       {trainee.preparingFor || 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                        trainee.paymentDone ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                      }`}>
-                        {trainee.paymentDone ? 'Done' : 'Pending'}
-                      </span>
+                      {trainee.paymentDone && trainee.paymentDone.toLowerCase() === 'yes' ? (
+                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                          Yes
+                        </span>
+                      ) : (
+                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                          {trainee.paymentDone || 'No'}
+                        </span>
+                      )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {trainee.email}
