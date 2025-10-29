@@ -1,6 +1,55 @@
 'use client'
 import React, { useState } from 'react'
 import { useToast } from '../../../components/Toast'
+import { z } from 'zod'
+
+// Zod validation schema
+const traineeSchema = z.object({
+  name: z.string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s\.\-']+$/, 'Name can only contain letters, spaces, dots, hyphens, and apostrophes'),
+  designation: z.string()
+    .min(2, 'Designation must be at least 2 characters')
+    .max(100, 'Designation must be less than 100 characters'),
+  workingPost: z.string()
+    .min(2, 'Working post must be at least 2 characters')
+    .max(200, 'Working post must be less than 200 characters'),
+  department: z.string()
+    .min(1, 'Please select a department')
+    .refine(val => ['Operating', 'Commercial', 'Engineering', 'S&T', 'Personnel', 'Accounts', 'Mechanical', 'Electrical', 'Others'].includes(val), {
+      message: 'Please select a valid department'
+    }),
+  preparingFor: z.string()
+    .min(1, 'Please select a post you are preparing for')
+    .refine(val => ['AOM', 'ACM', 'ADEN', 'ADSTE', 'APO', 'AFM', 'ADMI', 'ADEE'].includes(val), {
+      message: 'Please select a valid post'
+    }),
+  division: z.string()
+    .min(1, 'Division is required')
+    .max(100, 'Division must be less than 100 characters'),
+  zone: z.string()
+    .min(1, 'Zone is required')
+    .max(100, 'Zone must be less than 100 characters'),
+  phone: z.string()
+    .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
+  paymentDone: z.string()
+    .min(1, 'Please select payment status')
+    .refine(val => ['Yes', 'No'].includes(val), {
+      message: 'Please select Yes or No'
+    }),
+  address: z.string()
+    .min(10, 'Address must be at least 10 characters')
+    .max(500, 'Address must be less than 500 characters'),
+  email: z.string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .toLowerCase(),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .max(100, 'Password must be less than 100 characters')
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
+})
 
 const TraineeRegister = () => {
   const { addToast } = useToast()
@@ -18,16 +67,65 @@ const TraineeRegister = () => {
     email: '',
     password: ''
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    
+    // Limit phone number to exactly 10 digits and only allow numbers
+    let processedValue = value
+    if (name === 'phone') {
+      // Remove all non-numeric characters
+      processedValue = value.replace(/\D/g, '')
+      // Limit to 10 digits
+      if (processedValue.length > 10) {
+        processedValue = processedValue.slice(0, 10)
+      }
+    }
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: processedValue
     })
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      })
+    }
+  }
+
+  const validateForm = (): boolean => {
+    try {
+      traineeSchema.parse(formData)
+      setErrors({})
+      return true
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {}
+        const zodError = error as z.ZodError<typeof formData>
+        zodError.issues.forEach((err: z.ZodIssue) => {
+          const field = err.path[0] as string
+          fieldErrors[field] = err.message
+        })
+        setErrors(fieldErrors)
+      }
+      return false
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate form before submitting
+    if (!validateForm()) {
+      addToast('Please fix the errors in the form', 'error', 5000)
+      return
+    }
+
+    setIsSubmitting(true)
     
     try {
       const response = await fetch('/api/trainee-register', {
@@ -57,12 +155,15 @@ const TraineeRegister = () => {
           email: '',
           password: ''
         })
+        setErrors({})
       } else {
         addToast(`Error: ${result.error}`, 'error', 5000)
       }
     } catch (error) {
       console.error('Error submitting registration:', error)
       addToast('Failed to complete registration. Please try again.', 'error', 5000)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -92,9 +193,14 @@ const TraineeRegister = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.name ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300`}
                 placeholder="Enter your full name"
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+              )}
             </div>
 
             {/* Two Column Layout */}
@@ -110,9 +216,14 @@ const TraineeRegister = () => {
                   value={formData.designation}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    errors.designation ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                  } transition-all duration-200 outline-none hover:border-gray-300`}
                   placeholder="Your designation"
                 />
+                {errors.designation && (
+                  <p className="mt-1 text-sm text-red-600">{errors.designation}</p>
+                )}
               </div>
 
               {/* Department */}
@@ -125,7 +236,9 @@ const TraineeRegister = () => {
                   value={formData.department}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    errors.department ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                  } transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer`}
                 >
                   <option value="">Select Department</option>
                   <option value="Operating">Operating</option>
@@ -138,6 +251,9 @@ const TraineeRegister = () => {
                   <option value="Electrical">Electrical</option>
                   <option value="Others">Others</option>
                 </select>
+                {errors.department && (
+                  <p className="mt-1 text-sm text-red-600">{errors.department}</p>
+                )}
               </div>
             </div>
 
@@ -152,9 +268,14 @@ const TraineeRegister = () => {
                 value={formData.workingPost}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.workingPost ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300`}
                 placeholder="Enter working post or deputation details"
               />
+              {errors.workingPost && (
+                <p className="mt-1 text-sm text-red-600">{errors.workingPost}</p>
+              )}
             </div>
 
             {/* Preparing for */}
@@ -167,7 +288,9 @@ const TraineeRegister = () => {
                 value={formData.preparingFor}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.preparingFor ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer`}
               >
                 <option value="">Select Post</option>
                 <option value="AOM">AOM</option>
@@ -179,6 +302,9 @@ const TraineeRegister = () => {
                 <option value="ADMI">ADMI</option>
                 <option value="ADEE">ADEE</option>
               </select>
+              {errors.preparingFor && (
+                <p className="mt-1 text-sm text-red-600">{errors.preparingFor}</p>
+              )}
             </div>
 
             {/* Three Column Layout */}
@@ -194,9 +320,14 @@ const TraineeRegister = () => {
                   value={formData.division}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    errors.division ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                  } transition-all duration-200 outline-none hover:border-gray-300`}
                   placeholder="Division"
                 />
+                {errors.division && (
+                  <p className="mt-1 text-sm text-red-600">{errors.division}</p>
+                )}
               </div>
 
               {/* Zone */}
@@ -210,9 +341,14 @@ const TraineeRegister = () => {
                   value={formData.zone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    errors.zone ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                  } transition-all duration-200 outline-none hover:border-gray-300`}
                   placeholder="Zone"
                 />
+                {errors.zone && (
+                  <p className="mt-1 text-sm text-red-600">{errors.zone}</p>
+                )}
               </div>
 
               {/* Phone */}
@@ -226,9 +362,17 @@ const TraineeRegister = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
-                  placeholder="Your phone number"
+                  maxLength={10}
+                  inputMode="numeric"
+                  pattern="[0-9]{10}"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                  } transition-all duration-200 outline-none hover:border-gray-300`}
+                  placeholder="Enter 10 digit phone number"
                 />
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                )}
               </div>
             </div>
 
@@ -242,12 +386,17 @@ const TraineeRegister = () => {
                 value={formData.paymentDone}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.paymentDone ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer`}
               >
                 <option value="">Select</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
+              {errors.paymentDone && (
+                <p className="mt-1 text-sm text-red-600">{errors.paymentDone}</p>
+              )}
             </div>
 
             {/* Address */}
@@ -261,9 +410,14 @@ const TraineeRegister = () => {
                 onChange={handleChange}
                 required
                 rows={3}
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300 resize-none"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.address ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300 resize-none`}
                 placeholder="Enter your complete address"
               />
+              {errors.address && (
+                <p className="mt-1 text-sm text-red-600">{errors.address}</p>
+              )}
             </div>
 
             {/* Email */}
@@ -277,9 +431,14 @@ const TraineeRegister = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.email ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300`}
                 placeholder="your.email@example.com"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              )}
             </div>
 
             {/* Password */}
@@ -293,18 +452,29 @@ const TraineeRegister = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 outline-none hover:border-gray-300"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.password ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300`}
                 placeholder="Create a secure password"
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              )}
+              {!errors.password && (
+                <p className="mt-1 text-xs text-gray-500">Must contain at least 8 characters with uppercase, lowercase, and number</p>
+              )}
             </div>
 
             {/* Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300"
+                disabled={isSubmitting}
+                className={`w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                Trainee Registration
+                {isSubmitting ? 'Submitting...' : 'Trainee Registration'}
               </button>
             </div>
 

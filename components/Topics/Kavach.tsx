@@ -913,21 +913,29 @@ hot standby`
             <div className="bg-white rounded-lg shadow-md p-4">
               <h3 className="font-semibold text-gray-800 mb-4">Question Navigation</h3>
               <div className="grid grid-cols-5 gap-2">
-                {questions.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleQuestionJump(index)}
-                    className={`w-8 h-8 rounded text-sm font-medium transition-colors ${
-                      index === currentQuestion
-                        ? 'bg-blue-600 text-white'
-                        : answeredQuestions.has(index)
-                        ? 'bg-green-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
+                {questions.map((_, index) => {
+                  const userAnswer = userAnswers.get(index)
+                  const isCorrect = userAnswer !== undefined && userAnswer === questions[index].correctAnswer
+                  const isAnswered = answeredQuestions.has(index)
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => handleQuestionJump(index)}
+                      className={`w-8 h-8 rounded text-sm font-medium transition-colors ${
+                        index === currentQuestion
+                          ? 'bg-blue-600 text-white'
+                          : isAnswered && isCorrect
+                          ? 'bg-green-500 text-white'
+                          : isAnswered && !isCorrect
+                          ? 'bg-red-500 text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      {index + 1}
+                    </button>
+                  )
+                })}
               </div>
               <div className="mt-4 text-xs text-gray-600">
                 <div className="flex items-center gap-2 mb-1">
@@ -936,7 +944,11 @@ hot standby`
                 </div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span>Answered</span>
+                  <span>Correct</span>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span>Incorrect</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-gray-400 rounded-full"></div>

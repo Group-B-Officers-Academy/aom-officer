@@ -1,8 +1,69 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
+import { z } from "zod";
+
+// Zod validation schema for server-side validation
+const expertSchema = z.object({
+  name: z.string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s\.\-']+$/, 'Name can only contain letters, spaces, dots, hyphens, and apostrophes'),
+  designation: z.string()
+    .min(2, 'Designation must be at least 2 characters')
+    .max(100, 'Designation must be less than 100 characters'),
+  workingPost: z.string()
+    .max(200, 'Working post must be less than 200 characters')
+    .optional()
+    .or(z.literal('')),
+  department: z.string()
+    .min(1, 'Please select a department')
+    .refine(val => ['Operating', 'Commercial', 'Engineering', 'S&T', 'Personnel', 'Accounts', 'Mechanical', 'Electrical', 'Others'].includes(val), {
+      message: 'Please select a valid department'
+    }),
+  preparingFor: z.string()
+    .max(50, 'Post must be less than 50 characters')
+    .optional()
+    .or(z.literal('')),
+  division: z.string()
+    .max(100, 'Division must be less than 100 characters')
+    .optional()
+    .or(z.literal('')),
+  zone: z.string()
+    .max(100, 'Zone must be less than 100 characters')
+    .optional()
+    .or(z.literal('')),
+  phone: z.string()
+    .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
+  address: z.string()
+    .min(10, 'Address must be at least 10 characters')
+    .max(500, 'Address must be less than 500 characters'),
+  email: z.string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .toLowerCase(),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .max(100, 'Password must be less than 100 characters')
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
+});
 
 export async function POST(request: NextRequest) {
   try {
+    const body = await request.json();
+
+    // Validate with Zod
+    const validationResult = expertSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      const errorMessage = validationResult.error.issues
+        .map((err) => `${err.path.join('.')}: ${err.message}`)
+        .join(', ');
+      return NextResponse.json(
+        { error: `Validation failed: ${errorMessage}` },
+        { status: 400 }
+      );
+    }
+
     const {
       name,
       designation,
@@ -15,56 +76,33 @@ export async function POST(request: NextRequest) {
       address,
       email,
       password,
-    } = await request.json();
-
-    // Basic validation
-    if (
-      !name ||
-      !designation ||
-      !department ||
-      !phone ||
-      !address ||
-      !email ||
-      !password
-    ) {
-      return NextResponse.json(
-        {
-          error:
-            "Name, designation, department, phone, address, email, and password are required",
-        },
-        { status: 400 }
-      );
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    // Phone validation (basic)
-    const phoneRegex = /^[0-9+\-\s()]{10,15}$/;
-    if (!phoneRegex.test(phone)) {
-      return NextResponse.json(
-        { error: "Invalid phone number format" },
-        { status: 400 }
-      );
-    }
+    } = validationResult.data;
 
     // Connect to database
     const { db } = await connectToDatabase();
 
-    // Check if email already exists
-    const existingExpert = await db
-      .collection("experts")
-      .findOne({ email: email.trim().toLowerCase() });
+    // Check if email or phone number already exists
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedPhone = phone.trim();
 
-    if (existingExpert) {
+    const existingExpertByEmail = await db
+      .collection("experts")
+      .findOne({ email: normalizedEmail });
+
+    if (existingExpertByEmail) {
       return NextResponse.json(
-        { error: "An expert with this email already exists" },
+        { error: "An expert with this email already exists. Please use a different email address." },
+        { status: 409 }
+      );
+    }
+
+    const existingExpertByPhone = await db
+      .collection("experts")
+      .findOne({ phone: normalizedPhone });
+
+    if (existingExpertByPhone) {
+      return NextResponse.json(
+        { error: "An expert with this phone number already exists. Please use a different phone number." },
         { status: 409 }
       );
     }
@@ -78,9 +116,9 @@ export async function POST(request: NextRequest) {
       preparingFor: preparingFor ? preparingFor.trim() : "",
       division: division ? division.trim() : "",
       zone: zone ? zone.trim() : "",
-      phone: phone.trim(),
+      phone: normalizedPhone,
       address: address.trim(),
-      email: email.trim().toLowerCase(),
+      email: normalizedEmail,
       password: password.trim(),
       registrationDate: new Date(),
       status: "pending", // pending, approved, rejected

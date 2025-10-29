@@ -1,17 +1,46 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
+import { z } from "zod";
+
+// Zod validation schema for login
+const loginSchema = z.object({
+  email: z.string()
+    .min(1, 'Email or phone number is required')
+    .refine(
+      (val) => {
+        // Check if it's an email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        // Check if it's a 10-digit phone number
+        const phoneRegex = /^[0-9]{10}$/
+        return emailRegex.test(val) || phoneRegex.test(val)
+      },
+      {
+        message: 'Please enter a valid email address or 10-digit phone number'
+      }
+    ),
+  password: z.string()
+    .min(1, 'Password is required')
+    .min(6, 'Password must be at least 6 characters')
+});
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json();
+    const body = await request.json();
 
-    // Basic validation
-    if (!email || !password) {
+    // Validate with Zod
+    const validationResult = loginSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      const errorMessage = validationResult.error.issues
+        .map((err) => err.message)
+        .join(', ');
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: errorMessage },
         { status: 400 }
       );
     }
+
+    const { email, password } = validationResult.data;
 
     // Check if admin credentials
     if (email.toLowerCase() === "adminaom@gmail.com" && password === "admin123aom") {

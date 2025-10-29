@@ -1,9 +1,12 @@
+'use client'
+
+import FogSignals from '@/components/Topics/FogSignals';
 import React from 'react'
 
 const MCQTest = () => {
   return (
     <div>
-      <h1>MCQ Test</h1>
+      <FogSignals />
     </div>
   )
 };
