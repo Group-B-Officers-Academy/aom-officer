@@ -474,19 +474,12 @@ const Navbar = () => {
               )}
             </div>
             {isLoggedIn ? (
-              <div className="flex items-center space-x-3">
-                {userInfo && (
-                  <span className="text-sm text-gray-600">
-                    {userInfo.name || userInfo.email}
-                  </span>
-                )}
-                <button 
-                  onClick={handleLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
-                >
-                  Logout
-                </button>
-              </div>
+              <button 
+                onClick={handleLogout}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
+              >
+                Logout
+              </button>
             ) : (
               <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                 Login
@@ -915,22 +908,15 @@ const Navbar = () => {
                 )}
               </div>
               {isLoggedIn ? (
-                <div className="space-y-2">
-                  {userInfo && (
-                    <div className="px-3 py-2 text-sm text-gray-600">
-                      {userInfo.name || userInfo.email}
-                    </div>
-                  )}
-                  <button 
-                    onClick={() => {
-                      handleLogout()
-                      setIsMenuOpen(false)
-                    }}
-                    className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                  >
-                    Logout
-                  </button>
-                </div>
+                <button 
+                  onClick={() => {
+                    handleLogout()
+                    setIsMenuOpen(false)
+                  }}
+                  className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                >
+                  Logout
+                </button>
               ) : (
                 <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
                   Login

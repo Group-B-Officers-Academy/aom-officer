@@ -1,10 +1,61 @@
-import React from 'react'
+'use client'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const Home = () => {
+  const [userInfo, setUserInfo] = useState<{name?: string, email?: string} | null>(null)
+
+  // Check user session on mount and listen for changes
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const userSession = localStorage.getItem('userSession')
+      
+      if (userSession) {
+        try {
+          const userData = JSON.parse(userSession)
+          setUserInfo({ name: userData.name, email: userData.email })
+        } catch {
+          setUserInfo(null)
+        }
+      } else {
+        setUserInfo(null)
+      }
+    }
+
+    checkLoginStatus()
+    
+    // Listen for session updates
+    window.addEventListener('adminSessionUpdated', checkLoginStatus)
+    window.addEventListener('storage', checkLoginStatus)
+
+    return () => {
+      window.removeEventListener('adminSessionUpdated', checkLoginStatus)
+      window.removeEventListener('storage', checkLoginStatus)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      {/* User Welcome Message - Top Right */}
+      {userInfo && (
+        <div className="fixed top-16 md:top-20 right-2 md:right-4 z-50 animate-fade-in">
+          <div className="relative">
+            <div className="absolute inset-0 bg-linear-to-r from-blue-400 via-purple-500 to-indigo-600 rounded-xl blur-xl opacity-40"></div>
+            <div className="relative bg-white/95 backdrop-blur-xl rounded-xl px-3 py-2 md:px-4 md:py-3 shadow-2xl border border-blue-200/50 transform hover:scale-105 transition-all duration-300">
+              <div className="flex items-center gap-2">
+                <span className="text-xl md:text-2xl">👋</span>
+                <div>
+                  <p className="text-xs md:text-sm text-gray-600 font-medium">Welcome</p>
+                  <p className="text-sm md:text-base font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 truncate max-w-[120px] md:max-w-none">
+                    {userInfo.name || userInfo.email}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Scrolling Announcement Bar */}
       <div className="relative bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-4 overflow-hidden z-0 shadow-lg border-b-4 border-yellow-400">
         {/* Gradient overlay for depth */}
