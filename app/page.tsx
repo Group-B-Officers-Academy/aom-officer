@@ -119,9 +119,10 @@ const Home = () => {
                   <div className="p-4 md:p-5">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex-1">
-                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">Click here to</p>
+                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">TWO-MONTHS AOM LDCE CRASH COURSE HAS COMMENCED</p>
+                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">Seats Filling Fast - Don&apos;t Miss Out!</p>
                         <h3 className="text-lg md:text-xl font-black text-transparent bg-clip-text bg-linear-to-r from-orange-600 via-red-600 to-pink-600">
-                          Join Course
+                          Hurry Up! Join Course Now!
                         </h3>
                       </div>
                       <div className="shrink-0">

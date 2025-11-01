@@ -262,7 +262,139 @@ const Signals = () => {
       ],
       correctAnswer: 2,
       explanation: "Automatic Stop Signal is identified by letter 'A'"
-    }
+    },
+    {
+      id: 21,
+      question: " According to GR 3.33, when a station has only one connection off the main line, how should it be worked?        ",
+      options: [
+        "  Under ordinary rules      ",
+        "  Under approved special instructions    ",
+        "  Without any signals   ",
+        "   As per Station Master’s discretion   "
+      ],
+      correctAnswer:  1  ,
+      explanation: " Rule 3.33 (a) specifies that such a station shall be worked in accordance with approved special instructions        "
+    },
+
+{
+      id: 22,
+      question: " On light-traffic sections, how many Stop signals may be provided in each direction?        ",
+      options: [
+        "  Two      ",
+        "   Three   ",
+        "   One  ",
+        "   None     "
+      ],
+      correctAnswer: 2   ,
+      explanation: "  As per Rule 3.33 (b), one Stop signal only in each direction may be provided       "
+    },
+
+{
+      id: 23,
+      question: "  Where the traffic is light and speed slow, where should that single Stop signal be located?       ",
+      options: [
+        "  Inside station yard       ",
+        "  At the Home signal location     ",
+        "   At adequate distance outside outermost facing points    ",
+        "   At platform end      "
+      ],
+      correctAnswer:  2  ,
+      explanation: " Rule 3.33 (b) specifies the Stop signal shall be located at adequate distance outside the outermost facing points        "
+    },
+
+{
+      id: 24,
+      question: " Under what condition may all signals be dispensed with on a railway?        ",
+      options: [
+        " When speed is above 100 km/h       ",
+        " When traffic is very light      ",
+        "  When automatic signalling is provided    ",
+        "  When station is non-interlocked      "
+      ],
+      correctAnswer:  1  ,
+      explanation: "Rule 3.33 (c) permits dispensing with all signals where railway has very light traffic       "
+    },
+
+{
+      id: 25,
+      question: " At stations with manually operated multiple-aspect signals and train speed not exceeding 50 km/h, what signals may be provided in each direction?        ",
+      options: [
+        " Only Home signal        ",
+        "  Distant and Home signals     ",
+        "  Starter and Home    ",
+        "   Warner and Starter     "
+      ],
+      correctAnswer:  1  ,
+      explanation: "  Proviso allows Distant and Home signal only where speed ≤ 50 km/h       "
+    },
+
+{
+      id: 26,
+      question: "  Which rules are explicitly excepted by GR 3.33?       ",
+      options: [
+        "   3.25 to 3.29     ",
+        "    3.27, 3.28, 3.29 and 3.32   ",
+  "    3.30 to 3.35 ",
+        "  3.05 to 3.07      "
+      ],
+      correctAnswer:  1  ,
+      explanation: "  GR 3.33 provides exceptions to Rules 3.27, 3.28, 3.29 and 3.32       "
+    },
+
+{
+      id: 27,
+      question: "  What governs the working of a station under the exceptions of GR 3.33?       ",
+      options: [
+        "   Station Master’s discretion      ",
+        "    Approved special instructions    ",
+        "     General Rules only  ",
+        "      Local conditions only  "
+      ],
+      correctAnswer: 1   ,
+      explanation: "  All exceptions under GR 3.33 require operation under approved special instructions   "
+    },
+
+{
+      id: 28,
+      question: "   Where must the approved special instructions under GR 3.33 be embodied?      ",
+      options: [
+        "   Train Working Manual      ",
+        "    Station Working Rules    ",
+        "  Signal Maintenance Register     ",
+        "    Block Working Manual     "
+      ],
+      correctAnswer:  1  ,
+      explanation: "  S.R.3.33 specifies they shall be embodied in Station Working Rules       "
+    },
+
+{
+      id: 29,
+      question: "  What is the maximum permissible train speed for the proviso under GR 3.33?       ",
+      options: [
+ "   60 km/h   ",
+        "   40 km/h   ",
+        "   50 km/h  ",
+        "    30km/h   "
+      ],
+      correctAnswer:  2  ,
+      explanation: " The proviso applies to stations where speed does not exceed 50 km/h        "
+    },
+
+{
+      id: 30,
+      question: "  What is the primary objective of GR 3.33 exceptions?       ",
+      options: [
+        " To simplify signalling for low-traffic areas        ",
+        "  To increase line capacity      ",
+        "   To improve aesthetic design    ",
+        "    To eliminate manual signalling     "
+      ],
+      correctAnswer: 0   ,
+      explanation: " GR 3.33 aims to simplify signalling for low or very light traffic areas under safety-approved instructions        "
+    },
+
+
+
   ]
 
   // Timer effect
