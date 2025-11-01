@@ -116,7 +116,7 @@ const SuperCrashCourse = () => {
               </div>
 
               {/* Course Fee */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
+              {/* <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
                 <div className="flex items-center space-x-3">
                   <span className="lg:text-2xl text-xl">💰</span>
                   <div>
@@ -124,7 +124,7 @@ const SuperCrashCourse = () => {
                     <p className="lg:text-2xl text-xl font-bold text-red-600">₹ 1,500/- Only</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Academy Info */}
