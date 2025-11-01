@@ -64,7 +64,7 @@ const SuperCrashCourse = () => {
                   <span className="lg:text-2xl text-xl">👋</span>
                   <div>
                     <h3 className="lg:text-lg text-base font-semibold text-gray-800">Starts From</h3>
-                    <p className="lg:text-2xl text-xl font-bold text-green-600">🗓 31st October 2025</p>
+                    <p className="lg:text-2xl text-xl font-bold text-green-600">🗓 1st December 2025</p>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const SuperCrashCourse = () => {
                       </li>
                       <li className="flex items-center space-x-2">
                         <span>👉</span>
-                        <span>Daily MCQ Practice & Concept Tests 🧠</span>
+                        <span>Classes will be held on alternative days 🧠</span>
                       </li>
                       <li className="flex items-center space-x-2">
                         <span>👉</span>
@@ -167,7 +167,7 @@ const SuperCrashCourse = () => {
               <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-pink-500 rounded-2xl transform rotate-3"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-2xl">
                 <Image
-                  src="/images/super-2.jpg"
+                  src="/images/super-3.jpg"
                   alt="AOM Super Crash Course"
                   width={500}
                   height={600}

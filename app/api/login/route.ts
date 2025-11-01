@@ -91,7 +91,22 @@ export async function POST(request: NextRequest) {
     if (userStatus === 'rejected') {
       return NextResponse.json(
         { 
-          error: "Crash Course and Super Crash Course users only allowed. Your registration has been rejected." 
+          error: {
+            title: "Login Rejected",
+            message: "Your login was not successful due to one or more of the following reasons:",
+            reasons: [
+              "You have not joined the course.",
+              "Course fee payment is pending.",
+              "Your mobile number does not match our records. (The WhatsApp group mobile number and your registration mobile number must be the same.)"
+            ],
+            note: "Please use the same mobile number for both registration and all WhatsApp group communications after payment. Once you have updated your details or completed your payment, please contact the admin for activation.",
+            contact: {
+              academy: "Group B Officers Academy",
+              email: "groupbofficersacademy@gmail.com",
+              website: "www.groupbofficersacademy.com",
+              whatsapp: ["9701758170", "9390223040"]
+            }
+          }
         },
         { status: 403 }
       );
