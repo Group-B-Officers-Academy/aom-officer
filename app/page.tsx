@@ -71,8 +71,8 @@ const Home = () => {
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {' & '}
-                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
+                {/* {' & '} */}
+                {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
                 {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
@@ -81,8 +81,8 @@ const Home = () => {
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {' & '}
-                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
+                {/* {' & '} */}
+                {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
                 {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
@@ -98,6 +98,50 @@ const Home = () => {
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Join Course Button - Sticky Top Left */}
+      <div className="sticky top-0 z-40 py-4 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto">
+          <Link href="/join-course">
+            <div className="group relative inline-block animate-fade-in">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-linear-to-r from-orange-500 via-red-500 to-pink-500 rounded-2xl blur-xl opacity-60 group-hover:opacity-80 transition-opacity duration-500 animate-pulse"></div>
+              
+              {/* Main button container */}
+              <div className="relative bg-linear-to-r from-orange-500 via-red-500 to-pink-500 rounded-2xl p-1 shadow-2xl hover:shadow-orange-400/50 transition-all duration-500 transform hover:scale-105">
+                <div className="relative bg-white/95 backdrop-blur-xl rounded-xl overflow-hidden">
+                  {/* Image Section */}
+                  
+                  
+                  {/* Text Section */}
+                  <div className="p-4 md:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex-1">
+                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">Click here to</p>
+                        <h3 className="text-lg md:text-xl font-black text-transparent bg-clip-text bg-linear-to-r from-orange-600 via-red-600 to-pink-600">
+                          Join Course
+                        </h3>
+                      </div>
+                      <div className="shrink-0">
+                        
+                      </div>
+                    </div>
+                    
+                    {/* Arrow indicator */}
+                    <div className="mt-3 flex items-center gap-2 text-orange-600 font-bold text-sm">
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">Get Started</span>
+                      <span className="text-lg group-hover:translate-x-2 transition-transform duration-300">→</span>
+                    </div>
+                  </div>
+                  
+                  {/* Hover shine effect */}
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -132,7 +176,7 @@ const Home = () => {
           {/* Additional Images Grid - 5 New Images */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Image 8 */}
-            <div className="group relative animate-fade-in-up">
+            {/* <div className="group relative animate-fade-in-up">
               <div className="absolute inset-0 bg-linear-to-r from-emerald-400 to-teal-500 rounded-3xl blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700"></div>
               <div className="relative bg-white rounded-3xl p-2 shadow-2xl hover:shadow-emerald-300/50 transition-all duration-700 border border-emerald-100 transform hover:-translate-y-4 hover:rotate-1">
                 <div className="relative overflow-hidden rounded-2xl">
@@ -157,7 +201,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Image 9 */}
             <div className="group relative animate-fade-in-up animation-delay-200">
@@ -188,7 +232,7 @@ const Home = () => {
             </div>
 
             {/* Image 10 */}
-            <div className="group relative animate-fade-in-up animation-delay-400">
+            {/* <div className="group relative animate-fade-in-up animation-delay-400">
               <div className="absolute inset-0 bg-linear-to-r from-rose-400 to-pink-500 rounded-3xl blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700"></div>
               <div className="relative bg-white rounded-3xl p-2 shadow-2xl hover:shadow-rose-300/50 transition-all duration-700 border border-rose-100 transform hover:-translate-y-4 hover:rotate-1">
                 <div className="relative overflow-hidden rounded-2xl">
@@ -213,7 +257,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Image 11 */}
             <div className="group relative animate-fade-in-up animation-delay-600">
@@ -271,7 +315,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="group relative animate-fade-in-up animation-delay-600">
+            {/* <div className="group relative animate-fade-in-up animation-delay-600">
               <div className="absolute inset-0 bg-linear-to-r from-amber-400 to-orange-500 rounded-3xl blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700"></div>
               <div className="relative bg-white rounded-3xl p-2 shadow-2xl hover:shadow-amber-300/50 transition-all duration-700 border border-amber-100 transform hover:-translate-y-4 hover:-rotate-1">
                 <div className="relative overflow-hidden rounded-2xl">
@@ -296,7 +340,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             
           </div>

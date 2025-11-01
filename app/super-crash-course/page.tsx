@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const SuperCrashCourse = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-100 to-blue-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Image Gallery Section */}
         <div className="mb-12">
@@ -12,10 +12,10 @@ const SuperCrashCourse = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl transform rotate-2"></div>
-              <div className="relative bg-white rounded-2xl p-4 shadow-2xl">
+              <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-pink-500 rounded-2xl transform rotate-2"></div>
+              <div className="relative bg-white rounded-2xl p-4 shadow-2xl">  
                 <Image
-                  src="/images/logo-in-super.jpg"
+                  src="/images/super-1.jpg"
                   alt="AOM Super Crash Course - Image 1"
                   width={500}
                   height={600}
@@ -25,10 +25,10 @@ const SuperCrashCourse = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl transform -rotate-2"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-purple-500 rounded-2xl transform -rotate-2"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-2xl">
                 <Image
-                  src="/images/logo-in-super-2.jpg"
+                  src="/images/super-2.jpg"
                   alt="AOM Super Crash Course - Image 2"
                   width={500}
                   height={600}
@@ -128,7 +128,7 @@ const SuperCrashCourse = () => {
             </div>
 
             {/* Academy Info */}
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-6 text-white">
+            <div className="bg-linear-to-r from-purple-600 to-pink-600 rounded-xl p-6 text-white">
               <div className="text-center">
                 <h3 className="lg:text-xl text-lg font-bold mb-2">📚 Conducted by</h3>
                 <h2 className="lg:text-2xl text-xl font-bold mb-2">GROUP B OFFICERS ACADEMY</h2>
@@ -164,10 +164,10 @@ const SuperCrashCourse = () => {
           {/* Image Section - Right Side */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl transform rotate-3"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-pink-500 rounded-2xl transform rotate-3"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-2xl">
                 <Image
-                  src="/images/logo-in-super-2.jpg"
+                  src="/images/super-2.jpg"
                   alt="AOM Super Crash Course"
                   width={500}
                   height={600}
