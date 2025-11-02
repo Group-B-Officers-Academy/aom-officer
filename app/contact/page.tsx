@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 py-16">
+      <section className="bg-linear-to-r from-blue-600 to-indigo-600 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Contact Us
@@ -139,7 +139,7 @@ const Contact = () => {
               </div>
 
               {/* Academy Details */}
-              <div className="mt-12 bg-gradient-to-br from-blue-50 to-white rounded-2xl p-10 shadow-2xl border border-gray-100">
+              <div className="mt-12 bg-linear-to-br from-blue-50 to-white rounded-2xl p-10 shadow-2xl border border-gray-100">
                 <h3 className="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-3">
                   <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5zm0 0v7" />
@@ -274,27 +274,43 @@ const Contact = () => {
       </section>
 
       {/* Contact Logo Section */}
-      <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+      <section className="py-16 bg-linear-to-br from-amber-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="relative inline-block">
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-200 to-orange-200 rounded-3xl blur-lg opacity-30"></div>
-              <div className="relative bg-white rounded-2xl p-8 shadow-2xl border border-amber-100">
-                <Image 
-                  src="/images/logo-in-contact.jpg" 
-                  alt="Group B Officers Academy Contact Information" 
-                  width={600}
-                  height={400}
-                  className="max-w-full h-auto rounded-xl shadow-lg"
-                  priority
-                />
-                <div className="mt-6">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                    Group B Officers Academy
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    Your Gateway to Success
-                  </p>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="text-center">
+              <div className="relative inline-block">
+                <div className="absolute -inset-4 bg-linear-to-r from-amber-200 to-orange-200 rounded-3xl blur-lg opacity-30"></div>
+                <div className="relative bg-white rounded-2xl p-8 shadow-2xl border border-amber-100">
+                  <Image 
+                    src="/images/logo-in-contact.jpg" 
+                    alt="Group B Officers Academy Contact Information" 
+                    width={600}
+                    height={400}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                    priority
+                  />
+                  <div className="mt-6">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                      Group B Officers Academy
+                    </h3>
+                    <p className="text-gray-600 text-lg">
+                      Your Gateway to Success
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="relative inline-block">
+                <div className="absolute -inset-4 bg-linear-to-r from-amber-200 to-orange-200 rounded-3xl blur-lg opacity-30"></div>
+                <div className="relative bg-white rounded-2xl p-8 shadow-2xl border border-amber-100">
+                  <Image 
+                    src="/images/logo-in-contact-2.jpg" 
+                    alt="Group B Officers Academy WhatsApp Contact Information" 
+                    width={600}
+                    height={400}
+                    className="max-w-full h-auto rounded-xl shadow-lg"
+                  />
                 </div>
               </div>
             </div>

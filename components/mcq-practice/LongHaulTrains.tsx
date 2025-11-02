@@ -10,9 +10,10 @@ interface Question {
   explanation: string
 }
 
-const FogSignals = () => {
+const LongHaulTrains = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [showResult, setShowResult] = useState(false)
   const [score, setScore] = useState(0)
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<number>>(new Set())
   const [timeLeft, setTimeLeft] = useState(3600) // 60 minutes in seconds
@@ -20,247 +21,127 @@ const FogSignals = () => {
   const [userAnswers, setUserAnswers] = useState<Map<number, number>>(new Map())
   const [showSummary, setShowSummary] = useState(false)
 
-  // All 20 FOG SIGNALS MCQ Questions
+  // All 10 Long Haul Trains MCQ Questions
   const questions: Question[] = [
     {
       id: 1,
-      question: "What is the main purpose of a detonator? / किसी डेटोनेटर का मुख्य उद्देश्य क्या है?",
+      question: "What is the formation of more than one standard train known as ?",
       options: [
-        "To change signal aspect / सिग्नल का रंग बदलने के लिए",
-        "To attract the attention of the Loco Pilot / लोको पायलट का ध्यान आकर्षित करने हेतु",
-        "To measure visibility / दृश्यता मापने हेतु",
-        "To mark block section limit / ब्लॉक सेक्शन की सीमा बताने हेतु"
+        "Long Haul Train Operation",
+        "CC Train Operation",
+        "MGR Train Operation",
+        "RO-RO Train Operation"
       ],
-      correctAnswer: 1,
-      explanation: "A detonator explodes with a loud sound when a vehicle passes over it to attract attention during fog (GR 3.61)"
+      correctAnswer: 0,
+      explanation: "The formation of more than one standard train is known as Long Haul Train Operation"
     },
     {
       id: 2,
-      question: "Normal safety distance during a detonator explosion is— / डेटोनेटर विस्फोट के समय सामान्य सुरक्षा दूरी कितनी होती है?",
+      question: "Long haul train will be run in which of the following condition?",
       options: [
-        "25 m",
-        "35 m",
-        "45 m",
-        "60 m"
+        "Both rakes empty",
+        "One rake empty and one loaded",
+        "Both rakes loaded",
+        "All of the given options"
       ],
-      correctAnswer: 2,
-      explanation: "Minimum 45 metres must be kept as safety radius during explosion"
+      correctAnswer: 3,
+      explanation: "Long haul trains can be run with both rakes empty, one rake empty and one loaded, or both rakes loaded"
     },
     {
       id: 3,
-      question: "Who maintains stock of detonators? / डेटोनेटर का भंडार कौन रखता है?",
+      question: "Which of the following combinations of two constituent trains is not permitted in long haul operation ?",
       options: [
-        "Sr.DEN",
-        "DRM",
-        "PWI",
-        "Station Master"
+        "Two empty rakes",
+        "Two loaded rakes",
+        "Loaded rake in front and empty rake in trailing",
+        "Empty rake in front and loaded rake in trailing"
       ],
-      correctAnswer: 1,
-      explanation: "Stock of detonators is maintained by DRM and supplied to SM, PWI & CCC"
+      correctAnswer: 3,
+      explanation: "Empty rake in front and loaded rake in trailing is not permitted in long haul operation"
     },
     {
       id: 4,
-      question: "Who supplies detonators to Loco Pilots? / लोको पायलट को डेटोनेटर कौन उपलब्ध कराताह?",
+      question: "What action should be taken if Walkie-Talkie communication fails during running of long haul train?",
       options: [
-        "SM",
-        "CCC (Running Shed)",
-        "PWI",
-        "TWD Operator"
+        "Continue the operation without communication",
+        "Terminate the long haul movement at next stn",
+        "Reduce the speed of the train",
+        "Loco is declared fail"
       ],
       correctAnswer: 1,
-      explanation: "Running Sheds (CCC) issue detonators to Loco Pilots"
+      explanation: "If Walkie-Talkie communication fails during running of long haul train, the long haul movement should be terminated at the next station"
     },
     {
       id: 5,
-      question: "Number of detonators per fog-signalman— / प्रत्येक फॉग सिग्नलमैन को कितने डेटोनेटर दिए जाते हैं?",
+      question: "According to the guidelines issued by the Railway Board for operation of long-haul trains, if 2 trains are combined to form a long-haul train which of the locos will be braking in normal circumstances ?",
       options: [
-        "10",
-        "12",
-        "16",
-        "20"
+        "Only leading loco",
+        "Only trailing loco",
+        "Both locos",
+        "Trailing loco with emergency braking from leading loco if needed"
       ],
-      correctAnswer: 3,
-      explanation: "Each fog signalman is issued 20 detonators"
+      correctAnswer: 0,
+      explanation: "According to Railway Board guidelines, only the leading loco will be braking in normal circumstances for long-haul trains"
     },
     {
       id: 6,
-      question: "Life of a detonator manufactured after 2010 is— / सन् 2010 के बाद बने डेटोनेटर की आयु",
+      question: "What is the maximum permitted speed for loaded long haul trains?",
       options: [
-        "7 years",
-        "5 years",
-        "10 years",
-        "3 years"
+        "50 KMPH",
+        "60 KMPH",
+        "55 KMPH",
+        "70 KMPH"
       ],
-      correctAnswer: 1,
-      explanation: "Normal life 5 years; extendable 1 year × 3 times"
+      correctAnswer: 2,
+      explanation: "The maximum permitted speed for loaded long haul trains is 55 KMPH"
     },
     {
       id: 7,
-      question: "Testing frequency of detonators— / डेटोनेटर की जांच कितनी अवधि में की जाती है?",
+      question: "Which of the following is NOT permitted as part of long-haul train formation?",
       options: [
-        "6 months",
-        "12 months",
-        "24 months",
-        "36 months"
+        "BTPN wagons",
+        "BLC wagons (empty)",
+        "BCN wagons (loaded)",
+        "Both A and C"
       ],
-      correctAnswer: 1,
-      explanation: "Every 12 months using an empty wagon moving 8–11 km/h"
+      correctAnswer: 0,
+      explanation: "BTPN wagons are not permitted as part of long-haul train formation"
     },
     {
       id: 8,
-      question: "VTO stands for— / VTO का पूरा नाम क्या है?",
+      question: "Which of the following statements is TRUE about DPWCS enabled trains?",
       options: [
-        "Visibility Test Object",
-        "Visual Track Observation",
-        "Visibility Trial Order",
-        "Visual Target Object"
+        "All locomotives must be at the front",
+        "Locomotives can be located anywhere in the train consist",
+        "Only diesel locos are allowed",
+        "Only electric locos are allowed"
       ],
-      correctAnswer: 0,
-      explanation: "Used to check adequacy of visibility of signals"
+      correctAnswer: 1,
+      explanation: "For DPWCS enabled trains, locomotives can be located anywhere in the train consist"
     },
     {
       id: 9,
-      question: "Distance of VTO from SM's nominated position— / स्टेशन मास्टर के नामित स्थान से VTO कितनी दूरी पर है ?",
+      question: "When Will the Long haul not be operated from the next station during the journey?",
       options: [
-        "90 m",
-        "120 m",
-        "180 m",
-        "270 m"
+        "Stop signal defective",
+        "Hand signal not seen",
+        "Walkie talkie defective",
+        "None of these"
       ],
       correctAnswer: 2,
-      explanation: "In MACLS stations, VTO is located 180 m away"
+      explanation: "Long haul will not be operated from the next station if the Walkie talkie is defective"
     },
     {
       id: 10,
-      question: "VTP (Visibility Test Post) is provided when— / VTP कब प्रदान किया जाता है?",
+      question: "During Long haul working, if there is one rake loaded & other is empty, then ?",
       options: [
-        "When curve or no signal available",
-        "At LC gate",
-        "At yard limit",
-        "At loop line end"
+        "Loaded rake will be in front",
+        "Empty rake will be in front",
+        "Any rake can be in front",
+        "None of these"
       ],
       correctAnswer: 0,
-      explanation: "Where VTO cannot be nominated due to curve or no signal"
-    },
-    {
-      id: 11,
-      question: "Colour of VTP post— / VTP पोस्ट का रंग क्या होता है?",
-      options: [
-        "Red & White",
-        "Yellow (Self-luminous)",
-        "Black & White",
-        "Green"
-      ],
-      correctAnswer: 1,
-      explanation: "Painted with self-luminous yellow colour for visibility"
-    },
-    {
-      id: 12,
-      question: "Distance of Fog Signal Post (FSP) from First Stop Signal— / FSP पहले स्टॉप सिग्नल से कितनी दूरी पर होता है?",
-      options: [
-        "180 m",
-        "270 m",
-        "90 m",
-        "120 m"
-      ],
-      correctAnswer: 1,
-      explanation: "Fog Signal Post is erected 270 m behind FSS in either direction"
-    },
-    {
-      id: 13,
-      question: "How many Fog Signalmen are deployed at each station? / प्रत्येक स्टेशन पर कितने फॉग सिग्नलमैन तैनात किए जाते हैं?",
-      options: [
-        "Two (Operating) only",
-        "Two (Engg.) only",
-        "Four (2 + 2)",
-        "One each side"
-      ],
-      correctAnswer: 2,
-      explanation: "Two from Operating and two from Engineering"
-    },
-    {
-      id: 14,
-      question: "How are detonators placed at FSP as per SR 3.61.9? / SR 3.61.9 के अनुसार डेटोनेटर कैसे रखे जाते हैं?",
-      options: [
-        "One at FSP and one 10 m apart for each direction",
-        "Two at same spot",
-        "Three within 5 m",
-        "None"
-      ],
-      correctAnswer: 0,
-      explanation: "Each direction — 20 detonators taken to FSP; one placed at FSP and others 10m apart"
-    },
-    {
-      id: 15,
-      question: "Station Detonator Register Part I contains— / स्टेशन डेटोनेटर रजिस्टर के भाग-I में क्या लिखा होता है?",
-      options: [
-        "Receipt of detonators",
-        "Issue record",
-        "Fog Signalmen details",
-        "Testing details"
-      ],
-      correctAnswer: 2,
-      explanation: "Part I records names & signatures of Fog Signalmen posted at station"
-    },
-    {
-      id: 16,
-      question: "When should SM arrange fog signalling? / SM को फॉग सिग्नलिंग कब करानी चाहिए?",
-      options: [
-        "When VTO is visible",
-        "When VTO is not visible",
-        "After sunrise",
-        "On rainy day"
-      ],
-      correctAnswer: 1,
-      explanation: "If VTO is not visible, it indicates fog has set in — SM to arrange fog signalling"
-    },
-    {
-      id: 17,
-      question: "Where is it NOT necessary to place detonators? / किन स्थानों पर डेटोनेटर लगाना आवश्यक नहीं है?",
-      options: [
-        "Automatic Signalling territory",
-        "Single Distant Signal station",
-        "Non-fog area",
-        "Warning board section"
-      ],
-      correctAnswer: 0,
-      explanation: "In automatic signalling territory & where Fog Safe Device is provided, detonators are not required"
-    },
-    {
-      id: 18,
-      question: "Purpose of Fog Safe Device (FSD)— / फॉग सेफ डिवाइस का उद्देश्य क्या है?",
-      options: [
-        "Speed measurement",
-        "GPS-based navigation aid",
-        "Signal replacement",
-        "Crew communication"
-      ],
-      correctAnswer: 1,
-      explanation: "It assists Loco Pilots by giving GPS-based alerts for signals and landmarks"
-    },
-    {
-      id: 19,
-      question: "Weight of Fog Safe Device is approximately— / फॉग सेफ डिवाइस का वजन लगभग कितना होता है?",
-      options: [
-        "0.5 kg",
-        "1.0 kg",
-        "1.5 kg",
-        "2.0 kg"
-      ],
-      correctAnswer: 2,
-      explanation: "Portable stand-alone device weighing about 1.5 kg"
-    },
-    {
-      id: 20,
-      question: "Maximum speed in fog as per SR 3.61.10— / SR 3.61.10 के अनुसार कोहरे में अधिकतम गति कितनी हो सकती है?",
-      options: [
-        "60 KMPH",
-        "75 KMPH",
-        "90 KMPH",
-        "100 KMPH"
-      ],
-      correctAnswer: 1,
-      explanation: "Loco Pilot must run at a speed not exceeding 75 KMPH and controllable to stop short of obstruction"
+      explanation: "During Long haul working, if there is one rake loaded and other is empty, the loaded rake will be in front"
     }
   ]
 
@@ -287,32 +168,28 @@ const FogSignals = () => {
   }
 
   const handleAnswerSelect = (answerIndex: number) => {
-    // Don't allow changing answer once selected for current question
-    if (answeredQuestions.has(currentQuestion)) {
+    // Don't allow changing answer if already answered
+    if (showResult && answeredQuestions.has(currentQuestion)) {
       return
     }
     
     setSelectedAnswer(answerIndex)
-    
-    // Update user answers
+    // Immediately show result and process answer
+    setShowResult(true)
     setUserAnswers(prev => new Map([...prev, [currentQuestion, answerIndex]]))
-    
-    // Update score if correct
     if (answerIndex === questions[currentQuestion].correctAnswer) {
       setScore(prev => prev + 1)
     }
-    
-    // Mark question as answered
     setAnsweredQuestions(prev => new Set([...prev, currentQuestion]))
   }
 
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
-      const nextQuestionIndex = currentQuestion + 1
-      setCurrentQuestion(nextQuestionIndex)
-      // Restore previous answer if question was already answered
-      const previousAnswer = userAnswers.get(nextQuestionIndex)
+      const nextIndex = currentQuestion + 1
+      setCurrentQuestion(nextIndex)
+      const previousAnswer = userAnswers.get(nextIndex)
       setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
+      setShowResult(previousAnswer !== undefined)
     } else {
       // Quiz completed
       setQuizCompleted(true)
@@ -322,19 +199,19 @@ const FogSignals = () => {
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      const previousQuestionIndex = currentQuestion - 1
-      setCurrentQuestion(previousQuestionIndex)
-      // Restore previous answer if question was already answered
-      const previousAnswer = userAnswers.get(previousQuestionIndex)
+      const prevIndex = currentQuestion - 1
+      setCurrentQuestion(prevIndex)
+      const previousAnswer = userAnswers.get(prevIndex)
       setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
+      setShowResult(previousAnswer !== undefined)
     }
   }
 
   const handleQuestionJump = (questionIndex: number) => {
     setCurrentQuestion(questionIndex)
-    // Restore previous answer if question was already answered
     const previousAnswer = userAnswers.get(questionIndex)
     setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
+    setShowResult(previousAnswer !== undefined)
   }
 
   const isCorrect = selectedAnswer === questions[currentQuestion]?.correctAnswer
@@ -351,10 +228,10 @@ const FogSignals = () => {
 
   // Get question categories for analysis
   const getQuestionCategory = (questionId: number) => {
-    if (questionId <= 5) return "Basic Concepts"
-    if (questionId <= 10) return "Detonator Management"
-    if (questionId <= 15) return "VTO & FSP"
-    return "Fog Safe Device & Speed Limits"
+    if (questionId <= 3) return "Basic Concepts"
+    if (questionId <= 6) return "Operational Procedures"
+    if (questionId <= 8) return "Technical Specifications"
+    return "Safety & Regulations"
   }
 
   // Calculate category-wise performance
@@ -373,6 +250,7 @@ const FogSignals = () => {
   const handleRestartQuiz = () => {
     setCurrentQuestion(0)
     setSelectedAnswer(null)
+    setShowResult(false)
     setScore(0)
     setAnsweredQuestions(new Set())
     setTimeLeft(3600)
@@ -387,7 +265,7 @@ const FogSignals = () => {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="flex justify-between items-center lg:flex-row flex-col gap-3">
-            <h1 className="lg:text-3xl text-xl font-bold text-gray-800">Fog Signals 20 MCQ Quiz</h1>
+            <h1 className="lg:text-3xl text-xl font-bold text-gray-800">Long Haul Trains MCQ Quiz</h1>
             <div className="text-right">
               <div className="lg:text-2xl text-xl font-semibold text-blue-600 text-center">{formatTime(timeLeft)}</div>
               <div className="text-sm text-gray-600">Time Remaining</div>
@@ -474,15 +352,13 @@ const FogSignals = () => {
                           key={index}
                           className={`block lg:p-4 p-2 rounded-lg border-2 cursor-pointer transition-all ${
                             selectedAnswer === index
-                              ? selectedAnswer !== null && answeredQuestions.has(currentQuestion)
+                              ? showResult
                                 ? isCorrect
                                   ? 'border-green-500 bg-green-50'
                                   : 'border-red-500 bg-red-50'
                                 : 'border-blue-500 bg-blue-50'
-                              : index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion) && selectedAnswer !== index
-                              ? 'border-green-500 bg-green-50'
                               : 'border-gray-200 hover:border-gray-300'
-                          } ${answeredQuestions.has(currentQuestion) ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                          }`}
                         >
                           <input
                             type="radio"
@@ -496,16 +372,14 @@ const FogSignals = () => {
                           <div className="flex items-center">
                             <div className={`w-6 h-6 rounded-full border-2 mr-3 flex items-center justify-center ${
                               selectedAnswer === index
-                                ? selectedAnswer !== null && answeredQuestions.has(currentQuestion)
+                                ? showResult
                                   ? isCorrect
                                     ? 'border-green-500 bg-green-500'
                                     : 'border-red-500 bg-red-500'
                                   : 'border-blue-500 bg-blue-500'
-                                : index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion)
-                                ? 'border-green-500 bg-green-500'
                                 : 'border-gray-300'
                             }`}>
-                              {(selectedAnswer === index || (index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion))) && (
+                              {selectedAnswer === index && (
                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                               )}
                             </div>
@@ -516,7 +390,7 @@ const FogSignals = () => {
                     </div>
                   </div>
 
-                  {selectedAnswer !== null && (
+                  {showResult && selectedAnswer !== null && (
                     <div className="mb-6 p-4 rounded-lg bg-gray-50">
                       <div className={`text-lg font-semibold mb-2 ${
                         isCorrect ? 'text-green-600' : 'text-red-600'
@@ -559,7 +433,7 @@ const FogSignals = () => {
         {(quizCompleted || timeLeft === 0) && showSummary && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
             <div className="bg-white rounded-lg p-8 max-w-4xl w-full mx-4 my-8 max-h-[90vh] overflow-y-auto">
-              <h2 className="lg:text-3xl text-xl font-bold text-center mb-6 text-gray-800">Fog Signals Quiz Summary & Overview</h2>
+              <h2 className="lg:text-3xl text-xl font-bold text-center mb-6 text-gray-800">Long Haul Trains Quiz Summary & Overview</h2>
               
               {/* Overall Score */}
               <div className="bg-linear-to-r from-blue-500 to-purple-600 rounded-lg p-6 mb-6 text-white">
@@ -713,4 +587,4 @@ const FogSignals = () => {
   )
 }
 
-export default FogSignals
+export default LongHaulTrains

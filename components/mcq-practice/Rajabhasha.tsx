@@ -13,7 +13,6 @@ interface Question {
 const Rajabhasha = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
-  const [showResult, setShowResult] = useState(false)
   const [score, setScore] = useState(0)
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<number>>(new Set())
   const [timeLeft, setTimeLeft] = useState(3600) // 60 minutes in seconds
@@ -265,25 +264,32 @@ const Rajabhasha = () => {
   }
 
   const handleAnswerSelect = (answerIndex: number) => {
-    setSelectedAnswer(answerIndex)
-  }
-
-  const handleSubmit = () => {
-    if (selectedAnswer !== null) {
-      setShowResult(true)
-      setUserAnswers(prev => new Map([...prev, [currentQuestion, selectedAnswer]]))
-      if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-        setScore(prev => prev + 1)
-      }
-      setAnsweredQuestions(prev => new Set([...prev, currentQuestion]))
+    // Don't allow changing answer once selected for current question
+    if (answeredQuestions.has(currentQuestion)) {
+      return
     }
+    
+    setSelectedAnswer(answerIndex)
+    
+    // Update user answers
+    setUserAnswers(prev => new Map([...prev, [currentQuestion, answerIndex]]))
+    
+    // Update score if correct
+    if (answerIndex === questions[currentQuestion].correctAnswer) {
+      setScore(prev => prev + 1)
+    }
+    
+    // Mark question as answered
+    setAnsweredQuestions(prev => new Set([...prev, currentQuestion]))
   }
 
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1)
-      setSelectedAnswer(null)
-      setShowResult(false)
+      const nextQuestionIndex = currentQuestion + 1
+      setCurrentQuestion(nextQuestionIndex)
+      // Restore previous answer if question was already answered
+      const previousAnswer = userAnswers.get(nextQuestionIndex)
+      setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
     } else {
       // Quiz completed
       setQuizCompleted(true)
@@ -293,16 +299,19 @@ const Rajabhasha = () => {
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(prev => prev - 1)
-      setSelectedAnswer(null)
-      setShowResult(false)
+      const previousQuestionIndex = currentQuestion - 1
+      setCurrentQuestion(previousQuestionIndex)
+      // Restore previous answer if question was already answered
+      const previousAnswer = userAnswers.get(previousQuestionIndex)
+      setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
     }
   }
 
   const handleQuestionJump = (questionIndex: number) => {
     setCurrentQuestion(questionIndex)
-    setSelectedAnswer(null)
-    setShowResult(false)
+    // Restore previous answer if question was already answered
+    const previousAnswer = userAnswers.get(questionIndex)
+    setSelectedAnswer(previousAnswer !== undefined ? previousAnswer : null)
   }
 
   const isCorrect = selectedAnswer === questions[currentQuestion]?.correctAnswer
@@ -341,7 +350,6 @@ const Rajabhasha = () => {
   const handleRestartQuiz = () => {
     setCurrentQuestion(0)
     setSelectedAnswer(null)
-    setShowResult(false)
     setScore(0)
     setAnsweredQuestions(new Set())
     setTimeLeft(3600)
@@ -443,13 +451,15 @@ const Rajabhasha = () => {
                           key={index}
                           className={`block lg:p-4 p-2 rounded-lg border-2 cursor-pointer transition-all ${
                             selectedAnswer === index
-                              ? showResult
+                              ? selectedAnswer !== null && answeredQuestions.has(currentQuestion)
                                 ? isCorrect
                                   ? 'border-green-500 bg-green-50'
                                   : 'border-red-500 bg-red-50'
                                 : 'border-blue-500 bg-blue-50'
+                              : index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion) && selectedAnswer !== index
+                              ? 'border-green-500 bg-green-50'
                               : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                          } ${answeredQuestions.has(currentQuestion) ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                         >
                           <input
                             type="radio"
@@ -458,19 +468,21 @@ const Rajabhasha = () => {
                             checked={selectedAnswer === index}
                             onChange={() => handleAnswerSelect(index)}
                             className="sr-only"
-                            disabled={showResult}
+                            disabled={answeredQuestions.has(currentQuestion)}
                           />
                           <div className="flex items-center">
                             <div className={`w-6 h-6 rounded-full border-2 mr-3 flex items-center justify-center ${
                               selectedAnswer === index
-                                ? showResult
+                                ? selectedAnswer !== null && answeredQuestions.has(currentQuestion)
                                   ? isCorrect
                                     ? 'border-green-500 bg-green-500'
                                     : 'border-red-500 bg-red-500'
                                   : 'border-blue-500 bg-blue-500'
+                                : index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion)
+                                ? 'border-green-500 bg-green-500'
                                 : 'border-gray-300'
                             }`}>
-                              {selectedAnswer === index && (
+                              {(selectedAnswer === index || (index === questions[currentQuestion].correctAnswer && selectedAnswer !== null && answeredQuestions.has(currentQuestion))) && (
                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                               )}
                             </div>
@@ -481,7 +493,7 @@ const Rajabhasha = () => {
                     </div>
                   </div>
 
-                  {showResult && (
+                  {selectedAnswer !== null && (
                     <div className="mb-6 p-4 rounded-lg bg-gray-50">
                       <div className={`text-lg font-semibold mb-2 ${
                         isCorrect ? 'text-green-600' : 'text-red-600'
@@ -506,22 +518,13 @@ const Rajabhasha = () => {
                       Previous
                     </button>
 
-                    {!showResult ? (
-                      <button
-                        onClick={handleSubmit}
-                        disabled={selectedAnswer === null}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
-                      >
-                        Submit Answer
-                      </button>
-                    ) : (
-                      <button
-                        onClick={handleNext}
-                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                      >
-                        {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
-                      </button>
-                    )}
+                    <button
+                      onClick={handleNext}
+                      disabled={selectedAnswer === null}
+                      className="px-6 py-2 bg-green-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-700 transition-colors"
+                    >
+                      {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+                    </button>
                   </div>
                 </>
               )}

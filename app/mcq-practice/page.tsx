@@ -36,6 +36,21 @@ const MCQPractice = () => {
       borderColor: 'border-blue-200'
     },
     {
+      id: 'long-haul-trains',
+      title: 'Long Haul Trains',
+      description: 'Master the operation of Long Haul Trains - Formation, braking procedures, speed limits, and safety protocols',
+      href: '/mcq-practice/long-haul-trains',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: 'from-orange-500 to-red-600',
+      bgColor: 'bg-orange-50',
+      textColor: 'text-orange-700',
+      borderColor: 'border-orange-200'
+    },
+    {
       id: 'operating-manual',
       title: 'Operating Manual',
       description: 'General Rules and Operating Procedures - Test your knowledge of railway operating guidelines',
