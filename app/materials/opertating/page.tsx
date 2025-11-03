@@ -20,6 +20,21 @@ const Operating = () => {
       borderColor: 'border-indigo-200'
     },
     {
+      id: 'long-haul-trains-jpo',
+      title: 'Long Haul Trains JPO',
+      description: 'Comprehensive guide for Long Haul Trains Joint Procedure Orders, operational protocols, and procedures for extended railway services',
+      href: '/materials/opertating/long-haul-trains-jpo',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: 'from-orange-500 to-red-600',
+      bgColor: 'bg-orange-50',
+      textColor: 'text-orange-700',
+      borderColor: 'border-orange-200'
+    },
+    {
       id: 'combination-of-signals',
       title: 'Combination of Signals',
       description: 'Comprehensive guide for understanding signal combinations, signal systems, and operational procedures for combined signaling operations',
@@ -50,20 +65,20 @@ const Operating = () => {
       borderColor: 'border-green-200'
     },
     {
-      id: 'long-haul-trains-jpo',
-      title: 'Long Haul Trains JPO',
-      description: 'Comprehensive guide for Long Haul Trains Joint Procedure Orders, operational protocols, and procedures for extended railway services',
-      href: '/materials/opertating/long-haul-trains-jpo',
+      id: 'signals-chapter-3',
+      title: 'Signals Chapter 3',
+      description: 'Comprehensive guide for railway signals chapter 3, signaling systems, and operational procedures for signal management',
+      href: '/materials/opertating/signals-chapter-3',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
-      color: 'from-orange-500 to-red-600',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-700',
-      borderColor: 'border-orange-200'
-    }
+      color: 'from-teal-500 to-cyan-600',
+      bgColor: 'bg-teal-50',
+      textColor: 'text-teal-700',
+      borderColor: 'border-teal-200'
+    },
   ]
 
   return (

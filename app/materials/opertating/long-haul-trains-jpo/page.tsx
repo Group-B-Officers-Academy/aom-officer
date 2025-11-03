@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
 // Dynamically import react-pdf with SSR disabled
 const PDFViewer = dynamic(
@@ -139,6 +140,19 @@ const LongHaulTrainsJPO = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Back Button Section */}
+          <div className="mt-8 sm:mt-12 text-center">
+            <Link
+              href="/materials/opertating"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span>Back to Operating Topics/Manuals</span>
+            </Link>
           </div>
         </div>
       </section>
