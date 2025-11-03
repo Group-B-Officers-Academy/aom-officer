@@ -90,7 +90,7 @@ const LongHaulTrainsJPO = () => {
               
               {/* PDF Display */}
               <div className="relative bg-gray-100 rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 shadow-xl mb-4 md:mb-6">
-                <div className="bg-white rounded-lg p-2 sm:p-4 md:p-6 flex justify-center items-start overflow-auto -mx-2 sm:mx-0">
+                <div className="bg-white rounded-lg p-2 sm:p-4 md:p-6 flex justify-center items-center -mx-2 sm:mx-0">
                   <div className="w-full flex justify-center max-w-full">
                     <PDFViewer
                       pageNumber={pageNumber}

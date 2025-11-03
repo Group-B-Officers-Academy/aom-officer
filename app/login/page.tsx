@@ -467,7 +467,7 @@ const Login = () => {
         </div>
 
         {/* Academy Info */}
-        <div className="bg-white rounded-xl p-6 shadow-lg">
+        {/* <div className="bg-white rounded-xl p-6 shadow-lg">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               New to Our Academy?
@@ -484,7 +484,9 @@ const Login = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+
+
       </div>
 
       {/* Forgot Password Modal */}

@@ -10,7 +10,7 @@ const Operating = () => {
       description: 'Comprehensive guide for long haul operations, procedures, and operational protocols for extended railway services',
       href: '/materials/opertating/long-haul-summary',
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
         </svg>
       ),
@@ -25,7 +25,7 @@ const Operating = () => {
       description: 'Comprehensive guide for Long Haul Trains Joint Procedure Orders, operational protocols, and procedures for extended railway services',
       href: '/materials/opertating/long-haul-trains-jpo',
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
@@ -40,7 +40,7 @@ const Operating = () => {
       description: 'Comprehensive guide for understanding signal combinations, signal systems, and operational procedures for combined signaling operations',
       href: '/materials/opertating/combination-of-signals',
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
@@ -55,7 +55,7 @@ const Operating = () => {
       description: 'Comprehensive guide for railway signals, signaling systems, and operational procedures for signal management',
       href: '/materials/opertating/signals-summary',
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
@@ -66,11 +66,11 @@ const Operating = () => {
     },
     {
       id: 'signals-chapter-3',
-      title: 'Signals Chapter 3',
+      title: 'Signals - Chapter 3',
       description: 'Comprehensive guide for railway signals chapter 3, signaling systems, and operational procedures for signal management',
       href: '/materials/opertating/signals-chapter-3',
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
@@ -78,6 +78,36 @@ const Operating = () => {
       bgColor: 'bg-teal-50',
       textColor: 'text-teal-700',
       borderColor: 'border-teal-200'
+    },
+    {
+      id: 'working-of-trains',
+      title: 'Working of Trains - Chapter 4',
+      description: 'Comprehensive guide for working of trains operations, procedures, and operational protocols for railway services',
+      href: '/materials/opertating/working-of-trains',
+      icon: (
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
+      color: 'from-rose-500 to-pink-600',
+      bgColor: 'bg-rose-50',
+      textColor: 'text-rose-700',
+      borderColor: 'border-rose-200'
+    },
+    {
+      id: 'automatic-signals',
+      title: 'Automatic Signals - Chapter 9',
+      description: 'Comprehensive guide for automatic signal systems, signaling protocols, and operational procedures for automated railway signaling',
+      href: '/materials/opertating/automatic-signals',
+      icon: (
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: 'from-amber-500 to-yellow-600',
+      bgColor: 'bg-amber-50',
+      textColor: 'text-amber-700',
+      borderColor: 'border-amber-200'
     },
   ]
 
@@ -91,7 +121,7 @@ const Operating = () => {
             <h1 className="text-3xl lg:text-6xl font-bold text-gray-900 mb-4">
               Operating{' '}
               <span className="bg-linear-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Manuals
+                Materials
               </span>
             </h1>
             <p className="text-base lg:text-2xl text-gray-600 mt-6 max-w-3xl mx-auto">
@@ -131,7 +161,7 @@ const Operating = () => {
                 
                 {/* CTA Button */}
                 <div className="flex items-center text-sm font-semibold group-hover:gap-2 transition-all duration-300">
-                  <span className={`${topic.textColor}`}>View Manual</span>
+                  <span className={`${topic.textColor}`}>View Materials</span>
                   <svg 
                     className={`w-5 h-5 ml-2 ${topic.textColor} group-hover:translate-x-1 transition-transform duration-300`} 
                     fill="none" 

@@ -11,13 +11,13 @@ if (typeof window !== 'undefined') {
 
 interface PDFViewerProps {
   pageNumber: number
-  scale: number
+  scale?: number // Deprecated: using dynamic width calculation instead
   onDocumentLoadSuccess: (data: { numPages: number }) => void
   onPrevPage?: () => void
   onNextPage?: () => void
 }
 
-const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoadSuccess, onPrevPage, onNextPage }) => {
+const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess, onPrevPage, onNextPage }) => {
   const isClient = typeof window !== 'undefined'
   const [pageWidth, setPageWidth] = useState<number | undefined>(undefined)
 
@@ -33,12 +33,20 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
       // Set worker source again in useEffect to ensure it's set
       pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
       
-      // Set page width for mobile
+      // Set page width to fit viewport without scrolling
       const updateWidth = () => {
         if (window.innerWidth < 640) {
-          setPageWidth(window.innerWidth - 40)
+          // Mobile: account for padding on both sides
+          setPageWidth(window.innerWidth - 32)
+        } else if (window.innerWidth < 768) {
+          // Small tablet: account for padding
+          setPageWidth(window.innerWidth - 128)
+        } else if (window.innerWidth < 1024) {
+          // Tablet: account for padding
+          setPageWidth(window.innerWidth - 160)
         } else {
-          setPageWidth(undefined)
+          // Desktop: max width for better readability
+          setPageWidth(920)
         }
       }
       updateWidth()
@@ -211,10 +219,10 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
         >
           <Page
             pageNumber={pageNumber}
-            scale={scale}
+            rotate={90}
             renderTextLayer={false}
             renderAnnotationLayer={true}
-            className="shadow-lg max-w-full"
+            className="shadow-lg mx-auto"
             width={pageWidth}
           />
         </Document>
