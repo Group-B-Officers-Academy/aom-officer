@@ -36,6 +36,21 @@ const MCQPractice = () => {
       borderColor: 'border-blue-200'
     },
     {
+      id: 'chapter-v-mcq',
+      title: 'Chapter V MCQ',
+      description: 'Master Chapter V station working rules, reception, departure, and shunting operations with comprehensive practice questions',
+      href: '/mcq-practice/chapter-v-mcq',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      color: 'from-teal-500 to-cyan-600',
+      bgColor: 'bg-teal-50',
+      textColor: 'text-teal-700',
+      borderColor: 'border-teal-200'
+    },
+    {
       id: 'long-haul-trains',
       title: 'Long Haul Trains',
       description: 'Master the operation of Long Haul Trains - Formation, braking procedures, speed limits, and safety protocols',

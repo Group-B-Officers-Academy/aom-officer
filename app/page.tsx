@@ -83,7 +83,7 @@ const Home = () => {
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
                 {/* {' & '} */}
                 {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
-                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+                {' ALREADY STARTED - JOIN NOW! 🎓'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>

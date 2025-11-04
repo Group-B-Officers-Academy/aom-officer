@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useToast } from '../../../components/Toast'
 
 interface ContactMessage {
   _id: string
@@ -55,6 +56,7 @@ const AdminDashboard = () => {
   const [adminSession, setAdminSession] = useState<{ username: string } | null>(null)
   const [activeTab, setActiveTab] = useState<'messages' | 'trainees' | 'experts'>('messages')
   const router = useRouter()
+  const { addToast } = useToast()
 
   const fetchContactMessages = useCallback(async () => {
     try {
@@ -209,6 +211,105 @@ const AdminDashboard = () => {
     }
   }
 
+  // Handle contact message deletion
+  const handleDeleteMessage = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this contact message? This action cannot be undone.')) {
+      return
+    }
+
+    try {
+      const adminSession = localStorage.getItem('adminSession')
+      const session = adminSession ? JSON.parse(adminSession) : null
+      
+      const response = await fetch('/api/admin/contact-messages', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'admin-session': JSON.stringify(session)
+        },
+        body: JSON.stringify({ id })
+      })
+
+      if (response.ok) {
+        // Refresh messages list
+        fetchContactMessages()
+        addToast('Deleted Successfully', 'success')
+      } else {
+        const result = await response.json()
+        addToast(result.error || 'Failed to delete contact message', 'error')
+      }
+    } catch (error) {
+      console.error('Error deleting contact message:', error)
+      addToast('Failed to delete contact message', 'error')
+    }
+  }
+
+  // Handle trainee registration deletion
+  const handleDeleteTrainee = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this trainee registration? This action cannot be undone.')) {
+      return
+    }
+
+    try {
+      const adminSession = localStorage.getItem('adminSession')
+      const session = adminSession ? JSON.parse(adminSession) : null
+      
+      const response = await fetch('/api/admin/trainees', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'admin-session': JSON.stringify(session)
+        },
+        body: JSON.stringify({ id })
+      })
+
+      if (response.ok) {
+        // Refresh trainees list
+        fetchTrainees()
+        addToast('Deleted Successfully', 'success')
+      } else {
+        const result = await response.json()
+        addToast(result.error || 'Failed to delete trainee registration', 'error')
+      }
+    } catch (error) {
+      console.error('Error deleting trainee registration:', error)
+      addToast('Failed to delete trainee registration', 'error')
+    }
+  }
+
+  // Handle expert registration deletion
+  const handleDeleteExpert = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this expert registration? This action cannot be undone.')) {
+      return
+    }
+
+    try {
+      const adminSession = localStorage.getItem('adminSession')
+      const session = adminSession ? JSON.parse(adminSession) : null
+      
+      const response = await fetch('/api/admin/experts', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'admin-session': JSON.stringify(session)
+        },
+        body: JSON.stringify({ id })
+      })
+
+      if (response.ok) {
+        // Refresh experts list
+        fetchExperts()
+        addToast('Deleted Successfully', 'success')
+      } else {
+        const result = await response.json()
+        addToast(result.error || 'Failed to delete expert registration', 'error')
+      }
+    } catch (error) {
+      console.error('Error deleting expert registration:', error)
+      addToast('Failed to delete expert registration', 'error')
+    }
+  }
+
   const getStatusBadge = (status: string = 'pending') => {
     const statusColors = {
       pending: 'bg-yellow-100 text-yellow-800',
@@ -344,6 +445,9 @@ const AdminDashboard = () => {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Date
                   </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -363,6 +467,14 @@ const AdminDashboard = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {formatDate(message.createdAt)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button
+                        onClick={() => handleDeleteMessage(message._id)}
+                        className="bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-red-700 transition-colors"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -497,6 +609,13 @@ const AdminDashboard = () => {
                         >
                           Reject
                         </button>
+                        <button
+                          onClick={() => handleDeleteTrainee(trainee._id)}
+                          className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+                          title="Delete registration"
+                        >
+                          Delete
+                        </button>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -608,6 +727,13 @@ const AdminDashboard = () => {
                           }`}
                         >
                           Reject
+                        </button>
+                        <button
+                          onClick={() => handleDeleteExpert(expert._id)}
+                          className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+                          title="Delete registration"
+                        >
+                          Delete
                         </button>
                       </div>
                     </td>
