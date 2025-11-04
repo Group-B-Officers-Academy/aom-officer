@@ -27,6 +27,7 @@ const Navbar = () => {
   const [isNotificationsDropdownOpen, setIsNotificationsDropdownOpen] = useState(false)
   const [isMobileNotificationsOpen, setIsMobileNotificationsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const router = useRouter()
 
   // Check login status on mount and when session changes
@@ -39,6 +40,18 @@ const Navbar = () => {
         setIsLoggedIn(true)
       } else {
         setIsLoggedIn(false)
+      }
+
+      // Check if admin is logged in
+      if (adminSession) {
+        try {
+          const adminData = JSON.parse(adminSession)
+          setIsAdmin(adminData.role === 'admin' || adminData.username === 'adminaom')
+        } catch {
+          setIsAdmin(false)
+        }
+      } else {
+        setIsAdmin(false)
       }
     }
 
@@ -473,18 +486,28 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            {isLoggedIn ? (
-              <button 
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
-              >
-                Logout
-              </button>
-            ) : (
-              <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                Login
-              </Link>
-            )}
+                          {isLoggedIn ? (
+                <>
+                  {isAdmin && (
+                    <Link 
+                      href="/admin/dashboard"
+                      className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200 mr-2"
+                    >
+                      Admin
+                    </Link>
+                  )}
+                  <button 
+                    onClick={handleLogout}
+                    className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                  Login
+                </Link>
+              )}
           </div>
 
           {/* Mobile menu button */}
@@ -917,21 +940,32 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              {isLoggedIn ? (
-                <button 
-                  onClick={() => {
-                    handleLogout()
-                    setIsMenuOpen(false)
-                  }}
-                  className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                >
-                  Logout
-                </button>
-              ) : (
-                <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Login
-                </Link>
-              )}
+                              {isLoggedIn ? (
+                  <>
+                    {isAdmin && (
+                      <Link 
+                        href="/admin/dashboard"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="w-full block px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors mb-2"
+                      >
+                        Admin
+                      </Link>
+                    )}
+                    <button 
+                      onClick={() => {
+                        handleLogout()
+                        setIsMenuOpen(false)
+                      }}
+                      className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                    Login
+                  </Link>
+                )}
             </div>
           </div>
         )}
