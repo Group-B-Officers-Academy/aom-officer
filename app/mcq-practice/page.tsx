@@ -67,7 +67,7 @@ const MCQPractice = () => {
     },
     {
       id: 'operating-manual',
-      title: 'Operating Manual',
+      title: 'G&SR Rules',
       description: 'General Rules and Operating Procedures - Test your knowledge of railway operating guidelines',
       href: '/mcq-practice/operating-manual',
       icon: (

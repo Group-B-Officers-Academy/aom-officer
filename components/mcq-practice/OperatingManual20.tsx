@@ -27,7 +27,7 @@ const OperatingManual20 = () => {
       question: "साधारणनियम -----द्वाराबनाएजातेहैं. General Rules are framed by ",
       options: [
         "भारतसरकार/Government of India",
-        "प्राधिकृतअधिकारी/Government of India",
+        "प्रमुख मुख्य संरक्षा अधिकारी / PCSO",
         "महाप्रबंधक/General Manager",
         "प्रमुखमुख्यपरिचालनप्रबंधक/PCOM"
       ],
@@ -387,7 +387,7 @@ const OperatingManual20 = () => {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="flex justify-between items-center lg:flex-row flex-col gap-3">
-            <h1 className="lg:text-3xl text-xl font-bold text-gray-800">Operating Manual 20 MCQ Quiz</h1>
+            <h1 className="lg:text-3xl text-xl font-bold text-gray-800">G&SR Rules MCQ</h1>
             <div className="text-right">
               <div className="lg:text-2xl text-xl font-semibold text-blue-600 text-center">{formatTime(timeLeft)}</div>
               <div className="text-sm text-gray-600">Time Remaining</div>
