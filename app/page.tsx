@@ -73,7 +73,7 @@ const Home = () => {
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
                 {/* {' & '} */}
                 {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
-                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+                {' AOM CRASH COURSE ALREADY STARTED -JOIN ✅ TODAY'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
@@ -83,7 +83,7 @@ const Home = () => {
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
                 {/* {' & '} */}
                 {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
-                {' ALREADY STARTED - JOIN NOW! 🎓'}
+                {' AOM CRASH COURSE ALREADY STARTED -JOIN ✅ TODAY'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
@@ -91,9 +91,9 @@ const Home = () => {
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
                 <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {' & '}
+                {/* {' & '}
                 <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
-                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'}
+                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'} */}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
