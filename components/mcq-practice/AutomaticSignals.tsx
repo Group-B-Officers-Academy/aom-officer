@@ -43,8 +43,8 @@ const AutomaticSignals = () => {
         " proceed आगेबढ़ो",
         " most restrictive सर्वाधिक प्रतिबंधित"
       ],
-      correctAnswer: 2,
-      explanation: "Fixed signals except Automatic Signals show 'proceed' aspect in their normal position."
+      correctAnswer: 3,
+      explanation: "Fixed signals except Automatic Signals show 'most restrictive' aspect in their normal position."
     },
     {
       id: 3,

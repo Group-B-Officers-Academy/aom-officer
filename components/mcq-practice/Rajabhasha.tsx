@@ -31,8 +31,8 @@ const Rajabhasha = () => {
         "8th March, 1963",
         "26th January, 1963"
       ],
-      correctAnswer: 1,
-      explanation: "Official Languages Act 1963 was passed on 14th September, 1963"
+      correctAnswer: 0,
+      explanation: "Official Languages Act 1963 was passed on 10th May, 1963"
     },
     {
       id: 2,
