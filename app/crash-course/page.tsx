@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const CrashCourse = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Image Gallery Section */}
         <div className="mb-12">
@@ -15,7 +15,7 @@ const CrashCourse = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Original Image */}
             <div className="relative group">
-              <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl transform rotate-2 group-hover:rotate-0 transition-transform duration-300"></div>
+              <div className="absolute w-full h-full top-0 left-0 bg-linear-to-r from-blue-400 to-purple-500 rounded-2xl transform rotate-2 group-hover:rotate-0 transition-transform duration-300"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                 <Image
                   src="/images/logo-in-crash.jpg"
@@ -32,7 +32,7 @@ const CrashCourse = () => {
 
             {/* New Image */}
             <div className="relative group">
-              <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl transform -rotate-2 group-hover:rotate-0 transition-transform duration-300"></div>
+              <div className="absolute w-full h-full top-0 left-0 bg-linear-to-r from-green-400 to-blue-500 rounded-2xl transform -rotate-2 group-hover:rotate-0 transition-transform duration-300"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                 <Image
                   src="/images/logo-in-crash-2.jpg"
@@ -134,21 +134,11 @@ const CrashCourse = () => {
                 </div>
               </div>
 
-              {/* Course Fee */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
-                <div className="flex items-center space-x-3">
-                  <span className="lg:text-2xl text-xl">💰</span>
-                  <div>
-                    <h3 className="lg:text-lg text-base font-semibold text-gray-800">COURSE FEE</h3>
-                    <p className="lg:text-3xl text-2xl font-bold text-red-600">₹ 3,000/-</p>
-                    <p className="text-sm text-gray-500">(Your investment in career growth!)</p>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             {/* Academy Info */}
-            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
+            <div className="bg-linear-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
               <div className="text-center">
                 <h3 className="lg:text-xl text-lg font-bold mb-2">🎓 Conducted by</h3>
                 <h2 className="lg:text-2xl text-xl font-bold mb-2">GROUP B OFFICERS ACADEMY</h2>
@@ -178,7 +168,7 @@ const CrashCourse = () => {
           {/* Image Section - Right Side */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl transform rotate-3"></div>
+              <div className="absolute w-full h-full top-0 left-0 bg-linear-to-r from-blue-400 to-purple-500 rounded-2xl transform rotate-3"></div>
               <div className="relative bg-white rounded-2xl p-4 shadow-2xl">
                 <Image
                   src="/images/logo-in-crash.jpg"

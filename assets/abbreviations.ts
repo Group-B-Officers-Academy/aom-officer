@@ -11,16 +11,14 @@ type AbbreviationItem = {
       {
         acronym: "AAWS",
         fullForm: "Advanced Approach Warning System",
-        explanation:
-          "A system that warns drivers of an approaching train before they enter the track.",
-        reference: "--",
+        explanation: "A system that warns drivers of an approaching train before they enter the track.",
       },
       
     ],
     B: [
-      { acronym: "BAL", fullForm: "Brake Applied Loop",
+      { acronym: "BAL", 
+        fullForm: "Brake Applied Loop",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
@@ -29,108 +27,105 @@ type AbbreviationItem = {
         acronym: "CADAT", 
         fullForm: "Computer Aided Drivers Aptitude Test",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     D: [
-      { acronym: "DAC", fullForm: "Digital Axle Counter",
+      { acronym: "DAC", 
+        fullForm: "Digital Axle Counter",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     E: [
-      { acronym: "EA", fullForm: "Extra Allowances",
+      { acronym: "EA", 
+        fullForm: "Extra Allowances",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     F: [
-      { acronym: "FEMA", fullForm: "Failure Mode & Effects Analysis",
+      { acronym: "FEMA", 
+        fullForm: "Failure Mode & Effects Analysis",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     G: [
-      { acronym: "GAGAN", fullForm: "GPS aided GEO augmented Navigation",
+      { acronym: "GAGAN", 
+        fullForm: "GPS aided GEO augmented Navigation",
         explanation: "Will be added later",
-        reference: "--"
       },
         
     ],
     H: [
-      { acronym: "HKT", fullForm: "Happer Key Transmitter",
+      { acronym: "HKT", 
+        fullForm: "Happer Key Transmitter",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     I: [
-      { acronym: "IBH", fullForm: "Intermediate Block Hut",
+      { acronym: "IBH", 
+        fullForm: "Intermediate Block Hut",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     J: [
-      { acronym: "JCM", fullForm: "Joint Consultative Machinery",
+      { acronym: "JCM", 
+        fullForm: "Joint Consultative Machinery",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     K: [{ acronym: "KRCL", 
       fullForm: "Konkan Railway Corporation Limited",
       explanation: "To construct and operate railway lines, construct Road Over Bridges and rail line projects.",
-      reference: "--"
     },
     { acronym: "KMS",
       fullForm: "Key Management Systme",
       explanation: "Ensures secure exchange of Movement Authorities between Stationary Kavach and Onboard Kavach system.",
-      reference: "--"
     }],
     L: [
-      { acronym: "LAP", fullForm: "Leave on Average Pay",
+      { acronym: "LAP", 
+        fullForm: "Leave on Average Pay",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     M: [
-      { acronym: "MACP", fullForm: "Modified Assured Career Progression",
+      { acronym: "MACP", 
+        fullForm: "Modified Assured Career Progression",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     N: [
-      { acronym: "NAIR", fullForm: "National Academy of Indian Railway",
+      { acronym: "NAIR", 
+        fullForm: "National Academy of Indian Railway",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     O: [
-      { acronym: "OBC", fullForm: "Over Bulky Consignment",
+      { acronym: "OBC", 
+        fullForm: "Over Bulky Consignment",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     P: [
-      { acronym: "PAD", fullForm: "Pre Arrival Detention",
+      { acronym: "PAD", 
+        fullForm: "Pre Arrival Detention",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     R: [
-      { acronym: "RA", fullForm: "Inspection Carriage (Administration)",
+      { acronym: "RA", 
+        fullForm: "Inspection Carriage (Administration)",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
@@ -140,49 +135,48 @@ type AbbreviationItem = {
         fullForm:
           "Status Alerts in Monitoring Projects Related Actions & Targets Importance",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     T: [
-      { acronym: "TACL", fullForm: "Two Aspect Colour Light",
+      { acronym: "TACL", 
+        fullForm: "Two Aspect Colour Light",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     U: [
-      { acronym: "UDAY", fullForm: "Utkrist Double Decker Air Condition Yatri Express",
+      { acronym: "UDAY", 
+        fullForm: "Utkrist Double Decker Air Condition Yatri Express",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     V: [
-      { acronym: "VCB", fullForm: "Vacuum Circuit Braker",
+      { acronym: "VCB", 
+        fullForm: "Vacuum Circuit Braker",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     W: [
-      { acronym: "WCA", fullForm: "Workmen Compensation Act",
+      { acronym: "WCA", 
+        fullForm: "Workmen Compensation Act",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     Y: [
-      { acronym: "YM", fullForm: "Yard Master",
+      { acronym: "YM", 
+        fullForm: "Yard Master",
         explanation: "Will be added later",
-        reference: "--"
       },
       
     ],
     Z: [
-      { acronym: "ZRTI", fullForm: "Zonal Railway Training Institute",
+      { acronym: "ZRTI", 
+        fullForm: "Zonal Railway Training Institute",
         explanation: "Will be added later",
-        reference: "--"
       },
     ],
   };

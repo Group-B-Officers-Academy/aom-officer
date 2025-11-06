@@ -21,6 +21,21 @@ const MCQPractice = () => {
       borderColor: 'border-indigo-200'
     },
     {
+      id: 'signals',
+      title: 'Signals',
+      description: 'General Rules and Operating Procedures - Test your knowledge of railway operating guidelines',
+      href: '/mcq-practice/signals',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+      color: 'from-green-500 to-emerald-600',
+      bgColor: 'bg-green-50',
+      textColor: 'text-green-700',
+      borderColor: 'border-green-200'
+    },
+    {
       id: 'fog-signals',
       title: 'Fog Signals',
       description: 'Learn about fog signal procedures, detonators, and safety protocols during low visibility conditions',
@@ -34,6 +49,21 @@ const MCQPractice = () => {
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-700',
       borderColor: 'border-blue-200'
+    },
+    {
+      id: 'automatic-signals',
+      title: 'Automatic Signals',
+      description: 'Master automatic signal operations, block systems, gate signals, and fog safety procedures with comprehensive practice questions',
+      href: '/mcq-practice/automatic-signals',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      color: 'from-purple-500 to-pink-600',
+      bgColor: 'bg-purple-50',
+      textColor: 'text-purple-700',
+      borderColor: 'border-purple-200'
     },
     {
       id: 'chapter-v-mcq',
@@ -70,21 +100,6 @@ const MCQPractice = () => {
       title: 'G&SR Rules',
       description: 'General Rules and Operating Procedures - Test your knowledge of railway operating guidelines',
       href: '/mcq-practice/operating-manual',
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-      ),
-      color: 'from-green-500 to-emerald-600',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-700',
-      borderColor: 'border-green-200'
-    },
-    {
-      id: 'signals',
-      title: 'Signals',
-      description: 'General Rules and Operating Procedures - Test your knowledge of railway operating guidelines',
-      href: '/mcq-practice/signals',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
