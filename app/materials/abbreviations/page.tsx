@@ -13,7 +13,7 @@ type AbbreviationItem = {
 const Abbreviations = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const deferredSearchTerm = useDeferredValue(searchTerm)
-  const [reduceMotion, setReduceMotion] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(true)
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -29,12 +29,30 @@ const Abbreviations = () => {
 
     updateReduceMotion()
 
-    prefersReducedMotionQuery.addEventListener('change', updateReduceMotion)
-    mobileViewportQuery.addEventListener('change', updateReduceMotion)
+    if (typeof prefersReducedMotionQuery.addEventListener === 'function') {
+      prefersReducedMotionQuery.addEventListener('change', updateReduceMotion)
+    } else if (typeof prefersReducedMotionQuery.addListener === 'function') {
+      prefersReducedMotionQuery.addListener(updateReduceMotion)
+    }
+
+    if (typeof mobileViewportQuery.addEventListener === 'function') {
+      mobileViewportQuery.addEventListener('change', updateReduceMotion)
+    } else if (typeof mobileViewportQuery.addListener === 'function') {
+      mobileViewportQuery.addListener(updateReduceMotion)
+    }
 
     return () => {
-      prefersReducedMotionQuery.removeEventListener('change', updateReduceMotion)
-      mobileViewportQuery.removeEventListener('change', updateReduceMotion)
+      if (typeof prefersReducedMotionQuery.removeEventListener === 'function') {
+        prefersReducedMotionQuery.removeEventListener('change', updateReduceMotion)
+      } else if (typeof prefersReducedMotionQuery.removeListener === 'function') {
+        prefersReducedMotionQuery.removeListener(updateReduceMotion)
+      }
+
+      if (typeof mobileViewportQuery.removeEventListener === 'function') {
+        mobileViewportQuery.removeEventListener('change', updateReduceMotion)
+      } else if (typeof mobileViewportQuery.removeListener === 'function') {
+        mobileViewportQuery.removeListener(updateReduceMotion)
+      }
     }
   }, [])
 
@@ -64,10 +82,12 @@ const Abbreviations = () => {
   const totalAbbreviations = useMemo(() => Object.values(abbreviations).reduce((count, items) => count + items.length, 0), [])
   const filteredCount = useMemo(() => Object.values(filteredAbbreviations).reduce((count, items) => count + items.length, 0), [filteredAbbreviations])
 
+  const enableAnimations = !reduceMotion
+
   return (
-    <div className={reduceMotion ? 'min-h-screen bg-slate-950' : 'min-h-screen bg-linear-to-r from-slate-900 via-purple-900 to-slate-900'}>
+    <div className={enableAnimations ? 'min-h-screen bg-linear-to-r from-slate-900 via-purple-900 to-slate-900' : 'min-h-screen bg-slate-950'}>
       {/* Animated Background */}
-      {!reduceMotion && (
+      {enableAnimations && (
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -85,10 +105,8 @@ const Abbreviations = () => {
             Comprehensive guide to Indian Railways terminology and abbreviations with detailed explanations and references.
           </p>
           <div className="mt-6 flex items-center justify-center space-x-4 text-gray-400">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm">{Object.values(abbreviations).flat().length} Abbreviations</span>
-            </div>
+            <div className={`w-3 h-3 bg-green-500 rounded-full ${enableAnimations ? 'animate-pulse' : ''}`} />
+            <span className="text-sm">{totalAbbreviations} Abbreviations</span>
           </div>
         </div>
         
@@ -106,7 +124,7 @@ const Abbreviations = () => {
                 placeholder="Search Abbreviations (Example: APAR)"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full pl-5 pr-10 py-3 ${reduceMotion ? 'bg-white/10' : 'bg-linear-to-r from-white/20 to-white/10 backdrop-blur-xl'} border border-white/30 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 shadow-2xl shadow-purple-500/20 lg:text-base text-sm`}
+                className={`w-full pl-5 pr-10 py-3 ${enableAnimations ? 'bg-linear-to-r from-white/20 to-white/10 backdrop-blur-xl' : 'bg-white/10'} border border-white/30 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent ${enableAnimations ? 'transition-all duration-300 shadow-2xl shadow-purple-500/20' : ''} lg:text-base text-sm`}
               />
               {searchTerm && (
                 <button
@@ -147,13 +165,10 @@ const Abbreviations = () => {
         
         {/* Abbreviations Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-          {Object.entries(filteredAbbreviations).map(([letter, items], index) => (
+          {Object.entries(filteredAbbreviations).map(([letter, items]) => (
             <div
               key={letter}
-              className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-500"
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
+              className={`group relative bg-white/5 ${enableAnimations ? 'backdrop-blur-md transition-all duration-500' : ''} border border-white/10 rounded-2xl overflow-hidden`}
             >
               {/* Letter Header */}
               <div className="relative overflow-hidden">
@@ -176,14 +191,14 @@ const Abbreviations = () => {
                   {items.map((item, itemIndex) => (
                     <div 
                       key={itemIndex} 
-                      className="group/item bg-linear-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-linear-to-r hover:from-purple-500/20 hover:to-blue-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 border border-white/10 hover:border-purple-400/30"
+                      className={`group/item bg-linear-to-r from-white/5 to-white/10 ${enableAnimations ? 'backdrop-blur-sm' : ''} rounded-lg p-4 ${enableAnimations ? 'hover:bg-linear-to-r hover:from-purple-500/20 hover:to-blue-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:border-purple-400/30' : ''} border border-white/10`}
                     >
                       {/* Acronym and Full Form Header */}
                       <div className="mb-3">
-                        <h3 className="font-bold text-white text-lg group-hover/item:text-purple-200 transition-colors mb-1">
+                        <h3 className={`font-bold text-white text-lg ${enableAnimations ? 'group-hover/item:text-purple-200 transition-colors' : ''} mb-1`}>
                           {item.acronym}
                         </h3>
-                        <p className="text-gray-300 text-sm leading-relaxed group-hover/item:text-gray-200">
+                        <p className={`text-gray-300 text-sm leading-relaxed ${enableAnimations ? 'group-hover/item:text-gray-200' : ''}`}>
                           {item.fullForm}
                         </p>
                       </div>
