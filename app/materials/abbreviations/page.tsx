@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useDeferredValue, useEffect } from 'react'
 import { abbreviations } from '@/assets/abbreviations'
 
 // Type for abbreviation items
@@ -12,15 +12,40 @@ type AbbreviationItem = {
 
 const Abbreviations = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const deferredSearchTerm = useDeferredValue(searchTerm)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const mobileViewportQuery = window.matchMedia('(max-width: 768px)')
+
+    const updateReduceMotion = () => {
+      setReduceMotion(prefersReducedMotionQuery.matches || mobileViewportQuery.matches)
+    }
+
+    updateReduceMotion()
+
+    prefersReducedMotionQuery.addEventListener('change', updateReduceMotion)
+    mobileViewportQuery.addEventListener('change', updateReduceMotion)
+
+    return () => {
+      prefersReducedMotionQuery.removeEventListener('change', updateReduceMotion)
+      mobileViewportQuery.removeEventListener('change', updateReduceMotion)
+    }
+  }, [])
 
   // Filter abbreviations based on search term
   const filteredAbbreviations = useMemo(() => {
-    if (!searchTerm.trim()) {
+    if (!deferredSearchTerm.trim()) {
       return abbreviations
     }
 
     const filtered: Record<string, AbbreviationItem[]> = {}
-    const searchLower = searchTerm.toLowerCase()
+    const searchLower = deferredSearchTerm.toLowerCase()
 
     Object.entries(abbreviations).forEach(([letter, items]) => {
       const filteredItems = items.filter(
@@ -34,16 +59,21 @@ const Abbreviations = () => {
     })
 
     return filtered
-  }, [searchTerm])
+  }, [deferredSearchTerm])
+
+  const totalAbbreviations = useMemo(() => Object.values(abbreviations).reduce((count, items) => count + items.length, 0), [])
+  const filteredCount = useMemo(() => Object.values(filteredAbbreviations).reduce((count, items) => count + items.length, 0), [filteredAbbreviations])
 
   return (
-    <div className="min-h-screen bg-linear-to-r from-slate-900 via-purple-900 to-slate-900">
+    <div className={reduceMotion ? 'min-h-screen bg-slate-950' : 'min-h-screen bg-linear-to-r from-slate-900 via-purple-900 to-slate-900'}>
       {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
+      {!reduceMotion && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+      )}
 
       <div className="relative z-10 container mx-auto px-4 py-6">
         {/* Header Section */}
@@ -76,7 +106,7 @@ const Abbreviations = () => {
                 placeholder="Search Abbreviations (Example: APAR)"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-5 pr-10 py-3 bg-linear-to-r from-white/20 to-white/10 backdrop-blur-xl border border-white/30 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 shadow-2xl shadow-purple-500/20 lg:text-base text-sm"
+                className={`w-full pl-5 pr-10 py-3 ${reduceMotion ? 'bg-white/10' : 'bg-linear-to-r from-white/20 to-white/10 backdrop-blur-xl'} border border-white/30 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 shadow-2xl shadow-purple-500/20 lg:text-base text-sm`}
               />
               {searchTerm && (
                 <button
@@ -98,7 +128,7 @@ const Abbreviations = () => {
         {/* Results Count */}
         <div className="text-center mb-8">
           <p className="text-gray-400">
-            Showing <span className="text-white font-semibold">{Object.values(filteredAbbreviations).flat().length}</span> of <span className="text-white font-semibold">{Object.values(abbreviations).flat().length}</span> abbreviations
+            Showing <span className="text-white font-semibold">{filteredCount}</span> of <span className="text-white font-semibold">{totalAbbreviations}</span> abbreviations
           </p>
         </div>
         
