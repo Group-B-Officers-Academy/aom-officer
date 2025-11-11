@@ -54,6 +54,48 @@ const forgotPasswordSchema = z.object({
   path: ["confirmPassword"],
 })
 
+const extractErrorMessage = (error: unknown, fallback: string): string => {
+  if (typeof error === 'string' && error.trim() !== '') {
+    return error
+  }
+
+  if (Array.isArray(error)) {
+    const joined = error
+      .map((item) => (typeof item === 'string' ? item.trim() : ''))
+      .filter((item) => item.length > 0)
+      .join(', ')
+
+    if (joined.length > 0) {
+      return joined
+    }
+  }
+
+  if (error && typeof error === 'object') {
+    const candidateKeys = ['message', 'title', 'error', 'detail', 'note']
+
+    for (const key of candidateKeys) {
+      const value = (error as Record<string, unknown>)[key]
+      if (typeof value === 'string' && value.trim() !== '') {
+        return value
+      }
+    }
+
+    if ('reasons' in (error as Record<string, unknown>) && Array.isArray((error as Record<string, unknown>).reasons)) {
+      const reasons = (error as { reasons?: unknown[] }).reasons ?? []
+      const formattedReasons = reasons
+        .map((reason) => (typeof reason === 'string' ? reason.trim() : ''))
+        .filter((reason) => reason.length > 0)
+        .join(', ')
+
+      if (formattedReasons.length > 0) {
+        return formattedReasons
+      }
+    }
+  }
+
+  return fallback
+}
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -139,7 +181,7 @@ const Login = () => {
         router.push(redirectPath || '/')
       } else {
         // Show error message with better visibility
-        const errorMessage = result.error || 'Invalid credentials. Please try again.'
+        const errorMessage = extractErrorMessage(result.error, 'Invalid credentials. Please try again.')
         
         // Increase duration for longer error messages
         const duration = errorMessage.length > 50 ? 10000 : 7000
@@ -306,7 +348,7 @@ const Login = () => {
         })
         setForgotPasswordErrors({})
       } else {
-        toast.error(result.error || 'Failed to reset password. Please try again.', {
+        toast.error(extractErrorMessage(result.error, 'Failed to reset password. Please try again.'), {
           duration: 7000,
         })
       }
