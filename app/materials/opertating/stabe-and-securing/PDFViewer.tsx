@@ -219,7 +219,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         >
           <Page
             pageNumber={pageNumber}
-            rotate={90}
+            rotate={0}
             renderTextLayer={false}
             renderAnnotationLayer={true}
             className="shadow-lg mx-auto"
