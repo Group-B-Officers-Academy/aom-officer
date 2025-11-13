@@ -20,6 +20,8 @@ interface TraineeRegistration {
   workingPost: string
   department: string
   preparingFor: string
+  courseInterested?: string
+  courseJoined?: string
   division: string
   zone: string
   phone: string
@@ -525,6 +527,12 @@ const AdminDashboard = () => {
                     Preparing For
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Course Interested
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Course Joined
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Payment
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -564,6 +572,12 @@ const AdminDashboard = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {trainee.preparingFor || 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
+                      {trainee.courseInterested || 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
+                      {trainee.courseJoined || 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {trainee.paymentDone && trainee.paymentDone.toLowerCase() === 'yes' ? (

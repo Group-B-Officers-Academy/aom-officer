@@ -33,6 +33,16 @@ const traineeSchema = z.object({
     .max(100, 'Zone must be less than 100 characters'),
   phone: z.string()
     .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
+  courseInterested: z.string()
+    .min(1, 'Please select a course')
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+      message: 'Please select a valid course'
+    }),
+  courseJoined: z.string()
+    .min(1, 'Please select a course')
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+      message: 'Please select a valid course'
+    }),
   paymentDone: z.string()
     .min(1, 'Please select payment status')
     .refine(val => ['Yes', 'No'].includes(val), {
@@ -62,6 +72,8 @@ const TraineeRegister = () => {
     division: '',
     zone: '',
     phone: '',
+    courseInterested: '',
+    courseJoined: '',
     paymentDone: '',
     address: '',
     email: '',
@@ -150,6 +162,8 @@ const TraineeRegister = () => {
           division: '',
           zone: '',
           phone: '',
+          courseInterested: '',
+          courseJoined: '',
           paymentDone: '',
           address: '',
           email: '',
@@ -374,6 +388,54 @@ const TraineeRegister = () => {
                   <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
                 )}
               </div>
+            </div>
+
+            {/* Course Interested */}
+            <div className="group">
+              <label className="block text-sm font-semibold text-gray-700 mb-2 group-hover:text-blue-600 transition-colors">
+                Which Course You Are Interested? <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="courseInterested"
+                value={formData.courseInterested}
+                onChange={handleChange}
+                required
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.courseInterested ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer`}
+              >
+                <option value="">Select Course</option>
+                <option value="AOM CRASH COURSE (2 MONTHS)">AOM CRASH COURSE (2 MONTHS)</option>
+                <option value="AOM SUPER CRASH COURSE (1 MONTH)">AOM SUPER CRASH COURSE (1 MONTH)</option>
+                <option value="AOM ADVANCED OPERATIONS (20 DAYS)">AOM ADVANCED OPERATIONS (20 DAYS)</option>
+              </select>
+              {errors.courseInterested && (
+                <p className="mt-1 text-sm text-red-600">{errors.courseInterested}</p>
+              )}
+            </div>
+
+            {/* Course Joined */}
+            <div className="group">
+              <label className="block text-sm font-semibold text-gray-700 mb-2 group-hover:text-blue-600 transition-colors">
+                Have You Joined The Course? <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="courseJoined"
+                value={formData.courseJoined}
+                onChange={handleChange}
+                required
+                className={`w-full px-4 py-3 rounded-lg border-2 ${
+                  errors.courseJoined ? 'border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100'
+                } transition-all duration-200 outline-none hover:border-gray-300 bg-white cursor-pointer`}
+              >
+                <option value="">Select Course</option>
+                <option value="AOM CRASH COURSE (2 MONTHS)">AOM CRASH COURSE (2 MONTHS)</option>
+                <option value="AOM SUPER CRASH COURSE (1 MONTH)">AOM SUPER CRASH COURSE (1 MONTH)</option>
+                <option value="AOM ADVANCED OPERATIONS (20 DAYS)">AOM ADVANCED OPERATIONS (20 DAYS)</option>
+              </select>
+              {errors.courseJoined && (
+                <p className="mt-1 text-sm text-red-600">{errors.courseJoined}</p>
+              )}
             </div>
 
             {/* Payment Done */}
