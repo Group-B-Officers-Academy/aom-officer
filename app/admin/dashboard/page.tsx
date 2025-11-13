@@ -57,6 +57,7 @@ const AdminDashboard = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [adminSession, setAdminSession] = useState<{ username: string } | null>(null)
   const [activeTab, setActiveTab] = useState<'messages' | 'trainees' | 'experts'>('messages')
+  const [traineeSearchQuery, setTraineeSearchQuery] = useState('')
   const router = useRouter()
   const { addToast } = useToast()
 
@@ -338,6 +339,18 @@ const AdminDashboard = () => {
     })
   }
 
+  // Filter trainees based on search query (name, email, phone)
+  const filteredTrainees = trainees.filter((trainee) => {
+    if (!traineeSearchQuery.trim()) return true
+    
+    const query = traineeSearchQuery.toLowerCase().trim()
+    const name = trainee.name?.toLowerCase() || ''
+    const email = trainee.email?.toLowerCase() || ''
+    const phone = trainee.phone?.toLowerCase() || ''
+    
+    return name.includes(query) || email.includes(query) || phone.includes(query)
+  })
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -500,8 +513,52 @@ const AdminDashboard = () => {
         {activeTab === 'trainees' && (
         <div className="bg-white rounded-lg shadow">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Trainee Registrations</h2>
-            <p className="text-sm text-gray-600">Manage all trainee registrations</p>
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">Trainee Registrations</h2>
+                <p className="text-sm text-gray-600">Manage all trainee registrations</p>
+              </div>
+            </div>
+            {/* Search Input */}
+            <div className="mt-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search by Name, Email, or Phone..."
+                  value={traineeSearchQuery}
+                  onChange={(e) => setTraineeSearchQuery(e.target.value)}
+                  className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                />
+                <svg
+                  className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                {traineeSearchQuery && (
+                  <button
+                    onClick={() => setTraineeSearchQuery('')}
+                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              {traineeSearchQuery && (
+                <p className="mt-2 text-sm text-gray-500">
+                  Showing {filteredTrainees.length} of {trainees.length} registrations
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="overflow-x-auto">
@@ -553,7 +610,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {trainees.map((trainee) => (
+                {filteredTrainees.map((trainee) => (
                   <tr key={trainee._id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {trainee.name}
@@ -574,10 +631,10 @@ const AdminDashboard = () => {
                       {trainee.preparingFor || 'N/A'}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
-                      {trainee.courseInterested || 'N/A'}
+                      {trainee.courseInterested && trainee.courseInterested.trim() !== '' ? trainee.courseInterested : 'N/A'}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
-                      {trainee.courseJoined || 'N/A'}
+                      {trainee.courseJoined && trainee.courseJoined.trim() !== '' ? trainee.courseJoined : 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {trainee.paymentDone && trainee.paymentDone.toLowerCase() === 'yes' ? (
@@ -648,6 +705,15 @@ const AdminDashboard = () => {
               </svg>
               <h3 className="mt-2 text-sm font-medium text-gray-900">No trainee registrations</h3>
               <p className="mt-1 text-sm text-gray-500">No trainee registrations have been submitted yet.</p>
+            </div>
+          )}
+          {trainees.length > 0 && filteredTrainees.length === 0 && (
+            <div className="text-center py-12">
+              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <h3 className="mt-2 text-sm font-medium text-gray-900">No matching results</h3>
+              <p className="mt-1 text-sm text-gray-500">No trainee registrations match your search query.</p>
             </div>
           )}
         </div>

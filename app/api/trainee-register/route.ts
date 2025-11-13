@@ -32,6 +32,16 @@ const traineeSchema = z.object({
     .max(100, 'Zone must be less than 100 characters'),
   phone: z.string()
     .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
+  courseInterested: z.string()
+    .min(1, 'Please select a course')
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+      message: 'Please select a valid course'
+    }),
+  courseJoined: z.string()
+    .min(1, 'Please select a course')
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+      message: 'Please select a valid course'
+    }),
   paymentDone: z.string()
     .min(1, 'Please select payment status')
     .refine(val => ['Yes', 'No'].includes(val), {
@@ -76,6 +86,8 @@ export async function POST(request: NextRequest) {
       division,
       zone,
       phone,
+      courseInterested,
+      courseJoined,
       paymentDone,
       address,
       email,
@@ -121,6 +133,8 @@ export async function POST(request: NextRequest) {
       division: division ? division.trim() : "",
       zone: zone ? zone.trim() : "",
       phone: normalizedPhone,
+      courseInterested: courseInterested ? courseInterested.trim() : "",
+      courseJoined: courseJoined ? courseJoined.trim() : "",
       paymentDone: paymentDone ? paymentDone.trim() : "",
       address: address.trim(),
       email: normalizedEmail,
