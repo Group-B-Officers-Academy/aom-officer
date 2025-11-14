@@ -225,6 +225,12 @@ const Navbar = () => {
                     </svg>
                     <span className="font-medium">AOM Super Crash Course</span>
                   </Link>
+                  <Link href="/advanced-operations-course" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span className="font-medium">AOM Advanced Operations Course</span>
+                  </Link>
                 </div>
               )}
             </div>
@@ -663,6 +669,12 @@ const Navbar = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                       AOM Super Crash Course
+                    </Link>
+                    <Link href="/advanced-operations-course" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      AOM Advanced Operations Course
                     </Link>
                   </div>
                 )}
