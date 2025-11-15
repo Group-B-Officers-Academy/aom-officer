@@ -19,6 +19,21 @@ const AdvancedOperations = () => {
       textColor: 'text-blue-700',
       borderColor: 'border-blue-200'
     },
+    {
+      id: 'preferential-traffic-order',
+      title: 'Preferential Traffic Order',
+      description: 'Comprehensive guide for preferential traffic order systems, operational protocols, and procedures for railway traffic management',
+      href: '/materials/advanced-operations/preferential-traffic-order',
+      icon: (
+        <svg className="lg:w-12 lg:h-12 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      color: 'from-purple-500 to-indigo-600',
+      bgColor: 'bg-purple-50',
+      textColor: 'text-purple-700',
+      borderColor: 'border-purple-200'
+    },
   ]
 
   return (
