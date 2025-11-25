@@ -244,7 +244,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) भाग-15 (Part -15)",
           "(B) भाग-16 (part-16)",
-          "**(C) भाग - 17 (Part-17)**",
+          "(C) भाग - 17 (Part-17)",
           "(D) भाग-18 (part -18)"
         ],
         "correctAnswer": 2,
@@ -254,7 +254,7 @@ const Rajabhasha = () => {
         "id": 20,
         "question": "संविधान के भाग – 17 के किस अध्याय में संघ की राजभाषा का उल्लेख है? (In which chapter of the Part – 17 of Constitution the official language of the Union is mentioned?)",
         "options": [
-          "**(A) अध्याय - 1 (Chapter - 1)**",
+          "(A) अध्याय - 1 (Chapter - 1)",
           "(B) अध्याय - 2 (Chapter - 2)",
           "(C) अध्याय - 3 (Chapter - 3)",
           "(D) अध्याय - 4 (Chapter - 4)"
@@ -267,7 +267,7 @@ const Rajabhasha = () => {
         "question": "संसद में उपयोग की जानेवाली भाषा के बारे में भारत के संविधान के किस अनुच्छेद में उल्लेख है? (In which article of the Constitution of India mentions about the language to be used in the Parliament?)",
         "options": [
           "(A) अनुच्छेद - 12 (Article - 12)",
-          "**(B) अनुच्छेद - 120 (Article - 120)**",
+          "(B) अनुच्छेद - 120 (Article - 120)",
           "(C) अनुच्छेद -112 (Article - 112)",
           "(D) अनुच्छेद - 210 (Article – 210)"
         ],
@@ -279,7 +279,7 @@ const Rajabhasha = () => {
         "question": "विधान मंडल में प्रयोग की जानेवाली भाषा के संबंध में भारत के संविधान के किस अनुच्छेद में उल्लेख है ? (Which article of the Constitution of India mentions about the language to be used in the Legislature?)",
         "options": [
           "(A) अनुच्छेद - 120 (Article - 120)",
-          "**(B) अनुच्छेद - 210 (Article - 210)**",
+          "(B) अनुच्छेद - 210 (Article - 210)",
           "(C) अनुच्छेद - 343 (Article - 343)",
           "(D) अनुच्छेद - 345 (Article - 345)"
         ],
@@ -293,7 +293,7 @@ const Rajabhasha = () => {
           "(A) अनुच्छेद -112 (Article - 112)",
           "(B) अनुच्छेद - 120 (Article - 120)",
           "(C) अनुच्छेद - 340 (Article - 340)",
-          "**(D) अनुच्छेद - 343 (Article - 343)**"
+          "(D) अनुच्छेद - 343 (Article - 343)"
         ],
         "correctAnswer": 3,
         "explanation": "संघ की राजभाषा का उल्लेख अनुच्छेद 343 में किया गया है। (Official language of the Union is mentioned in Article 343) [cite_start][cite: 9, 10, 11]"
@@ -304,7 +304,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) अनुच्छेद - 210 (Article - 210)",
           "(B) अनुच्छेद - 343 (Article - 343)",
-          "**(C) अनुच्छेद - 344 (Article - 344)**",
+          "(C) अनुच्छेद - 344 (Article - 344)",
           "(D) अनुच्छेद - 351 (Article - 351)"
         ],
             "correctAnswer": 2,
@@ -316,7 +316,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) अनुच्छेद - 343 (Article - 343)",
           "(B) अनुच्छेद - 344 (Article - 344)",
-          "**(C) अनुच्छेद - 345 (Article - 345)**",
+          "(C) अनुच्छेद - 345 (Article - 345)",
           "(D) अनुच्छेद - 346 (Article - 346)"
         ],
         "correctAnswer": 2,
@@ -326,7 +326,7 @@ const Rajabhasha = () => {
         "id": 26,
         "question": "एक राज्य और दूसरे राज्य के बीच या किसी राज्य और संघ के बीच पत्रादि की भाषा के बारे में भारत के संविधान के किस अनुच्छेद में उल्लेख है? (Which article of the Constitution of India mentions about the language of communication between one state and another or between a state and the Union?)",
         "options": [
-          "**(A) अनुच्छेद - 346 (Article - 346)**",
+          "(A) अनुच्छेद - 346 (Article - 346)",
           "(B) अनुच्छेद -347 (Article -347)",
           "(C) अनुच्छेद - 348 (Article - 348)",
           "(D) अनुच्छेद - 349 (Article - 349)"
@@ -339,7 +339,7 @@ const Rajabhasha = () => {
         "question": "उच्चतम न्यायालय और उच्च न्यायालयों में और अधिनियमों, विधेयकों आदि के लिए प्रयोग की जानेवाली भाषा के बारे में भारत के संविधान के किस अनुच्छेद में उल्लेख है? (Which article of the Constitution of India mention about the language used in the Supreme Court and High Courts and for the Acts, Bills etc.?)",
         "options": [
           "(A) अनुच्छेद - 347 (Article - 347)",
-          "**(B) अनुच्छेद - 348 (Article - 348)**",
+          "(B) अनुच्छेद - 348 (Article - 348)",
           "(C)अनुच्छेद - 349 (Article - 349)",
           "(D) अनुच्छेद - 350 (Article - 350)"
         ],
@@ -353,7 +353,7 @@ const Rajabhasha = () => {
           "(A) अनुच्छेद - 344 (Article - 344)",
           "(B) अनुच्छेद - 346 (Article - 346)",
           "(C) अनुच्छेद - 348 (Article - 348)",
-          "**(D) अनुच्छेद - 350 (Article - 350)**"
+          "(D) अनुच्छेद - 350 (Article - 350)"
         ],
         "correctAnswer": 3,
         "explanation": "व्यथा के निवारण के लिए अभ्यावेदन में प्रयोग की जाने वाली भाषा का उल्लेख अनुच्छेद 350 में है। (The language used in the representation for the prevention of grief is mentioned in Article 350) [cite_start][cite: 19, 20, 21]"
@@ -364,7 +364,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) अनुच्छेद - 343 (Article - 343)",
           "(B) अनुच्छेद - 344 (Article - 344)",
-          "**(C) अनुच्छेद - 351 (Article - 351)**",
+          "(C) अनुच्छेद - 351 (Article - 351)",
           "(D) इनमें से कोई नहीं (None of the above)"
         ],
           "correctAnswer": 2,
@@ -376,7 +376,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) रोमन (Roman)",
           "(B) खरोष्ठी (Kharosthi)",
-          "**(C) देवनागरी (Devnagri)**",
+          "(C) देवनागरी (Devnagri)",
           "(D) ब्राम्ही (Brahmi)"
         ],
         "correctAnswer": 2,
@@ -387,7 +387,7 @@ const Rajabhasha = () => {
         "question": "संसदीय राजभाषा समिति की कौन सी उप समिति रेल कार्यालयों का निरीक्षण करती है? (Which sub-committee of Parliamentary Committee on Official Language inspects Railway offices?)",
         "options": [
           "(A) दूसरी उप समिति (Second sub Committee)",
-          "**(B) तीसरी उप समिति (Third sub Committee)**",
+          "(B) तीसरी उप समिति (Third sub Committee)",
           "(C) पहली उप समिति (First sub Committee)",
           "(D) इनमें से कोई नहीं (None of the above)"
         ],
@@ -400,7 +400,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 5",
           "(B) 10",
-          "**(C) 15**",
+          "(C) 15",
           "(D) 20"
         ],
         "correctAnswer": 2,
@@ -411,7 +411,7 @@ const Rajabhasha = () => {
         "question": "संसदीय राजभाषा समिति में राज्य सभा के कितने सदस्य होते हैं? (How many members of Rajya Sabha are there in the Parliamentary Committee on Official Language?)",
         "options": [
           "(A) 5",
-          "**(B) 10**",
+          "(B) 10",
           "(C) 15",
           "(D) 22"
         ],
@@ -423,7 +423,7 @@ const Rajabhasha = () => {
         "question": "संविधान की किस अनुसूची में राज्य के राजभाषाओं का उल्लेख है? (Which Schedule of the Constitution mentions about the official languages of the state?)",
         "options": [
           "(A) सातवीं (Seventh)",
-          "**(B) आठवीं (Eighth)**",
+          "(B) आठवीं (Eighth)",
           "(C) नौवीं (Ninth)",
           "(D) दसवीं (Tenth)"
         ],
@@ -434,7 +434,7 @@ const Rajabhasha = () => {
         "id": 35,
         "question": "भारत के संविधान के भाग-17 में राजभाषा के प्रयोजन के लिए कितने अनुच्छेद हैं? (Part-17 of the Constitution of India contains how many articles for the purpose of Official language?)",
         "options": [
-          "**(A) 9**",
+          "(A) 9",
           "(B) 10",
           "(C) 11",
           "(D) 12"
@@ -448,7 +448,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 1961",
           "(B) 1962",
-          "**(C) 1963**",
+          "(C) 1963",
           "(D) 1968"
         ],
         "correctAnswer": 2,
@@ -460,7 +460,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) धारा 3 (1) (Section 3(1))",
           "(B) धारा 3(2) (Section 3(2))",
-          "**(C) धारा 3(3) (Section 3 (3))**",
+          "(C) धारा 3(3) (Section 3 (3))",
           "(D) धारा 4 (Section 4)"
         ],
         "correctAnswer": 2,
@@ -470,7 +470,7 @@ const Rajabhasha = () => {
         "id": 38,
         "question": "राजभाषा अधिनियम के प्रयोजनों को कार्यान्वित करने के लिए नियम बनाने की शक्ति किसे प्रदान की गई? (Who is empowered to make rules to implement the Official Language Act?)",
         "options": [
-          "**(A) केंद्र सरकार को (Central Government)**",
+          "(A) केंद्र सरकार को (Central Government)",
           "(B) राज्य सरकार को (State Government)",
           "(C) राज्यपाल को (Governor)",
           "(D) इनमें से कोई नहीं (None of the above)"
@@ -485,7 +485,7 @@ const Rajabhasha = () => {
           "(A) 1964",
           "(B) 1965",
           "(C)1966",
-          "**(D) 1967**"
+          "(D) 1967"
         ],
         "correctAnswer": 3,
         "explanation": "राजभाषा अधिनियम में संशोधन वर्ष 1967 के दौरान किया गया था। (The amendment to the Official Language Act was made in 1967) [cite_start][cite: 42, 43, 44]"
@@ -494,7 +494,7 @@ const Rajabhasha = () => {
         "id": 40,
         "question": "राजभाषा के संबंध में राष्ट्रपति के आदेश किस वर्ष 27 अप्रैल को जारी हुए थे? (In which year the President's orders regarding the Official language were issued on 27 April?)",
         "options": [
-          "**(A) 1955**",
+          "(A) 1955",
           "(B) 1960",
           "(C) 1962",
           "(D) 1965"
@@ -508,7 +508,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 1960",
           "(B) 1962",
-          "**(C) 1967**",
+          "(C) 1967",
           "(D) 1968"
         ],
         "correctAnswer": 2,
@@ -520,7 +520,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 1963",
           "(B) 1967",
-          "**(C) 1976**",
+          "(C) 1976",
           "(D) 1987"
         ],
         "correctAnswer": 2,
@@ -531,7 +531,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा नियम भारत के किस राज्य पर लागू नहीं होते हैं? (Official Language Rules do not apply to which state of India?)",
         "options": [
           "(A) कर्नाटक (Karnataka)",
-          "**(B) तमिलनाडु (Tamil Nadu)**",
+          "(B) तमिलनाडु (Tamil Nadu)",
           "(C) गोवा (Goa)",
           "(D) इनमें से कोई नहीं (None of the above)"
         ],
@@ -543,7 +543,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा नियम, 1976 के अंतर्गत भारत के राज्यों और केंद्र शासित प्रदेशों को कितने क्षेत्रों में वर्गीकृत किया गया है? (In how many regions States and Union Territories of India are categorized under Official Language Rules, 1976?)",
         "options": [
           "(A) 2",
-          "**(B) 3**",
+          "(B) 3",
           "(C) 4",
           "(D) 5"
         ],
@@ -554,7 +554,7 @@ const Rajabhasha = () => {
         "id": 44,
         "question": "अंदमान व निकोबार द्वीप समूह राजभाषा के प्रयोग-प्रसार के लिए वर्गीकृत किस क्षेत्र के अधीन आते हैं? (Andaman and Nicobar Islands come under which are classified for the propagation of the Official language ?)",
         "options": [
-          "**(A) ‘क’ क्षेत्र (‘A’ region)**",
+          "(A) ‘क’ क्षेत्र (‘A’ region)",
           "(B) ‘ख’ क्षेत्र (‘B’ region)",
           "(C) ‘ग’ क्षेत्र (‘C’ region)",
           "(D) इनमें से कोई नहीं (None of the above)"
@@ -568,7 +568,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) ‘क’ क्षेत्र (‘A’ region)",
           "(B) ‘ख’ क्षेत्र (‘B’ region)",
-          "**(C) ‘ग’ क्षेत्र (‘C’ region)**",
+          "(C) ‘ग’ क्षेत्र (‘C’ region)",
           "(D) इनमें से कोई नहीं (None of the above)"
         ],
         "correctAnswer": 2,
@@ -580,7 +580,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 7",
           "(B) 8",
-          "**(C) 9**",
+          "(C) 9",
           "(D) 10"
         ],
         "correctAnswer": 2,
@@ -590,7 +590,7 @@ const Rajabhasha = () => {
         "id": 47,
         "question": "‘हिंदी में प्रवीणता’ की परिभाषा राजभाषा नियम की किस नियम में शामिल है? (Definition of 'Proficiency in Hindi' is included in which rule of the Official Language Rules?)",
         "options": [
-          "**(A) 9**",
+          "(A) 9",
           "(B) 10",
           "(C) 11",
           "(D) 12"
@@ -604,7 +604,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 60%",
           "(B) 70%",
-          "**(C) 80%**",
+          "(C) 80%",
           "(D) 100%"
         ],
         "correctAnswer": 2,
@@ -615,7 +615,7 @@ const Rajabhasha = () => {
         "question": "भारत सरकार के कार्यालयों में प्रत्येक वर्ष हिंदी दिवस कब मनाया जाता है? (When is Hindi Day celebrated every year in the Central Government Offices?)",
         "options": [
           "(A) 12 सितंबर (12 September)",
-          "**(B) 14 सितंबर (14 September)**",
+          "(B) 14 सितंबर (14 September)",
           "(C) 12 जनवरी (12 January)",
           "(D) 14 जनवरी (14 January)"
         ],
@@ -628,7 +628,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 10 जनवरी 1975 (10 January 1975)",
           "(B) 10 सितंबर 1975 (10 September 1975)",
-          "**(C) 14 सितंबर, 1949 (14 September, 1949)**",
+          "(C) 14 सितंबर, 1949 (14 September, 1949)",
           "(D) 14 सितंबर 1963 (14 September 1963)"
         ],
         "correctAnswer": 2,
@@ -640,7 +640,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) नेपाली (Nepali)",
           "(B) उर्दू (Urdu)",
-          "**(C) अंग्रेजी (English)**",
+          "(C) अंग्रेजी (English)",
           "(D) सिंधी (Sindhi)"
         ],
         "correctAnswer": 2,
@@ -652,7 +652,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 15",
           "(B) 18",
-          "**(C) 22**",
+          "(C) 22",
           "(D) 24"
         ],
         "correctAnswer": 2,
@@ -664,7 +664,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) हिंदी में (In Hindi)",
           "(B) अंग्रेजी में (In English)",
-          "**(C) हिंदी या अंग्रेजी में (In Hindi - English)**",
+          "(C) हिंदी या अंग्रेजी में (In Hindi - English)",
           "(D) किसी भी भाषा में (In any language)"
         ],
         "correctAnswer": 2,
@@ -674,7 +674,7 @@ const Rajabhasha = () => {
         "id": 54,
         "question": "प्रथम राजभाषा आयोग का गठन किस वर्ष के दौरान किया गया था? (During which year was the first Official Language Commission formed?)",
         "options": [
-          "**(A) 1955**",
+          "(A) 1955",
           "(B) 1960",
           "(C) 1963",
           "(D) 1976"
@@ -688,7 +688,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) नियम 9 (Rule 9)",
           "(B) नियम 10 (Rule 10)",
-          "**(C) नियम 11 (Rule 11)**",
+          "(C) नियम 11 (Rule 11)",
           "(D) नियम 12 (Rule 12)"
         ],
         "correctAnswer": 2,
@@ -699,7 +699,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा नियम संख्या-12 के अनुसार राजभाषा अधिनियम और नियमों के संबंध में जारी निर्देशों के समुचित अनुपालन को सुनिश्चित करने का उत्तरदायित्व किसे सौंपा गया है? (According to Official Language Rule-12, who is entrusted with the responsibility of ensuring proper compliance of the instructions issued in connection with the Official Language Act and Rules?)",
         "options": [
           "(A) राजभाषा अधिकारी को (Rajbhasha Adhikari)",
-          "**(B) कार्यालय के प्रशासनिक प्रधान को (Administrative Head of the office)**",
+          "(B) कार्यालय के प्रशासनिक प्रधान को (Administrative Head of the office)",
           "(C) संबंधित डीलर को (Concerned Dealer)",
           "(D) उपर्युक्त तीनों को (Above three)"
         ],
@@ -711,7 +711,7 @@ const Rajabhasha = () => {
         "question": "1955 में गठित प्रथम राजभाषा आयोग के अध्यक्ष कौन थे? (Who was the Chairman of the First Official Language Commission constituted in 1955?)",
         "options": [
           "(A) श्री गोविंद वल्लभ पंत (Sri Govind Vallabh Pant)",
-          "**(B) श्री बी.जी. खेर (Sri B.G. Kher)**",
+          "(B) श्री बी.जी. खेर (Sri B.G. Kher)",
           "(C) श्री जवाहर लाल नेहरू (Sri Jawahar Lal Nehru)",
           "(D) श्री ओम मेहता (Sri Om Mehtha)"
         ],
@@ -723,7 +723,7 @@ const Rajabhasha = () => {
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ग क्षेत्र स्थित कार्यालयों को कितने प्रतिशत मूल पत्र हिंदी में भेजा जाना अपेक्षित है? (According to the annual programme of the year 2024-25 for the use of Hindi, what percentage of the originating correspondence is required to be done by offices situated in C region?)",
         "options": [
           "(A) 55 प्रतिशत (55 Percent)",
-          "**(B) 60 प्रतिशत (60 Percent)**",
+          "(B) 60 प्रतिशत (60 Percent)",
           "(C) 75 प्रतिशत (75 Percent)",
           "(D)100 प्रतिशत (100 Percent)"
         ],
@@ -734,7 +734,7 @@ const Rajabhasha = () => {
         "id": 59,
         "question": "केंद्र सरकार के कार्यालयों में गठित राजभाषा कार्यान्वयन समिति की बैठकों के आयोजन की अवधि क्या है ? (What is the period for holding the meetings of the Official Language Implementation Committee constituted in Central Government Offices?)",
         "options": [
-          "**(A) 3 महीने में एक बार (Once in 3 months)**",
+          "(A) 3 महीने में एक बार (Once in 3 months)",
           "(B) 6 महीने में एक बार (Once in 6 months)",
           "(C) वर्ष में एक बार (Once in a year)",
           "(D) 2 वर्ष में एक बार (Once in 2 years)"
@@ -747,7 +747,7 @@ const Rajabhasha = () => {
         "question": "नगर राजभाषा कार्यान्वयन समिति की बैठकों के आयोजन की अवधि क्या है ? (What is the period of holding of meetings of the Town Official Language Implementation Committee?)",
         "options": [
           "(A) 3 महीने में एक बार (Once in 3 months)",
-          "**(B) 6 महीने में एक बार (Once in 6 months)**",
+          "(B) 6 महीने में एक बार (Once in 6 months)",
           "(C) वर्ष में एक बार (Once in a year)",
           "(D) 2 वर्ष में एक बार (Once in 2 years)"
         ],
@@ -760,7 +760,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 9",
           "(B) 10",
-          "**(C) 12**",
+          "(C) 12",
           "(D) 14"
         ],
         "correctAnswer": 2, 
@@ -773,7 +773,7 @@ const Rajabhasha = () => {
           "(A) मानव संसाधन मंत्रालय (Human Resource Ministry)",
           "(B) रेल मंत्रालय (Ministry of Railways)",
           "(C) सभी मंत्रालय (All Ministries)",
-          "**(D) गृह मंत्रालय (Ministry of Home Affairs)**"
+          "(D) गृह मंत्रालय (Ministry of Home Affairs)"
         ],
         "correctAnswer": 3,
         "explanation": "राजभाषा का वार्षिक कार्यक्रम गृह मंत्रालय द्वारा जारी किया जाता है। (The annual program of Official Language is released by the Ministry of Home Affairs) [cite_start][cite: 96, 97]"
@@ -783,7 +783,7 @@ const Rajabhasha = () => {
         "question": "हिंदी शिक्षण योजना के अंतर्गत निर्धारित हिंदी पाठ्यक्रम की परीक्षाएं वर्ष में कितनी बार ली जाती हैं? (How many times in a year the examinations of Hindi courses prescribed under Hindi Teaching Scheme are conducted?)",
         "options": [
           "(A) 1 बार (once)",
-          "**(B) 2 बार (twice)**",
+          "(B) 2 बार (twice)",
           "(C) 3 बार (thrice)",
           "(D) 4 बार (4 times)"
         ],
@@ -796,7 +796,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 1968",
           "(B) 1966",
-          "**(C) 1967**",
+          "(C) 1967",
           "(D) 1969"
         ],
         "correctAnswer": 2,
@@ -807,7 +807,7 @@ const Rajabhasha = () => {
         "question": "मंडल स्तर पर राजभाषा कार्यान्वयन समिति के अध्यक्ष कौन होते हैं? (Who is the Chairman of the Official Language Implementation Committee at Divisional level?)",
         "options": [
           "(A) अपर मुख्य राजभाषा अधिकारी (AMRA)",
-          "**(B) मंडल रेल प्रबंधक (DRM)**",
+          "(B) मंडल रेल प्रबंधक (DRM)",
           "(C) मुख्य राजभाषा अधिकारी (MRA)",
           "(D) महाप्रबंधक (GM)"
         ],
@@ -820,7 +820,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) मुख्य राजभाषा अधिकारी (MRA)",
           "(B) प्रमुख मुख्य कार्मिक अधिकारी (PCPO)",
-          "**(C) महाप्रबंधक (General Manager)**",
+          "(C) महाप्रबंधक (General Manager)",
           "(D) अध्यक्ष, रेलवे बोर्ड (Chairman, Railway Board)"
         ],
         "correctAnswer": 2,
@@ -831,7 +831,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा अधिनियम, 1963 में कुल कितनी धाराएं हैं? (How many Sections are there in the Official Language Act, 1963?)",
         "options": [
           "(A) 9",
-          "**(B) 10**",
+          "(B) 10",
           "(C) 11",
           "(D) 12"
         ],
@@ -842,7 +842,7 @@ const Rajabhasha = () => {
         "id": 68,
         "question": "किस राजभाषा पुरस्कार योजना में राशि व व्यक्तिगत रूप से पुरस्कार नहीं दिए जाते हैं? (In which Official Language award scheme amount and individual awards are not given?)",
         "options": [
-          "**(A) राजभाषा कीर्ति पुरस्कार (Rajbhasha Keerti Puraskar)**",
+          "(A) राजभाषा कीर्ति पुरस्कार (Rajbhasha Keerti Puraskar)",
           "(B) राजभाषा गौरव पुरस्कार (Rajbhasha Gaurav Puraskar)",
           "(C) मैथिलीशरण गुप्त पुरस्कार (Maithili Sharan Gupta Puraskar)",
           "(D) प्रेमचंद पुरस्कार (Premchand Puraskar)"
@@ -856,7 +856,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) धारा - 6 (Section - 6)",
           "(B) धारा -7 (Section -7)",
-          "**(C) धारा - 8 (Section – 8)**",
+          "(C) धारा - 8 (Section – 8)",
           "(D) धारा - 9 (Section -9)"
         ],
         "correctAnswer": 2,
@@ -866,7 +866,7 @@ const Rajabhasha = () => {
         "id": 70,
         "question": "तकनीकी रेल विषयों पर हिंदी में मौलिक पुस्तकें लिखने के लिए कौन सी योजना है? (What is the scheme for writing original books in Hindi on technical subjects of Railway?)",
         "options": [
-          "**(A) विश्वेश्वरैया तकनीकी मौलिक पुस्तक लेखन पुरस्कार योजना (Visvesvaraya Technological original Book Writing Award Scheme)**",
+          "(A) विश्वेश्वरैया तकनीकी मौलिक पुस्तक लेखन पुरस्कार योजना (Visvesvaraya Technological original Book Writing Award Scheme)",
           "(B) लाल बहादुर शास्त्री तकनीकी मौलिक पुस्तक लेखन पुरस्कार योजना (Lal Bahadur Shastri Technical original Book Writing Award Scheme)",
           "(C) आचार्य महावीर प्रसाद तकनीकी मौलिक पुस्तक लेखन पुरस्कार योजना (Acharya Mahavir Prasad Technical original Book Writing Award Scheme)",
           "(D) शिवसागर मिश्र तकनीकी मौलिक पुस्तक लेखन पुरस्कार योजना (Sivasagar Mishra Technical original Book Writing Award Scheme)"
@@ -879,7 +879,7 @@ const Rajabhasha = () => {
         "question": "हिंदी में मौलिक कथा/कहानी संग्रह एवं उपन्यास लेखन को पुरस्कृत करने हेतु योजना का क्या नाम है? (What is the name of the award scheme for writing original fiction/story collection and novel in Hindi?)",
         "options": [
           "(A) मैथिली शरण गुप्त पुरस्कार योजना (Maithili Sharan Gupta Award Scheme)",
-          "**(B) मुंशी प्रेमचंद पुरस्कार योजना (Munshi Premchand Award Scheme)**",
+          "(B) मुंशी प्रेमचंद पुरस्कार योजना (Munshi Premchand Award Scheme)",
           "(C) माखनलाल चतुर्वेदी पुरस्कार योजना (Makhanlal Chaturvedi Award Scheme)",
           "(D) भारतेन्दु हरिश्चंद्र पुरस्कार योजना (Bharatendu Harishchandra Award Scheme)"
         ],
@@ -892,7 +892,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) महादेवी वर्मा पुरस्कार योजना (Mahadevi Verma Award Scheme)",
           "(B) रवींद्रनाथ ठाकुर पुरस्कार योजना (Rabindranath Thakur Award Scheme)",
-          "**(C) मैथिलीशरण गुप्त पुरस्कार योजना (Maithilisharan Gupta Award Scheme)**",
+          "(C) मैथिलीशरण गुप्त पुरस्कार योजना (Maithilisharan Gupta Award Scheme)",
           "(D) माखनलाल चतुर्वेदी पुरस्कार योजना (Makhanlal Chaturvedi Award Scheme)"
         ],
         "correctAnswer": 2,
@@ -904,7 +904,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) नियम 3(1) (Rule 3(1))",
           "(B) नियम 7(1) (Rule 7(1))",
-          "**(C) नियम 8 (1) (Rule 8 (1))**",
+          "(C) नियम 8 (1) (Rule 8 (1))",
           "(D) नियम 10 (1) (Rule 10 (1))"
         ],
         "correctAnswer": 2,
@@ -914,7 +914,7 @@ const Rajabhasha = () => {
         "id": 74,
         "question": "रेलवे बोर्ड राजभाषा कार्यान्वयन समिति के अध्यक्ष कौन होते हैं? (Who is the Chairman of the Railway Board Official Language Implementation Committee?)",
         "options": [
-          "**(A) अध्यक्ष, रेलवे बोर्ड व मुख्य कार्यकारी अधिकारी (CRB & CEO)**",
+          "(A) अध्यक्ष, रेलवे बोर्ड व मुख्य कार्यकारी अधिकारी (CRB & CEO)",
           "(B) निदेशक (राजभाषा) (Director (OL))",
           "(C) सदस्य (एमओबीडी) (Member (MOBD))",
           "(D) रेल मंत्री (Railway Minister)"
@@ -927,7 +927,7 @@ const Rajabhasha = () => {
         "question": "वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ग क्षेत्र में स्थित केंद्र सरकारी कार्यालयों के कितने प्रतिशत अनुभागों को हिंदी में शत-प्रतिशत कार्य के लिए नामित किया जाना है? (As per annual program for the year 2025-26, how many sections of Central Govt. offices in region C should be nominated for Cent Percent Work in Hindi?)",
         "options": [
           "(A) 20",
-          "**(B) 25**",
+          "(B) 25",
           "(C) 30",
           "(D) 35"
         ],
@@ -940,7 +940,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) कार्यालय के प्रशासनिक प्रधान को (Administrative Head of the office)",
           "(B) राजभाषा अधिकारी को (Rajbhasha Adhikari)",
-          "**(C) ऐसे दस्तावेजों पर हस्ताक्षर करनेवाले अधिकारी को (Officer signing such documents)**",
+          "(C) ऐसे दस्तावेजों पर हस्ताक्षर करनेवाले अधिकारी को (Officer signing such documents)",
           "(D) संबंधित लिपिक को (Concerned Clerk)"
         ],
         "correctAnswer": 2,
@@ -950,7 +950,7 @@ const Rajabhasha = () => {
         "id": 77,
         "question": "राजभाषा नियम, 1976 के नियम 5 के अनुसार हिंदी में प्राप्त पत्रों के उत्तर किस भाषा में देना अपेक्षित है? (Under rule No. 5 of the Official Language Rules 1976, in which language is it required to reply to the letters received in Hindi?)",
         "options": [
-          "**(A) हिंदी (Hindi)**",
+          "(A) हिंदी (Hindi)",
           "(B) अंग्रेजी (English)",
           "(C) हिंदी या अंग्रेजी (Hindi or English)",
           "(D) हिंदी-अंग्रेजी द्विभाषी (Hindi-English bilingual)"
@@ -963,7 +963,7 @@ const Rajabhasha = () => {
         "question": "किस राजभाषा पुरस्कार योजना के अंतर्गत पुरस्कार स्वरूप सबसे अधिक धनराशि प्रदान की जाती है? (Under which Rajbhasha award scheme maximum amount is given as prize?)",
         "options": [
           "(A) राजभाषा कीर्ति पुरस्कार (Rajbhasha Keerthi Award)",
-          "**(B) राजभाषा गौरव पुरस्कार (Rajbhasha Gaurav Puraskar)**",
+          "(B) राजभाषा गौरव पुरस्कार (Rajbhasha Gaurav Puraskar)",
           "(C) रेलवे बोर्ड पुरस्कार (Railway Board Award)",
           "(D) गृह मंत्रालय पुरस्कार (Home Ministry Award)"
         ],
@@ -977,7 +977,7 @@ const Rajabhasha = () => {
           "(A) प्रवाचक (Pravachak)",
           "(B) श्रुतलेखन (Shruthlekhan)",
           "(C) मंत्रा (Mantra)",
-          "**(D) लीला (LILA)**"
+          "(D) लीला (LILA)"
         ],
         "correctAnswer": 3,
         "explanation": "भारत की भाषाओं के माध्यम से हिंदी सीखने के लिए उपलब्ध सॉफ्टवेयर का नाम लीला (LILA) है। (The name of the software available to learn Hindi through the languages of India is LILA) [cite_start][cite: 132, 133, 134]"
@@ -986,7 +986,7 @@ const Rajabhasha = () => {
         "id": 80,
         "question": "हिंदी स्पीच को हिंदी टेक्स्ट में बदलने से संबंधित सॉफ्टवेयर का क्या नाम है? (What is the name of the software related with converting Hindi speech into Hindi text?)",
         "options": [
-          "**(A) श्रुतलेखन - राजभाषा (Shruthlekhan - Rajbhasha)**",
+          "(A) श्रुतलेखन - राजभाषा (Shruthlekhan - Rajbhasha)",
           "(B) लीला (LILA)",
           "(C) प्रवाचक (Pravachak)",
           "(D) मंत्र (Mantra)"
@@ -999,7 +999,7 @@ const Rajabhasha = () => {
         "question": "हिंदी टेक्स्ट को हिंदी स्पीच में बदलने से संबंधित सॉफ्टवेयर का क्या नाम है? (What is the name of the software related with converting Hindi text to Hindi speech ?)",
         "options": [
           "(A) रेल राजभाषा (Rail Rajbhasha)",
-          "**(B) प्रवाचक - राजभाषा (Pravachak - Rajbhasha)**",
+          "(B) प्रवाचक - राजभाषा (Pravachak - Rajbhasha)",
           "(C) लीला (Leela)",
           "(D) श्रुतलेखन (Shruthlekhan)"
         ],
@@ -1012,7 +1012,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 55%",
           "(B) 70%",
-          "**(C) 60%**",
+          "(C) 60%",
           "(D) 100%"
         ],
         "correctAnswer": 2,
@@ -1022,7 +1022,7 @@ const Rajabhasha = () => {
         "id": 83,
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ‘ग’ क्षेत्र से ‘ख’ क्षेत्र के लिए हिंदी में कितना प्रतिशत मूल पत्राचार निर्धारित है? (According to the annual program for the usage of Hindi in the year 2025-26, what percentage of the original correspondence in Hindi is to be done from the 'C' region to the central government offices of 'B' region?)",
         "options": [
-          "**(A) 100%**",
+          "(A) 100%",
           "(B) 70%",
           "(C) 60%",
           "(D) 55%"
@@ -1034,7 +1034,7 @@ const Rajabhasha = () => {
         "id": 84,
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ‘ग’ क्षेत्र से ‘ग’ क्षेत्र के लिए हिंदी में कितना प्रतिशत मूल पत्राचार निर्धारित है? (According to the annual program for the usage of Hindi in the year 2025-26, what percentage of the original correspondence in Hindi is to be done from the 'C' region to the central government offices of 'C' region?)",
         "options": [
-          "**(A) 100%**",
+          "(A) 100%",
           "(B) 70%",
           "(C) 60%",
           "(D) 55%"
@@ -1046,7 +1046,7 @@ const Rajabhasha = () => {
         "id": 85,
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ‘ग’ क्षेत्र से ‘क’ क्षेत्र और ‘ख’ क्षेत्र के राज्य/ संघ राज्य क्षेत्र के कार्यालय/ व्यक्ति के लिए हिंदी में कितना प्रतिशत मूल पत्राचार निर्धारित है? (According to the annual program for the year 2025-26 for the usage of Hindi, what percentage of original correspondence in Hindi is required to be done from 'C' region with the persons/offices of State / Union Territory of 'A' region and 'B' region?)",
         "options": [
-          "**(A) 100%**",
+          "(A) 100%",
           "(B) 85%",
           "(C) 60%",
           "(D) 55%"
@@ -1061,7 +1061,7 @@ const Rajabhasha = () => {
           "(A) 40%",
           "(B) 60%",
           "(C) 80%",
-          "**(D) 100%**"
+          "(D) 100%"
         ],
         "correctAnswer": 3,
         "explanation": "वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार हिंदी में प्राप्त 100% पत्रों के उत्तर हिंदी में दिए जाने का लक्ष्य निर्धारित है। (According to the annual program for 2025-26, the target is set for 100% of letters received in Hindi to be replied in Hindi) [cite_start][cite: 147, 148, 149]"
@@ -1070,7 +1070,7 @@ const Rajabhasha = () => {
         "id": 87, 
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ‘ग’ क्षेत्र में हिंदी में टिप्पण लिखने का कितना प्रतिशत लक्ष्य निर्धारित है? (For the use of Hindi, according to the annual program for the year 2024-25, as per the target set what percentage of Hindi noting is required to be done in the 'C' region. ?)",
         "options": [
-          "**(A) 35%**",
+          "(A) 35%",
           "(B) 50%",
           "(C) 75%",
           "(D) 100%"
@@ -1083,7 +1083,7 @@ const Rajabhasha = () => {
         "question": "हिंदी के प्रयोग के लिए वर्ष 2025-26 के वार्षिक कार्यक्रम के अनुसार ‘ग’ क्षेत्र में हिंदी में डिक्टेशन का कितना प्रतिशत लक्ष्य निर्धारित है? (For the use of Hindi, according to the annual program for the year 2025-26, as per the target set what percentage of Hindi Dictations are required to be given in the 'C' region?)",
         "options": [
           "(A) 25%",
-          "**(B) 35%**",
+          "(B) 35%",
           "(C) 75%",
           "(D) 100%"
         ],
@@ -1096,7 +1096,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 75%",
           "(B) 80%",
-          "**(C) 90%**",
+          "(C) 90%",
           "(D) 100%"
         ],
         "correctAnswer": 2,
@@ -1106,7 +1106,7 @@ const Rajabhasha = () => {
         "id": 90,
         "question": "भारत संघ के शासकीय प्रयोजन के लिए प्रयुक्‍त होने वाले अंकों का रूप क्या होना चाहिए? (Which forms of the numerals should be used in official purposes of the Union of India?)",
         "options": [
-          "**(A) भारतीय अंकों का अंतर्राष्‍ट्रीय रूप (International form of Indian Numerals)**",
+          "(A) भारतीय अंकों का अंतर्राष्‍ट्रीय रूप (International form of Indian Numerals)",
           "(B) देवनागरी अंक (Devanagari numerals)",
           "(C) रोमन अंक (Roman numerals)",
           "(D) उपर्युक्‍त में से कोई भी नहीं (None of the above)"
@@ -1120,7 +1120,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 60%",
           "(B) 70%",
-          "**(C) 80%**",
+          "(C) 80%",
           "(D) 100%"
         ],
         "correctAnswer": 2,
@@ -1130,7 +1130,7 @@ const Rajabhasha = () => {
         "id": 92,
         "question": "केंद्र सरकार के जिन कार्यालयों के 80 प्रतिशत कर्मचारियों ने हिंदी का कार्यसाधक ज्ञान प्राप्त कर लिया है, उन कार्यालयों के नाम किस राजभाषा नियम के अंतर्गत भारत के राजपत्र में अधिसूचित किए जाते हैं? (Under which Official Language rule the names of the Central Government offices of which 80% of employees have acquired working knowledge of Hindi are notified in the Gazette ?)",
         "options": [
-          "**(A) नियम 10(4) (Rule 10(4))**",
+          "(A) नियम 10(4) (Rule 10(4))",
           "(B) नियम 10(3) (Rule 10(3))",
           "(C) नियम 10 (Rule 10)",
           "(D) नियम 10(2) (Rule 10(2))"
@@ -1142,7 +1142,7 @@ const Rajabhasha = () => {
         "id": 93,
         "question": "रेलवे बोर्ड व्यक्तिगत नकद पुरस्कार योजना के अंतर्गत दी जानेवाली पुरस्कार की राशि कितनी है ? (What is the amount of award given under Railway Board Individual Cash Award Scheme?)",
         "options": [
-          "**(A) 2000 रु. (Rs. 2000)**",
+          "(A) 2000 रु. (Rs. 2000)",
           "(B) 3000 रु. (Rs. 3000)",
           "(C) 1000 रु. (Rs. 1000)",
           "(D) 1200 रु. (Rs. 1200)"
@@ -1155,7 +1155,7 @@ const Rajabhasha = () => {
         "question": "गृह मंत्रालय, राजभाषा विभाग द्वारा जारी वार्षिक कार्यक्रम के अनुसार कितने प्रतिशत अनुभागों को हिंदी में शत-प्रतिशत कार्य करने के लिए नामित किया जाना आवश्यक है? (According to the annual program issued by the Rajbhasha Department, Ministry of Home Affairs, what percentage of sections are required to be nominated for doing cent percent work in Hindi?)",
         "options": [
           "(A) 20",
-          "**(B) 30**",
+          "(B) 30",
           "(C) 55",
           "(D) 100"
         ],
@@ -1169,7 +1169,7 @@ const Rajabhasha = () => {
           "(A) दसवीं (Tenth)",
           "(B) बारहवीं (Twelfth)",
           "(C) आठवीं (Eighth)",
-          "**(D) डिग्री (Degree)**"
+          "(D) डिग्री (Degree)"
         ],
         "correctAnswer": 3,
         "explanation": "विभागीय हिंदी भाषा प्रशिक्षण प्राज्ञ को डिग्री कक्षा के ज्ञान के समकक्ष माना जाता है। (Departmental Hindi Basha training PRAGYA is considered equivalent to the Degree level of education) [cite_start][cite: 171, 172, 173]"
@@ -1178,7 +1178,7 @@ const Rajabhasha = () => {
         "id": 96,
         "question": "राजभाषा नियम, 1976 के किस नियम के अंतर्गत कार्यालय के प्रशासनिक प्रधान को राजभाषा अधिनियम और राजभाषा नियम के अनुपालन का उत्तरदायित्व सौंपा गया है ? (Under which rule of the Official Language Rules, 1976, the administrative head of the office is entrusted with the responsibility of complying with the Official Language Act and the Official Language Rules?)",
         "options": [
-          "**(A) नियम 12 (Rule 12)**",
+          "(A) नियम 12 (Rule 12)",
           "(B) नियम 11 (Rule 11)",
           "(C) नियम 10 (Rule 10)",
           "(D) नियम 3 (Rule 3)"
@@ -1190,7 +1190,7 @@ const Rajabhasha = () => {
         "id": 97,
         "question": "राजभाषा नियम, 1976 के किस उपनियम के अनुसार कोई भी कर्मचारी आवेदन, अपील या अभ्यावेदन हिंदी या अंग्रेजी भाषा में कर सकता है? (According to which sub rule of Official Language Rules 1976, an employee can submit his application, appeal or representation in Hindi or English?)",
         "options": [
-          "**(A) नियम 7(1) (Rule 7(1))**",
+          "(A) नियम 7(1) (Rule 7(1))",
           "(B) नियम 7(3) (Rule 7(3))",
           "(C) नियम 8(1) (Rule 8(1))",
           "(D) नियम 8(4) (Rule 8(4))"
@@ -1203,7 +1203,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा नियम, 1976 के किस उप नियम के अनुसार कोई भी कर्मचारी मांग कर सकता है कि उस पर तामील किया जानेवाला आदेश या सूचना हिंदी या अंग्रेजी में दी जाए? (According to which sub-rule of the Official Language Rules 1976, where an employee can demand any orders or notices served to him Hindi or in English.)",
         "options": [
           "(A) नियम 7 (1) (Rule 7(1))",
-          "**(B) नियम 7(3) (Rule 7(3))**",
+          "(B) नियम 7(3) (Rule 7(3))",
           "(C) नियम 8 (1) (Rule 8(1))",
           "(D) नियम 8(4) (Rule 8 (4))"
         ],
@@ -1215,7 +1215,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा अधिनियम, 1976 के किस नियम के अंतर्गत केंद्रीय सरकार के किसी कार्यालय में प्रयोग किए जानेवाले सभी नाम पट्ट, सूचना पट्ट, पत्र शीर्ष, लिफाफों पर उत्कीर्ण लेख, लेखन सामग्री की अन्य मदें हिंदी और अंग्रेजी में होने चाहिए? (Under which rule of the Official Language Act, 1976, all name plates, sign boards, letter heads, inscriptions on envelopes, other items of stationery used in any central government office should be in Hindi and English?)",
         "options": [
           "(A) नियम 11(1) (Rule 11(1))",
-          "**(B) नियम 11(3) (Rule 11 (3))**",
+          "(B) नियम 11(3) (Rule 11 (3))",
           "(C) नियम 11(2) (Rule 11(2))",
           "(D) इनमें से कोई नहीं (None of the above)"
         ],
@@ -1226,7 +1226,7 @@ const Rajabhasha = () => {
         "id": 100,
         "question": "राजभाषा हिंदी में उत्कृष्ट कार्य करने के लिए महाप्रबंधकों और उनसे ऊपर के स्तर के अधिकारियों को कौन-सा पुरस्कार प्रदान किया जाता है? (Which award is given to the General Managers and above level officers for doing excellent work in the Official Language Hindi?)",
         "options": [
-          "**(A) कमलापति त्रिपाठी राजभाषा स्वर्ण पदक (Kamlapati Tripathi Rajbhasha Gold Medal)**",
+          "(A) कमलापति त्रिपाठी राजभाषा स्वर्ण पदक (Kamlapati Tripathi Rajbhasha Gold Medal)",
           "(B) रेल मंत्री राजभाषा रजत पदक (Rail Manthri Rajbhasha Silver Medal)",
           "(C) राजभाषा गौरव पुरस्कार (Rajbhasha Gaurav Purskar)",
           "(D) रेल मंत्री राजभाषा स्वर्ण पदक (Rail Manthri Rjbhasha Gold Medal)"
@@ -1239,7 +1239,7 @@ const Rajabhasha = () => {
         "question": "राजभाषा हिंदी में उत्कृष्ट कार्य करने के लिए वरिष्ठ प्रशासनिक ग्रेड और उनसे ऊपर के अधिकारियों को निम्न में से कौन-सा सम्मान दिया जाता है? (Which of the following honors are given to the SAG and above officers for doing excellent work in the Official Language Hindi ?)",
         "options": [
           "(A) कमलापति त्रिपाठी राजभाषा स्वर्ण पदक (Kamlapati Tripathi Rajbhasha Gold Medal)",
-          "**(B) रेल मंत्री राजभाषा रजत पदक (Rail Manthri Rjbhasha Silver Medal)**",
+          "(B) रेल मंत्री राजभाषा रजत पदक (Rail Manthri Rjbhasha Silver Medal)",
           "(C) राजभाषा गौरव पुरस्कार (Rajbhasha Gaurav Purskar)",
           "(D) रेल मंत्री राजभाषा स्वर्ण पदक (Rail Manthri Rajbhasha Gold Medal)"
         ],
@@ -1253,7 +1253,7 @@ const Rajabhasha = () => {
           "(A) गृह मंत्रालय पुरस्कार योजना (Home Ministry Award Scheme)",
           "(B) रेल मंत्री पुरस्कार योजना (Rail Mantri Award Scheme)",
           "(C) महाप्रबंधक पुरस्कार योजना (General Manager Award Scheme)",
-          "**(D) प्रोत्साहन पुरस्कार योजना (Incentive award scheme)**"
+          "(D) प्रोत्साहन पुरस्कार योजना (Incentive award scheme)"
         ],
         "correctAnswer": 3,
         "explanation": "ग क्षेत्र के कर्मचारी को हिंदी में 10,000 शब्द लिखने पर प्रोत्साहन पुरस्कार योजना के अंतर्गत पुरस्कृत किया जाता है। (An employee in C region writing 10,000 words in Hindi is awarded under the Incentive award scheme) [cite_start][cite: 185, 186, 187]"
@@ -1262,7 +1262,7 @@ const Rajabhasha = () => {
         "id": 103,
         "question": "क्षेत्रीय रेल स्तर पर राजभाषा समिति का अध्यक्ष कौन होता है? (Who is the Chairman of Official Language Committee at Zonal Level?)",
         "options": [
-          "**(A) महाप्रबंधक (General Manager)**",
+          "(A) महाप्रबंधक (General Manager)",
           "(B) मुख्य राजभाषा अधिकारी (Mukhya Rajbhasha Adhikari)",
           "(C) मंडल रेल प्रबंधक (Divisional Railway Manager)",
           "(D) राजभाषा अधिकारी (Rajbhasha Adhikari)"
@@ -1277,7 +1277,7 @@ const Rajabhasha = () => {
           "(A) 20",
           "(B) 30",
           "(C) 55",
-          "**(D) 100**"
+          "(D) 100"
         ],
         "correctAnswer": 3,
         "explanation": "प्रशिक्षण संस्थानों की 100% पाठ्य सामग्री द्विभाषिक रूप में होना अनिवार्य है। (100% of the training material of training institutes should be in bilingual form) [cite_start][cite: 189, 190, 191]"
@@ -1289,7 +1289,7 @@ const Rajabhasha = () => {
           "(A) 20",
           "(B) 50",
           "(C) 55",
-          "**(D) 100**"
+          "(D) 100"
         ],
         "correctAnswer": 3,
         "explanation": "सरकारी कार्यालयों में प्रयुक्त कोड, मैनुअल, प्रक्रिया, साहित्य का अनुवाद आदि का 100% द्विभाषिक होना चाहिए। (100% of the code, manual, procedure, translation of literature, etc. used in government offices should be bilingual) [cite_start][cite: 191, 192, 193]"
@@ -1301,7 +1301,7 @@ const Rajabhasha = () => {
           "(A) 20",
           "(B) 30",
           "(C) 55",
-          "**(D) 100**"
+          "(D) 100"
         ],
         "correctAnswer": 3,
         "explanation": "प्रशिक्षण संस्थानों की 100% पाठ्य सामग्री का द्विभाषिक रूप में होना अनिवार्य है। (100% of the training material of training institutes should be in bilingual form) [cite_start][cite: 193, 194, 195]"
@@ -1310,7 +1310,7 @@ const Rajabhasha = () => {
         "id": 107,
         "question": "गृह मंत्रालय, राजभाषा विभाग द्वारा जारी वार्षिक कार्यक्रम के अनुसार राजभाषा विभाग के अधिकारियों द्वारा अपने अधीनस्थ कार्यालयों का न्यूनतम कितने प्रतिशत कार्यालयों का निरीक्षण किया जाना अनिवार्य है. (According to the annual programme issued by the Department of Official Language, Ministry of Home Affairs, it is mandatory for officers of the Official Language Department to inspect the minimum percentage of their subordinate offices.)",
         "options": [
-          "**(A) 20**",
+          "(A) 20",
           "(B) 25",
           "(C) 55",
           "(D) 100"
@@ -1323,7 +1323,7 @@ const Rajabhasha = () => {
         "question": "गृह मंत्रालय, राजभाषा विभाग द्वारा जारी वार्षिक कार्यक्रम के अनुसार पुस्तकालयों के अनुदान में से कितनी प्रतिशत राशि हिंदी पुस्तकों, हिंदी ई-पुस्तकों पर व्यय की जानी अपेक्षित है. (According to the annual programme issued by the Ministry of Home Affairs, Department of Official Language, what percentage of the grant of libraries is required to be spent on Hindi books, Hindi e-books)",
         "options": [
           "(A) 20",
-          "**(B) 50**",
+          "(B) 50",
           "(C) 55",
           "(D) 100"
         ],
@@ -1337,7 +1337,7 @@ const Rajabhasha = () => {
           "(A) 36",
           "(B) 24",
           "(C) 6",
-          "**(D) 12**"
+          "(D) 12"
         ],
         "correctAnswer": 3,
         "explanation": "हिंदी टाइपिंग परीक्षा पास करने पर 12 महीने के लिए एक वेतनवृद्धि के बराबर व्यक्तिगत वेतन दिया जाता है। (On passing Hindi typing examination, personal pay equal to one increment is given for 12 months) [cite_start][cite: 200, 201, 202]"
@@ -1347,7 +1347,7 @@ const Rajabhasha = () => {
         "question": "हिंदी आशुलिपि परीक्षा पास करने पर कितने महीने के लिए एक वेतनवृद्धि के बराबर व्यक्तिगत वेतन दिया जाता है? (On passing Hindi Stenography examination, for how many months personal pay equal in amount to one increment is given?)",
         "options": [
           "(A) 6",
-          "**(B) 36**",
+          "(B) 36",
           "(C) 12",
           "(D) 24"
         ],
@@ -1359,7 +1359,7 @@ const Rajabhasha = () => {
         "question": "अगर भारत का कोई राज्‍य संविधान में प्रदत्‍त शक्तियों का प्रयोग करते हुए अपने क्षेत्र में बोली जानेवाली भाषाओं में से अपनी राजभाषा का चयन नहीं करता है, तो उस राज्य की राजभाषा क्या होगी? (If a state does not choose Official Language for itself from the languages spoken in the state what language will be its Official Language?)",
         "options": [
           "(A) उस राज्‍य में बोली जानेवाली सभी भाषाएं (All the languages spoken in the state)",
-          "**(B) हिंदी भाषा (Hindi Language)**",
+          "(B) हिंदी भाषा (Hindi Language)",
           "(C) अंग्रेजी भाषा (English Language)",
           "(D) उपर्युक्त में से कोई भी नहीं (None of the above)"
         ],
@@ -1371,7 +1371,7 @@ const Rajabhasha = () => {
         "question": "संसदीय राजभाषा समिति के अध्यक्ष कौन होते हैं? (Who is the Chairman of Parliamentary Committee on Official Language?)",
         "options": [
           "(A) राजभाषा विभाग के सचिव (Secretary of Rajbhasha Department)",
-          "**(B) गृह मंत्री (Home Minister)**",
+          "(B) गृह मंत्री (Home Minister)",
           "(C) रेल मंत्री (Rail Minister)",
           "(D) प्रधान मंत्री (Prime Minister)"
         ],
@@ -1383,7 +1383,7 @@ const Rajabhasha = () => {
         "question": "भारत के संविधान के वर्तमान उपबंधों के अनुसार उच्‍चतम न्‍यायालय और प्रत्येक उच्‍च न्‍यायलय की कार्यवाहियां .......... भाषा में होनी है. (As per the prevailing provisions of the Constitution of India all proceedings in the Supreme Court and in every High Court shall be in ........... language.)",
         "options": [
           "(A) हिंदी में (In Hindi)",
-          "**(B) अंग्रेजी में (In English)**",
+          "(B) अंग्रेजी में (In English)",
           "(C) संविधान की 8वीं अनुसूची में उल्लिखित किसी भी भाषा में (In any of the Languages mentioned in 8th Schedule of the Constitution)",
           "(D) उपर्युक्‍त में से कोई भी नहीं (None of the above)"
         ],
@@ -1397,7 +1397,7 @@ const Rajabhasha = () => {
           "(A) अंग्रेजी भाषा से (English Language)",
           "(B) हिंदुस्तानी भाषा से (Hindustani Language)",
           "(C) बोलचाल की भाषा से (Lingua Franca)",
-          "**(D) संस्कृत भाषा से (Sanskrit Language)**"
+          "(D) संस्कृत भाषा से (Sanskrit Language)"
         ],
         "correctAnswer": 3,
         "explanation": "हिंदी को समृद्ध बनाने के लिए जहां कहीं आवश्‍यक या वांछनीय हो वहां मुख्‍यत: संस्कृत भाषा से शब्‍दों को ग्रहण किया जाना है। (Vocabulary should be drawn primarily from Sanskrit Language wherever necessary or desirable for enrichment of Hindi Language) [cite_start][cite: 213, 214, 215, 216]"
@@ -1408,7 +1408,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) हिंदी, अंग्रेजी, क्षेत्रीय भाषा (Hindi, English, Regional Language)",
           "(B) अंग्रेजी, हिंदी, क्षेत्रीय भाषा (English, Hindi, Regional Language)",
-          "**(C) क्षेत्रीय भाषा, हिंदी, अंग्रेजी (Regional Language, Hindi, English)**",
+          "(C) क्षेत्रीय भाषा, हिंदी, अंग्रेजी (Regional Language, Hindi, English)",
           "(D) क्षेत्रीय भाषा, अंग्रेजी, हिंदी (Regional Language, English, Hindi)"
         ],
         "correctAnswer": 2,
@@ -1420,7 +1420,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) हिंदी, क्षेत्रीय भाषा, अंग्रेजी (Hindi, regional language, English)",
           "(B) हिंदी, अंग्रेजी, क्षेत्रीय भाषा (Hindi, English, Regional language,)",
-          "**(C) क्षेत्रीय भाषा, हिंदी, अंग्रेजी (Regional language, Hindi, English)**",
+          "(C) क्षेत्रीय भाषा, हिंदी, अंग्रेजी (Regional language, Hindi, English)",
           "(D) क्षेत्रीय भाषा, अंग्रेजी, हिंदी (Regional language, English, Hindi)"
         ],
         "correctAnswer": 2,
@@ -1432,7 +1432,7 @@ const Rajabhasha = () => {
         "options": [
           "(A) 12",
           "(B) 13",
-          "**(C) 14**",
+          "(C) 14",
           "(D) 15"
         ],
         "correctAnswer": 2,
@@ -1445,7 +1445,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Part -15",
             "(B) Part -16",
-            "**(C) Part -17**",
+            "(C) Part -17",
             "(D) Part -18"
           ],
           "correctAnswer": 2,
@@ -1455,7 +1455,7 @@ const Rajabhasha = () => {
           "id": 119,
           "question": "In which chapter of Part – 17 of the Constitution is the official language of the Union mentioned?",
           "options": [
-            "**(A) Chapter - 1**",
+            "(A) Chapter - 1",
             "(B) Chapter - 2",
             "(C) Chapter - 3",
             "(D) Chapter - 4"
@@ -1468,19 +1468,19 @@ const Rajabhasha = () => {
           "question": "Which article of the Constitution of India mentions the language to be used in the Parliament?",
           "options": [
             "(A) Article - 12",
-            "**(B) Article - 120**",
+            "(B) Article - 120",
             "(C) Article - 112",
             "(D) Article – 210"
           ],
           "correctAnswer": 1,
-          "explanation": "Article **120** of the Constitution mentions the language to be used for transacting business in Parliament. [cite: 311]"
+          "explanation": "Article 120 of the Constitution mentions the language to be used for transacting business in Parliament. [cite: 311]"
         },
         {
           "id": 121,
           "question": "Which article of the Constitution of India mentions the language to be used in the Legislature?",
           "options": [
             "(A) Article - 120",
-            "**(B) Article - 210**",
+            "(B) Article - 210",
             "(C) Article - 343",
             "(D) Article - 345"
           ],
@@ -1494,10 +1494,10 @@ const Rajabhasha = () => {
             "(A) Article - 112",
             "(B) Article - 120",
             "(C) Article - 340",
-            "**(D) Article - 343**"
+            "(D) Article - 343"
           ],
           "correctAnswer": 3,
-          "explanation": "The Official language of the Union (Hindi in Devanagari script) is mentioned in **Article 343**. [cite: 315]"
+          "explanation": "The Official language of the Union (Hindi in Devanagari script) is mentioned in Article 343. [cite: 315]"
         },
         {
           "id": 123,
@@ -1505,11 +1505,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) Article - 210",
             "(B) Article - 343",
-            "**(C) Article - 344**",
+            "(C) Article - 344",
             "(D) Article - 351"
           ],
           "correctAnswer": 2,
-          "explanation": "The provisions for the Commission and Committee of Parliament on Official Language are contained in **Article 344**. [cite: 317]"
+          "explanation": "The provisions for the Commission and Committee of Parliament on Official Language are contained in Article 344. [cite: 317]"
         },
         {
           "id": 124,
@@ -1517,35 +1517,35 @@ const Rajabhasha = () => {
           "options": [
             "(A) Article - 343",
             "(B) Article - 344",
-            "**(C) Article - 345**",
+            "(C) Article - 345",
             "(D) Article - 346"
           ],
           "correctAnswer": 2,
-          "explanation": "The provision for the official language or official languages of a State is mentioned in **Article 345**. [cite: 319]"
+          "explanation": "The provision for the official language or official languages of a State is mentioned in Article 345. [cite: 319]"
         },
         {
           "id": 125,
           "question": "Which article of the Constitution of India mentions the language of communication between one state and another or between a state and the Union?",
           "options": [
-            "**(A) Article - 346**",
+            "(A) Article - 346",
             "(B) Article - 347",
             "(C) Article - 348",
             "(D) Article - 349"
           ],
           "correctAnswer": 0,
-          "explanation": "The language for communication between a State and another State or between a State and the Union is mentioned in **Article 346**. [cite: 321]"
+          "explanation": "The language for communication between a State and another State or between a State and the Union is mentioned in Article 346. [cite: 321]"
         },
         {
           "id": 126,
           "question": "Which article of the Constitution of India mentions the language used in the Supreme Court and High Courts and for the Acts, Bills, etc.?",
           "options": [
             "(A) Article - 347",
-            "**(B) Article - 348**",
+            "(B) Article - 348",
             "(C) Article - 349",
             "(D) Article - 350"
           ],
           "correctAnswer": 1,
-          "explanation": "The language to be used in the Supreme Court and in the High Courts and for Acts, Bills, etc. is specified in **Article 348**. [cite: 323]"
+          "explanation": "The language to be used in the Supreme Court and in the High Courts and for Acts, Bills, etc. is specified in Article 348. [cite: 323]"
         },
         {
           "id": 127,
@@ -1554,10 +1554,10 @@ const Rajabhasha = () => {
             "(A) Article - 344",
             "(B) Article - 346",
             "(C) Article - 348",
-            "**(D) Article - 350**"
+            "(D) Article - 350"
           ],
           "correctAnswer": 3,
-          "explanation": "The right to submit a representation for the redress of any grievance in any language used in the Union or State is guaranteed under **Article 350**. [cite: 325]"
+          "explanation": "The right to submit a representation for the redress of any grievance in any language used in the Union or State is guaranteed under Article 350. [cite: 325]"
         },
         {
           "id": 128,
@@ -1565,11 +1565,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) Article - 343",
             "(B) Article - 344",
-            "**(C) Article - 351**",
+            "(C) Article - 351",
             "(D) None of the above"
           ],
           "correctAnswer": 2,
-          "explanation": "The Directive for the development of the Hindi language is laid out in **Article 351**. [cite: 327]"
+          "explanation": "The Directive for the development of the Hindi language is laid out in Article 351. [cite: 327]"
         },
         {
           "id": 129,
@@ -1577,23 +1577,23 @@ const Rajabhasha = () => {
           "options": [
             "(A) Roman",
             "(B) Kharosthi",
-            "**(C) Devanagari**",
+            "(C) Devanagari",
             "(D) Brahmi"
           ],
           "correctAnswer": 2,
-          "explanation": "Article 343(1) states that the official language of the Union shall be Hindi in the **Devanagari** script. [cite: 329]"
+          "explanation": "Article 343(1) states that the official language of the Union shall be Hindi in the Devanagari script. [cite: 329]"
         },
         {
           "id": 130,
           "question": "Which sub-committee of the Parliamentary Committee on Official Language inspects Railway offices?",
           "options": [
             "(A) Second sub Committee",
-            "**(B) Third sub Committee**",
+            "(B) Third sub Committee",
             "(C) First sub Committee",
             "(D) None of the above"
           ],
           "correctAnswer": 1,
-          "explanation": "The **Third sub Committee** of the Parliamentary Committee on Official Language is responsible for inspecting offices of the Railway Ministry. [cite: 331]"
+          "explanation": "The Third sub Committee of the Parliamentary Committee on Official Language is responsible for inspecting offices of the Railway Ministry. [cite: 331]"
         },
         {
           "id": 131,
@@ -1601,47 +1601,47 @@ const Rajabhasha = () => {
           "options": [
             "(A) 5",
             "(B) 10",
-            "**(C) 15**",
+            "(C) 15",
             "(D) 20"
           ],
           "correctAnswer": 2,
-          "explanation": "The Committee consists of 30 members in total: **15** from the Lok Sabha and 10 from the Rajya Sabha. [cite: 334]"
+          "explanation": "The Committee consists of 30 members in total: 15 from the Lok Sabha and 10 from the Rajya Sabha. [cite: 334]"
         },
         {
           "id": 132,
           "question": "How many members of the Rajya Sabha are there in the Parliamentary Committee on Official Language?",
           "options": [
             "(A) 5",
-            "**(B) 10**",
+            "(B) 10",
             "(C) 15",
             "(D) 22"
           ],
           "correctAnswer": 1,
-          "explanation": "The Committee consists of 30 members in total: 15 from the Lok Sabha and **10** from the Rajya Sabha. [cite: 336]"
+          "explanation": "The Committee consists of 30 members in total: 15 from the Lok Sabha and 10 from the Rajya Sabha. [cite: 336]"
         },
         {
           "id": 133,
           "question": "Which Schedule of the Constitution mentions the official languages of the state?",
           "options": [
             "(A) Seventh",
-            "**(B) Eighth**",
+            "(B) Eighth",
             "(C) Ninth",
             "(D) Tenth"
           ],
           "correctAnswer": 1,
-          "explanation": "The **Eighth** Schedule of the Constitution lists the official languages of India (originally 14, now 22). [cite: 338]"
+          "explanation": "The Eighth Schedule of the Constitution lists the official languages of India (originally 14, now 22). [cite: 338]"
         },
         {
           "id": 134,
           "question": "Part-17 of the Constitution of India contains how many articles for the purpose of Official language?",
           "options": [
-            "**(A) 9**",
+            "(A) 9",
             "(B) 10",
             "(C) 11",
             "(D) 12"
           ],
           "correctAnswer": 0,
-          "explanation": "Part XVII contains **9** articles, from Article 343 to Article 351. [cite: 340]"
+          "explanation": "Part XVII contains 9 articles, from Article 343 to Article 351. [cite: 340]"
         },
         {
           "id": 135,
@@ -1649,11 +1649,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) 1961",
             "(B) 1962",
-            "**(C) 1963**",
+            "(C) 1963",
             "(D) 1968"
           ],
           "correctAnswer": 2,
-          "explanation": "The Official Language Act was passed in the year **1963**. [cite: 342]"
+          "explanation": "The Official Language Act was passed in the year 1963. [cite: 342]"
         },
         {
           "id": 136,
@@ -1661,23 +1661,23 @@ const Rajabhasha = () => {
           "options": [
             "(A) Section 3(1)",
             "(B) Section 3(2)",
-            "**(C) Section 3 (3)**",
+            "(C) Section 3 (3)",
             "(D) Section 4"
           ],
           "correctAnswer": 2,
-          "explanation": "Section **3(3)** of the Official Language Act makes it mandatory to prepare and issue specific documents in both Hindi and English. [cite: 344]"
+          "explanation": "Section 3(3) of the Official Language Act makes it mandatory to prepare and issue specific documents in both Hindi and English. [cite: 344]"
         },
         {
           "id": 137,
           "question": "Who is empowered to make rules to implement the Official Language Act?",
           "options": [
-            "**(A) Central Government**",
+            "(A) Central Government",
             "(B) State Government",
             "(C) Governor",
             "(D) None of the above"
           ],
           "correctAnswer": 0,
-          "explanation": "The power to make rules under the Official Language Act is given to the **Central Government** (specifically, the Ministry of Home Affairs). [cite: 346]"
+          "explanation": "The power to make rules under the Official Language Act is given to the Central Government (specifically, the Ministry of Home Affairs). [cite: 346]"
         },
         {
           "id": 138,
@@ -1686,7 +1686,7 @@ const Rajabhasha = () => {
             "(A) 1964",
             "(B) 1965",
             "(C) 1966",
-            "**(D) 1967**"
+            "(D) 1967"
           ],
           "correctAnswer": 3,
           "explanation": "The Official Language Act, 1963 was amended in **1967** (Official Languages (Amendment) Act, 1967). [cite: 348]"
@@ -1695,13 +1695,13 @@ const Rajabhasha = () => {
           "id": 139,
           "question": "In which year were the President's orders regarding the Official language issued on 27 April?",
           "options": [
-            "**(A) 1955**",
+            "(A) 1955",
             "(B) 1960",
             "(C) 1962",
             "(D) 1965"
           ],
           "correctAnswer": 0,
-          "explanation": "The President's orders regarding the Official Language were issued on 27 April **1955** (after the submission of the report of the First Official Language Commission). [cite: 350]"
+          "explanation": "The President's orders regarding the Official Language were issued on 27 April 1955 (after the submission of the report of the First Official Language Commission). [cite: 350]"
         },
         {
           "id": 140,
@@ -1709,11 +1709,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) 1960",
             "(B) 1962",
-            "**(C) 1967**",
+            "(C) 1967",
             "(D) 1968"
           ],
           "correctAnswer": 2,
-          "explanation": "The Official Language Resolution was passed in **1967**. [cite: 352]"
+          "explanation": "The Official Language Resolution was passed in 1967. [cite: 352]"
         },
         {
           "id": 141,
@@ -1721,47 +1721,47 @@ const Rajabhasha = () => {
           "options": [
             "(A) 1963",
             "(B) 1967",
-            "**(C) 1976**",
+            "(C) 1976",
             "(D) 1987"
           ],
           "correctAnswer": 2,
-          "explanation": "The Official Language Rule (Rules) was passed in **1976** (The Official Languages (Use for Official Purposes of the Union) Rules, 1976). [cite: 354]"
+          "explanation": "The Official Language Rule (Rules) was passed in 1976 (The Official Languages (Use for Official Purposes of the Union) Rules, 1976). [cite: 354]"
         },
         {
           "id": 142,
           "question": "Official Language Rules do not apply to which state of India?",
           "options": [
             "(A) Karnataka",
-            "**(B) Tamil Nadu**",
+            "(B) Tamil Nadu",
             "(C) Goa",
             "(D) None of the above"
           ],
           "correctAnswer": 1,
-          "explanation": "The Official Language Rules, 1976, do not apply to the State of **Tamil Nadu**. [cite: 356]"
+          "explanation": "The Official Language Rules, 1976, do not apply to the State of Tamil Nadu. [cite: 356]"
         },
         {
           "id": 143,
           "question": "In how many regions are States and Union Territories of India categorized under Official Language Rules, 1976?",
           "options": [
             "(A) 2",
-            "**(B) 3**",
+            "(B) 3",
             "(C) 4",
             "(D) 5"
           ],
           "correctAnswer": 1,
-          "explanation": "States and Union Territories are categorized into **3** regions ('A', 'B', and 'C') under the Official Language Rules, 1976. [cite: 358]"
+          "explanation": "States and Union Territories are categorized into 3 regions ('A', 'B', and 'C') under the Official Language Rules, 1976. [cite: 358]"
         },
         {
           "id": 144,
           "question": "Andaman and Nicobar Islands come under which region classified for the propagation of the Official language?",
           "options": [
-            "**(A) 'A' region**",
+            "(A) 'A' region",
             "(B) 'B' region",
             "(C) 'C' region",
             "(D) None of the above"
           ],
           "correctAnswer": 0,
-          "explanation": "Andaman and Nicobar Islands come under the **'A' region** ('क' क्षेत्र). [cite: 360]"
+          "explanation": "Andaman and Nicobar Islands come under the 'A' region ('क' क्षेत्र). [cite: 360]"
         },
         {
           "id": 145,
@@ -1769,11 +1769,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) 'A' region",
             "(B) 'B' region",
-            "**(C) 'C' region**",
+            "(C) 'C' region",
             "(D) None of the above"
           ],
           "correctAnswer": 2,
-          "explanation": "Telangana is categorized under the **'C' region** ('ग' क्षेत्र). [cite: 362]"
+          "explanation": "Telangana is categorized under the 'C' region ('ग' क्षेत्र). [cite: 362]"
         },
         {
           "id": 146,
@@ -1781,23 +1781,23 @@ const Rajabhasha = () => {
           "options": [
             "(A) 7",
             "(B) 8",
-            "**(C) 9**",
+            "(C) 9",
             "(D) 10"
           ],
           "correctAnswer": 2,
-          "explanation": "The definition of 'Working Knowledge in Hindi' is specified in **Rule 9** of the Official Language Rules, 1976. [cite: 364]"
+          "explanation": "The definition of 'Working Knowledge in Hindi' is specified in Rule 9 of the Official Language Rules, 1976. [cite: 364]"
         },
         {
           "id": 147,
           "question": "Definition of 'Proficiency in Hindi' is included in which rule of the Official Language Rules?",
           "options": [
-            "**(A) 9**",
+            "(A) 9",
             "(B) 10",
             "(C) 11",
             "(D) 12"
           ],
           "correctAnswer": 0,
-          "explanation": "The definition of 'Proficiency in Hindi' is included in **Rule 9** of the Official Language Rules, 1976. [cite: 366]"
+          "explanation": "The definition of 'Proficiency in Hindi' is included in Rule 9 of the Official Language Rules, 1976. [cite: 366]"
         },
         {
           "id": 148,
@@ -1805,23 +1805,23 @@ const Rajabhasha = () => {
           "options": [
             "(A) 60%",
             "(B) 70%",
-            "**(C) 80%**",
+            "(C) 80%",
             "(D) 100%"
           ],
           "correctAnswer": 2,
-          "explanation": "An office is notified in the Gazette under Rule 10(4) when **80%** or more of its employees have acquired a working knowledge of Hindi. [cite: 368]"
+          "explanation": "An office is notified in the Gazette under Rule 10(4) when 80% or more of its employees have acquired a working knowledge of Hindi. [cite: 368]"
         },
         {
           "id": 149,
           "question": "When is Hindi Day celebrated every year in the Central Government Offices?",
           "options": [
             "(A) 12 September",
-            "**(B) 14 September**",
+            "(B) 14 September",
             "(C) 12 January",
             "(D) 14 January"
           ],
           "correctAnswer": 1,
-          "explanation": "Hindi Day (Hindi Diwas) is celebrated every year on **14 September**, the day Hindi was adopted as the Official Language of the Union in 1949. [cite: 370]"
+          "explanation": "Hindi Day (Hindi Diwas) is celebrated every year on 14 September, the day Hindi was adopted as the Official Language of the Union in 1949. [cite: 370]"
         },
         {
           "id": 150,
@@ -1829,11 +1829,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) 10 January 1975",
             "(B) 10 September 1975",
-            "**(C) 14 September, 1949**",
+            "(C) 14 September, 1949",
             "(D) 14 September 1963"
           ],
           "correctAnswer": 2,
-          "explanation": "Hindi was accepted as the official language of the Union by the Constituent Assembly on **14 September, 1949**. [cite: 372]"
+          "explanation": "Hindi was accepted as the official language of the Union by the Constituent Assembly on 14 September, 1949. [cite: 372]"
         },
         {
           "id": 151,
@@ -1841,11 +1841,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) Nepali",
             "(B) Urdu",
-            "**(C) English**",
+            "(C) English",
             "(D) Sindhi"
           ],
           "correctAnswer": 2,
-          "explanation": "**English** is not one of the 22 languages listed in the 8th Schedule of the Constitution. [cite: 374]"
+          "explanation": "English is not one of the 22 languages listed in the 8th Schedule of the Constitution. [cite: 374]"
         },
         {
           "id": 152,
@@ -1853,7 +1853,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) 15",
             "(B) 18",
-            "**(C) 22**",
+            "(C) 22",
             "(D) 24"
           ],
           "correctAnswer": 2,
@@ -1865,23 +1865,23 @@ const Rajabhasha = () => {
           "options": [
             "(A) In Hindi",
             "(B) In English",
-            "**(C) In Hindi or English**",
+            "(C) In Hindi or English",
             "(D) In any language"
           ],
           "correctAnswer": 2,
-          "explanation": "Under Rule 7(1) of the Official Language Rules, 1976, an employee may submit an application, appeal or representation in **Hindi or English**. [cite: 378]"
+          "explanation": "Under Rule 7(1) of the Official Language Rules, 1976, an employee may submit an application, appeal or representation in Hindi or English. [cite: 378]"
         },
         {
           "id": 154,
           "question": "During which year was the first Official Language Commission formed?",
           "options": [
-            "**(A) 1955**",
+            "(A) 1955",
             "(B) 1960",
             "(C) 1963",
             "(D) 1976"
           ],
           "correctAnswer": 0,
-          "explanation": "The first Official Language Commission was formed in **1955** under Article 344. [cite: 380]"
+          "explanation": "The first Official Language Commission was formed in 1955 under Article 344. [cite: 380]"
         },
         {
           "id": 155,
@@ -1889,71 +1889,71 @@ const Rajabhasha = () => {
           "options": [
             "(A) Rule 9",
             "(B) Rule 10",
-            "**(C) Rule 11**",
+            "(C) Rule 11",
             "(D) Rule 12"
           ],
           "correctAnswer": 2,
-          "explanation": "The mandatory bilingual issue of manuals, codes, and other literature is prescribed under **Rule 11** of the Official Language Rules, 1976. [cite: 382]"
+          "explanation": "The mandatory bilingual issue of manuals, codes, and other literature is prescribed under Rule 11 of the Official Language Rules, 1976. [cite: 382]"
         },
         {
           "id": 156,
           "question": "According to Official Language Rule-12, who is entrusted with the responsibility of ensuring proper compliance with the instructions issued in connection with the Official Language Act and Rules?",
           "options": [
             "(A) Rajbhasha Adhikari (Official Language Officer)",
-            "**(B) Administrative Head of the office**",
+            "(B) Administrative Head of the office",
             "(C) Concerned Dealer",
             "(D) Above three"
           ],
           "correctAnswer": 1,
-          "explanation": "Rule **12** entrusts the responsibility of ensuring proper compliance with the Official Language Act and Rules to the **Administrative Head of the office**. [cite: 384]"
+          "explanation": "Rule 12 entrusts the responsibility of ensuring proper compliance with the Official Language Act and Rules to the Administrative Head of the office. [cite: 384]"
         },
         {
           "id": 157,
           "question": "Who was the Chairman of the First Official Language Commission constituted in 1955?",
           "options": [
             "(A) Sri Govind Vallabh Pant",
-            "**(B) Sri B.G. Kher**",
+            "(B) Sri B.G. Kher",
             "(C) Sri Jawahar Lal Nehru",
             "(D) Sri Om Mehtha"
           ],
           "correctAnswer": 1,
-          "explanation": "The Chairman of the First Official Language Commission (1955) was **Sri B.G. [cite_start]Kher** (Bal Gangadhar Kher). [cite: 387, 389]"
+          "explanation": "The Chairman of the First Official Language Commission (1955) was Sri B.G. Kher (Bal Gangadhar Kher). [cite: 387, 389]"
         },
         {
           "id": 158,
           "question": "According to the annual programme of the year 2024-25 (or 2025-26 as per later context), what percentage of originating correspondence is required to be done by offices situated in the 'C' region?",
           "options": [
             "(A) 55 Percent",
-            "**(B) 60 Percent**",
+            "(B) 60 Percent",
             "(C) 75 Percent",
             "(D) 100 Percent"
           ],
           "correctAnswer": 1,
-          "explanation": "As per the annual program (2025-26), the target for originating correspondence in Hindi for 'C' region offices is **60%**. [cite: 390]"
+          "explanation": "As per the annual program (2025-26), the target for originating correspondence in Hindi for 'C' region offices is 60%. [cite: 390]"
         },
         {
           "id": 159,
           "question": "What is the periodicity for holding the meetings of the Official Language Implementation Committee (OLIC) constituted in Central Government Offices?",
           "options": [
-            "**(A) Once in 3 months**",
+            "(A) Once in 3 months",
             "(B) Once in 6 months",
             "(C) Once in a year",
             "(D) Once in 2 years"
           ],
           "correctAnswer": 0,
-          "explanation": "OLIC meetings at the office level must be held at least **Once in 3 months** (quarterly). [cite: 392, 394]"
+          "explanation": "OLIC meetings at the office level must be held at least Once in 3 months (quarterly). [cite: 392, 394]"
         },
         {
           "id": 160,
           "question": "What is the periodicity for holding meetings of the Town Official Language Implementation Committee (TOLIC)?",
           "options": [
             "(A) Once in 3 months",
-            "**(B) Once in 6 months**",
+            "(B) Once in 6 months",
             "(C) Once in a year",
             "(D) Once in 2 years"
           ],
           "correctAnswer": 1,
-          "explanation": "TOLIC meetings must be held at least **Once in 6 months** (half-yearly). [cite: 396, 398]"
+          "explanation": "TOLIC meetings must be held at least Once in 6 months (half-yearly). [cite: 396, 398]"
         },
         {
           "id": 161,
@@ -1961,11 +1961,11 @@ const Rajabhasha = () => {
           "options": [
             "(A) 9",
             "(B) 10",
-            "**(C) 12**",
+            "(C) 12",
             "(D) 14"
           ],
           "correctAnswer": 2,
-          "explanation": "The Official Language Rules, 1976, consist of **12** rules. [cite: 399]"
+          "explanation": "The Official Language Rules, 1976, consist of 12 rules. [cite: 399]"
         },
         {
           "id": 162,
@@ -1974,22 +1974,22 @@ const Rajabhasha = () => {
             "(A) Human Resource Ministry",
             "(B) Ministry of Railways",
             "(C) All Ministries",
-            "**(D) Ministry of Home Affairs**"
+            "(D) Ministry of Home Affairs"
           ],
           "correctAnswer": 3,
-          "explanation": "The annual program is released by the Department of Official Language under the **Ministry of Home Affairs**. [cite: 401]"
+          "explanation": "The annual program is released by the Department of Official Language under the Ministry of Home Affairs. [cite: 401]"
         },
         {
           "id": 163,
           "question": "How many times in a year are the examinations of Hindi courses prescribed under the Hindi Teaching Scheme conducted?",
           "options": [
             "(A) Once",
-            "**(B) Twice**",
+            "(B) Twice",
             "(C) Thrice",
             "(D) 4 times"
           ],
           "correctAnswer": 1,
-          "explanation": "The examinations of Hindi courses (Prabodh, Praveen, Pragya) are generally conducted **twice** a year (in May and November). [cite: 404, 178]"
+          "explanation": "The examinations of Hindi courses (Prabodh, Praveen, Pragya) are generally conducted twice a year (in May and November). [cite: 404, 178]"
         },
         {
           "id": 164,
@@ -1997,18 +1997,18 @@ const Rajabhasha = () => {
           "options": [
             "(A) 1968",
             "(B) 1966",
-            "**(C) 1967**",
+            "(C) 1967",
             "(D) 1969"
           ],
           "correctAnswer": 2,
-          "explanation": "The Sindhi language was added to the Eighth Schedule by the 21st Amendment Act in **1967**. [cite: 406]"
+          "explanation": "The Sindhi language was added to the Eighth Schedule by the 21st Amendment Act in 1967. [cite: 406]"
         },
         {
           "id": 165,
           "question": "Who is the Chairman of the Official Language Implementation Committee at the Divisional level?",
           "options": [
             "(A) AMRA (Additional Chief Official Language Officer)",
-            "**(B) DRM (Divisional Railway Manager)**",
+            "(B) DRM (Divisional Railway Manager)", 
             "(C) MRA (Chief Official Language Officer)",
             "(D) GM (General Manager)"
           ],
@@ -2021,7 +2021,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) MRA (Chief Official Language Officer)",
             "(B) PCPO (Principal Chief Personnel Officer)",
-            "**(C) General Manager**",
+            "(C) General Manager",  
             "(D) Chairman, Railway Board"
           ],
           "correctAnswer": 2,
@@ -2032,7 +2032,7 @@ const Rajabhasha = () => {
           "question": "How many Sections are there in the Official Language Act, 1963?",
           "options": [
             "(A) 9",
-            "**(B) 10**",
+            "(B) 10",
             "(C) 11",
             "(D) 12"
           ],
@@ -2043,7 +2043,7 @@ const Rajabhasha = () => {
           "id": 168,
           "question": "In which Official Language award scheme are prize amounts and individual awards not given?",
           "options": [
-            "**(A) Rajbhasha Keerti Puraskar**",
+            "(A) Rajbhasha Keerti Puraskar",
             "(B) Rajbhasha Gaurav Puraskar",
             "(C) Maithili Sharan Gupta Puraskar",
             "(D) Premchand Puraskar"
@@ -2057,7 +2057,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Section - 6",
             "(B) Section - 7",
-            "**(C) Section – 8**",
+            "(C) Section – 8",
             "(D) Section - 9"
           ],
           "correctAnswer": 2,
@@ -2067,7 +2067,7 @@ const Rajabhasha = () => {
           "id": 170,
           "question": "What is the scheme for writing original books in Hindi on technical subjects of Railway?",
           "options": [
-            "**(A) Visvesvaraya Technological original Book Writing Award Scheme**",
+            "(A) Visvesvaraya Technological original Book Writing Award Scheme",
             "(B) Lal Bahadur Shastri Technical original Book Writing Award Scheme",
             "(C) Acharya Mahavir Prasad Technical original Book Writing Award Scheme",
             "(D) Sivasagar Mishra Technical original Book Writing Award Scheme"
@@ -2080,7 +2080,7 @@ const Rajabhasha = () => {
           "question": "What is the name of the award scheme for writing original fiction/story collection and novel in Hindi?",
           "options": [
             "(A) Maithili Sharan Gupta Award Scheme",
-            "**(B) Munshi Premchand Award Scheme**",
+            "(B) Munshi Premchand Award Scheme",
             "(C) Makhanlal Chaturvedi Award Scheme",
             "(D) Bharatendu Harishchandra Award Scheme"
           ],
@@ -2093,7 +2093,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Mahadevi Verma Award Scheme",
             "(B) Rabindranath Thakur Award Scheme",
-            "**(C) Maithilisharan Gupta Award Scheme**",
+            "(C) Maithilisharan Gupta Award Scheme",
             "(D) Makhanlal Chaturvedi Award Scheme"
           ],
           "correctAnswer": 2,
@@ -2105,7 +2105,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Rule 3(1)",
             "(B) Rule 7(1)",
-            "**(C) Rule 8 (1)**",
+            "(C) Rule 8 (1)",
             "(D) Rule 10 (1)"
           ],
           "correctAnswer": 2,
@@ -2115,7 +2115,7 @@ const Rajabhasha = () => {
           "id": 174,
           "question": "Who is the Chairman of the Railway Board Official Language Implementation Committee?",
           "options": [
-            "**(A) CRB & CEO (Chairman Railway Board & Chief Executive Officer)**",
+            "(A) CRB & CEO (Chairman Railway Board & Chief Executive Officer)",
             "(B) Director (OL)",
             "(C) Member (MOBD)",
             "(D) Railway Minister"
@@ -2128,7 +2128,7 @@ const Rajabhasha = () => {
           "question": "As per the annual program for the year 2025-26, how many sections of Central Govt. offices in region 'C' should be nominated for 'Cent Percent Work in Hindi'?",
           "options": [
             "(A) 20",
-            "**(B) 25**",
+            "(B) 25",
             "(C) 30",
             "(D) 35"
           ],
@@ -2141,7 +2141,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Administrative Head of the office",
             "(B) Rajbhasha Adhikari (Official Language Officer)",
-            "**(C) Officer signing such documents**",
+            "(C) Officer signing such documents",
             "(D) Concerned Clerk"
           ],
           "correctAnswer": 2,
@@ -2151,7 +2151,7 @@ const Rajabhasha = () => {
           "id": 177,
           "question": "Under rule No. 5 of the Official Language Rules 1976, in which language is it required to reply to the letters received in Hindi?",
           "options": [
-            "**(A) Hindi**",
+            "(A) Hindi",
             "(B) English",
             "(C) Hindi or English",
             "(D) Hindi-English bilingual"
@@ -2164,7 +2164,7 @@ const Rajabhasha = () => {
           "question": "Under which Rajbhasha award scheme is the maximum amount given as a prize?",
           "options": [
             "(A) Rajbhasha Keerthi Award",
-            "**(B) Rajbhasha Gaurav Puraskar**",
+            "(B) Rajbhasha Gaurav Puraskar",
             "(C) Railway Board Award",
             "(D) Home Ministry Award"
           ],
@@ -2178,7 +2178,7 @@ const Rajabhasha = () => {
             "(A) Pravachak",
             "(B) Shruthlekhan",
             "(C) Mantra",
-            "**(D) LILA**"
+            "(D) LILA"
           ],
           "correctAnswer": 3,
           "explanation": "**LILA** (Learn Indian Languages through Artificial intelligence) is the software available for learning Hindi through other Indian languages. [cite: 438]"
@@ -2187,7 +2187,7 @@ const Rajabhasha = () => {
           "id": 180,
           "question": "What is the name of the software related to converting Hindi speech into Hindi text?",
           "options": [
-            "**(A) Shruthlekhan - Rajbhasha**",
+            "(A) Shruthlekhan - Rajbhasha",
             "(B) LILA",
             "(C) Pravachak",
             "(D) Mantra"
@@ -2200,7 +2200,7 @@ const Rajabhasha = () => {
           "question": "What is the name of the software related to converting Hindi text to Hindi speech?",
           "options": [
             "(A) Rail Rajbhasha",
-            "**(B) Pravachak - Rajbhasha**",
+            "(B) Pravachak - Rajbhasha",
             "(C) Leela",
             "(D) Shruthlekhan"
           ],
@@ -2213,7 +2213,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) 55%",
             "(B) 70%",
-            "**(C) 60%**",
+            "(C) 60%",
             "(D) 100%"
           ],
           "correctAnswer": 2,
@@ -2223,7 +2223,7 @@ const Rajabhasha = () => {
           "id": 183,
           "question": "According to the annual program for the usage of Hindi in the year 2025-26, what percentage of the original correspondence in Hindi is to be done from the 'C' region to the central government offices of 'B' region?",
           "options": [
-            "**(A) 100%**",
+            "(A) 100%",
             "(B) 70%",
             "(C) 60%",
             "(D) 55%"
@@ -2235,7 +2235,7 @@ const Rajabhasha = () => {
           "id": 184,
           "question": "According to the annual program for the usage of Hindi in the year 2025-26, what percentage of the original correspondence in Hindi is to be done from the 'C' region to the central government offices of 'C' region?",
           "options": [
-            "**(A) 100%**",
+            "(A) 100%",
             "(B) 70%",
             "(C) 60%",
             "(D) 55%"
@@ -2247,7 +2247,7 @@ const Rajabhasha = () => {
           "id": 185,
           "question": "According to the annual program for the year 2025-26, what percentage of original correspondence in Hindi is required to be done from 'C' region with the persons/offices of State / Union Territory of 'A' region and 'B' region?",
           "options": [
-            "**(A) 100%**",
+            "(A) 100%",
             "(B) 85%",
             "(C) 60%",
             "(D) 55%"
@@ -2262,7 +2262,7 @@ const Rajabhasha = () => {
             "(A) 40%",
             "(B) 60%",
             "(C) 80%",
-            "**(D) 100%**"
+            "(D) 100%"
           ],
           "correctAnswer": 3,
           "explanation": "The target set is that **100%** of letters received in Hindi must be replied to in Hindi (as per Rule 5). [cite: 453]"
@@ -2271,7 +2271,7 @@ const Rajabhasha = () => {
           "id": 187,
           "question": "For the use of Hindi, according to the annual program for the year 2024-25 (or 2025-26), what percentage of Hindi noting is required to be done in the 'C' region?",
           "options": [
-            "**(A) 35%**",
+            "(A) 35%",
             "(B) 50%",
             "(C) 75%",
             "(D) 100%"
@@ -2284,7 +2284,7 @@ const Rajabhasha = () => {
           "question": "For the use of Hindi, according to the annual program for the year 2025-26, what percentage of Hindi Dictations are required to be given in the 'C' region?",
           "options": [
             "(A) 25%",
-            "**(B) 35%**",
+            "(B) 35%",
             "(C) 75%",
             "(D) 100%"
           ],
@@ -2297,7 +2297,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) 75%",
             "(B) 80%",
-            "**(C) 90%**",
+            "(C) 90%",
             "(D) 100%"
           ],
           "correctAnswer": 2,
@@ -2307,7 +2307,7 @@ const Rajabhasha = () => {
           "id": 190,
           "question": "Which form of the numerals should be used for official purposes of the Union of India?",
           "options": [
-            "**(A) International form of Indian Numerals**",
+            "(A) International form of Indian Numerals",
             "(B) Devanagari numerals",
             "(C) Roman numerals",
             "(D) None of the above"
@@ -2321,7 +2321,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) 60%",
             "(B) 70%",
-            "**(C) 80%**",
+            "(C) 80%",
             "(D) 100%"
           ],
           "correctAnswer": 2,
@@ -2331,7 +2331,7 @@ const Rajabhasha = () => {
           "id": 192,
           "question": "Under which Official Language rule are the names of the Central Government offices of which 80% of employees have acquired working knowledge of Hindi notified in the Gazette?",
           "options": [
-            "**(A) Rule 10(4)**",
+            "(A) Rule 10(4)",
             "(B) Rule 10(3)",
             "(C) Rule 10",
             "(D) Rule 10(2)"
@@ -2343,7 +2343,7 @@ const Rajabhasha = () => {
           "id": 193,
           "question": "What is the amount of the award given under the Railway Board Individual Cash Award Scheme?",
           "options": [
-            "**(A) Rs. 2000**",
+            "(A) Rs. 2000",
             "(B) Rs. 3000",
             "(C) Rs. 1000",
             "(D) Rs. 1200"
@@ -2356,7 +2356,7 @@ const Rajabhasha = () => {
           "question": "According to the annual program issued by the Rajbhasha Department, Ministry of Home Affairs, what percentage of sections are required to be nominated for doing cent percent work in Hindi?",
           "options": [
             "(A) 20",
-            "**(B) 30**",
+            "(B) 30",
             "(C) 55",
             "(D) 100"
           ],
@@ -2370,7 +2370,7 @@ const Rajabhasha = () => {
             "(A) Tenth",
             "(B) Twelfth",
             "(C) Eighth",
-            "**(D) Degree**"
+            "(D) Degree"
           ],
           "correctAnswer": 3,
           "explanation": "The highest level of Hindi training, **PRAGYA**, is considered equivalent to a **Degree** level of knowledge. [cite: 477]"
@@ -2379,7 +2379,7 @@ const Rajabhasha = () => {
           "id": 196,
           "question": "Under which rule of the Official Language Rules, 1976, is the administrative head of the office entrusted with the responsibility of complying with the Official Language Act and the Official Language Rules?",
           "options": [
-            "**(A) Rule 12**",
+            "(A) Rule 12",
             "(B) Rule 11",
             "(C) Rule 10",
             "(D) Rule 3"
@@ -2391,7 +2391,7 @@ const Rajabhasha = () => {
           "id": 197,
           "question": "According to which sub rule of Official Language Rules 1976, can an employee submit his application, appeal or representation in Hindi or English?",
           "options": [
-            "**(A) Rule 7(1)**",
+            "(A) Rule 7(1)",
             "(B) Rule 7(3)",
             "(C) Rule 8(1)",
             "(D) Rule 8(4)"
@@ -2404,7 +2404,7 @@ const Rajabhasha = () => {
           "question": "According to which sub-rule of the Official Language Rules 1976, can an employee demand that any orders or notices served to him be in Hindi or in English?",
           "options": [
             "(A) Rule 7(1)",
-            "**(B) Rule 7(3)**",
+            "(B) Rule 7(3)",
             "(C) Rule 8(1)",
             "(D) Rule 8 (4)"
           ],
@@ -2416,7 +2416,7 @@ const Rajabhasha = () => {
           "question": "Under which rule of the Official Language Rules, 1976, should all name plates, sign boards, letter heads, inscriptions on envelopes, and other items of stationery used in any central government office be in Hindi and English?",
           "options": [
             "(A) Rule 11(1)",
-            "**(B) Rule 11 (3)**",
+            "(B) Rule 11 (3)",
             "(C) Rule 11(2)",
             "(D) None of the above"
           ],
@@ -2427,7 +2427,7 @@ const Rajabhasha = () => {
           "id": 200,
           "question": "Which award is given to General Managers and above level officers for doing excellent work in the Official Language, Hindi?",
           "options": [
-            "**(A) Kamlapati Tripathi Rajbhasha Gold Medal**",
+            "(A) Kamlapati Tripathi Rajbhasha Gold Medal",
             "(B) Rail Manthri Rajbhasha Silver Medal",
             "(C) Rajbhasha Gaurav Purskar",
             "(D) Rail Manthri Rjbhasha Gold Medal"
@@ -2440,7 +2440,7 @@ const Rajabhasha = () => {
           "question": "Which of the following honors are given to Senior Administrative Grade (SAG) and above officers for doing excellent work in the Official Language, Hindi?",
           "options": [
             "(A) Kamlapati Tripathi Rajbhasha Gold Medal",
-            "**(B) Rail Manthri Rajbhasha Silver Medal**",
+            "(B) Rail Manthri Rajbhasha Silver Medal",
             "(C) Rajbhasha Gaurav Purskar",
             "(D) Rail Manthri Rajbhasha Gold Medal"
           ],
@@ -2454,7 +2454,7 @@ const Rajabhasha = () => {
             "(A) Home Ministry Award Scheme",
             "(B) Rail Mantri Award Scheme",
             "(C) General Manager Award Scheme",
-            "**(D) Incentive award scheme**"
+            "(D) Incentive award scheme"
           ],
           "correctAnswer": 3,
           "explanation": "An employee achieving this word count is awarded under the local-level **Incentive award scheme** (Individual Cash Award Scheme for noting/drafting in Hindi). [cite: 491]"
@@ -2463,7 +2463,7 @@ const Rajabhasha = () => {
           "id": 203,
           "question": "Who is the Chairman of the Official Language Committee at the Zonal Level?",
           "options": [
-            "**(A) General Manager**",
+            "(A) General Manager",
             "(B) Mukhya Rajbhasha Adhikari (Chief Official Language Officer)",
             "(C) Divisional Railway Manager",
             "(D) Rajbhasha Adhikari (Official Language Officer)"
@@ -2478,7 +2478,7 @@ const Rajabhasha = () => {
             "(A) 20",
             "(B) 30",
             "(C) 55",
-            "**(D) 100**"
+            "(D) 100"
           ],
           "correctAnswer": 3,
           "explanation": "The target is for **100%** of the training material of training institutes to be in bilingual form. [cite: 495]"
@@ -2490,7 +2490,7 @@ const Rajabhasha = () => {
             "(A) 20",
             "(B) 50",
             "(C) 55",
-            "**(D) 100**"
+            "(D) 100"
           ],
           "correctAnswer": 3,
           "explanation": "The target is for **100%** of codes, manuals, procedural literature, and their translations to be bilingual. [cite: 497]"
@@ -2502,7 +2502,7 @@ const Rajabhasha = () => {
             "(A) 20",
             "(B) 30",
             "(C) 55",
-            "**(D) 100**"
+            "(D) 100"
           ],
           "correctAnswer": 3,
           "explanation": "The target is for **100%** of the training material of training institutes to be in bilingual form. [cite: 499]"
@@ -2511,7 +2511,7 @@ const Rajabhasha = () => {
           "id": 207,
           "question": "According to the annual programme, it is mandatory for officers of the Official Language Department to inspect the minimum percentage of their subordinate offices.",
           "options": [
-            "**(A) 20**",
+            "(A) 20",
             "(B) 25",
             "(C) 55",
             "(D) 100"
@@ -2524,7 +2524,7 @@ const Rajabhasha = () => {
           "question": "According to the annual programme, what percentage of the grant of libraries is required to be spent on Hindi books and Hindi e-books?",
           "options": [
             "(A) 20",
-            "**(B) 50**",
+            "(B) 50",
             "(C) 55",
             "(D) 100"
           ],
@@ -2538,7 +2538,7 @@ const Rajabhasha = () => {
             "(A) 36",
             "(B) 24",
             "(C) 6",
-            "**(D) 12**"
+            "(D) 12"
           ],
           "correctAnswer": 3,
           "explanation": "Personal pay is given for **12** months on passing the Hindi typing examination. [cite: 506, 507]"
@@ -2548,7 +2548,7 @@ const Rajabhasha = () => {
           "question": "On passing the Hindi Stenography examination, for how many months is personal pay equal to one increment given?",
           "options": [
             "(A) 6",
-            "**(B) 36**",
+            "(B) 36",
             "(C) 12",
             "(D) 24"
           ],
@@ -2560,7 +2560,7 @@ const Rajabhasha = () => {
           "question": "If a state does not choose an Official Language for itself from the languages spoken in the state, what language will be its Official Language?",
           "options": [
             "(A) All the languages spoken in the state",
-            "**(B) Hindi Language**",
+            "(B) Hindi Language",
             "(C) English Language",
             "(D) None of the above"
           ],
@@ -2572,7 +2572,7 @@ const Rajabhasha = () => {
           "question": "Who is the Chairman of the Parliamentary Committee on Official Language?",
           "options": [
             "(A) Secretary of Rajbhasha Department",
-            "**(B) Home Minister**",
+            "(B) Home Minister",
             "(C) Rail Minister",
             "(D) Prime Minister"
           ],
@@ -2584,7 +2584,7 @@ const Rajabhasha = () => {
           "question": "As per the prevailing provisions of the Constitution of India, all proceedings in the Supreme Court and in every High Court shall be in which language?",
           "options": [
             "(A) In Hindi",
-            "**(B) In English**",
+            "(B) In English",
             "(C) In any of the Languages mentioned in the 8th Schedule of the Constitution",
             "(D) None of the above"
           ],
@@ -2598,7 +2598,7 @@ const Rajabhasha = () => {
             "(A) English Language",
             "(B) Hindustani Language",
             "(C) Lingua Franca",
-            "**(D) Sanskrit Language**"
+            "(D) Sanskrit Language"
           ],
           "correctAnswer": 3,
           "explanation": "Article 351 directs that Hindi's vocabulary should be drawn primarily from **Sanskrit** and secondarily from other languages. [cite: 519, 521]"
@@ -2609,7 +2609,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Hindi, English, Regional Language",
             "(B) English, Hindi, Regional Language",
-            "**(C) Regional Language, Hindi, English**",
+            "(C) Regional Language, Hindi, English",
             "(D) Regional Language, English, Hindi"
           ],
           "correctAnswer": 2,
@@ -2621,7 +2621,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) Hindi, regional language, English",
             "(B) Hindi, English, Regional language,",
-            "**(C) Regional language, Hindi, English**",
+            "(C) Regional language, Hindi, English",
             "(D) Regional language, English, Hindi"
           ],
           "correctAnswer": 2,
@@ -2633,7 +2633,7 @@ const Rajabhasha = () => {
           "options": [
             "(A) 12",
             "(B) 13",
-            "**(C) 14**",
+            "(C) 14",
             "(D) 15"
           ],
           "correctAnswer": 2,

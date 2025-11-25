@@ -111,6 +111,12 @@ const Contact = () => {
                       +91 97017 58170<br />
                     </p>
                   </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">WhatsApp</h3>
+                    <p className="text-gray-600">
+                      +91 9346999858<br />
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
