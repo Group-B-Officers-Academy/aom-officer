@@ -20,6 +20,7 @@ interface PDFViewerProps {
 const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess, onPrevPage, onNextPage }) => {
   const isClient = typeof window !== 'undefined'
   const [pageWidth, setPageWidth] = useState<number | undefined>(undefined)
+  const [isProtected, setIsProtected] = useState<boolean>(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number>(0)
@@ -106,6 +107,53 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         }
       }
 
+      // Screenshot and screen capture protection
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          setIsProtected(true)
+        } else {
+          setTimeout(() => setIsProtected(false), 500)
+        }
+      }
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+
+      const handleBlur = () => {
+        setIsProtected(true)
+      }
+      const handleFocus = () => {
+        setTimeout(() => setIsProtected(false), 500)
+      }
+      window.addEventListener('blur', handleBlur)
+      window.addEventListener('focus', handleFocus)
+
+      // Detect Print Screen key
+      const handlePrintScreen = (e: KeyboardEvent) => {
+        if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && e.key === 'S')) {
+          e.preventDefault()
+          setIsProtected(true)
+          setTimeout(() => setIsProtected(false), 1000)
+          return false
+        }
+      }
+      document.addEventListener('keydown', handlePrintScreen)
+
+      // Detect screen capture using MediaQueryList
+      let mediaQuery: MediaQueryList | null = null
+      let handleMediaChange: ((e: MediaQueryListEvent) => void) | null = null
+      try {
+        mediaQuery = window.matchMedia('(display-mode: fullscreen)')
+        handleMediaChange = (e: MediaQueryListEvent) => {
+          if (e.matches) {
+            setIsProtected(true)
+            setTimeout(() => setIsProtected(false), 1000)
+          }
+        }
+        mediaQuery.addEventListener('change', handleMediaChange)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_e) {
+        // MediaQueryList not supported
+      }
+
       // Add event listeners
       document.addEventListener('contextmenu', handleContextMenu)
       document.addEventListener('copy', handleCopy, true)
@@ -123,6 +171,13 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         document.removeEventListener('keydown', handleKeyDown)
         document.removeEventListener('selectstart', handleSelectStart, true)
         document.removeEventListener('dragstart', handleDragStart, true)
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
+        window.removeEventListener('blur', handleBlur)
+        window.removeEventListener('focus', handleFocus)
+        document.removeEventListener('keydown', handlePrintScreen)
+        if (mediaQuery && handleMediaChange) {
+          mediaQuery.removeEventListener('change', handleMediaChange)
+        }
       }
     }
   }, [])
@@ -151,6 +206,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
             -moz-user-select: none !important;
             -ms-user-select: none !important;
             -webkit-touch-callout: none !important;
+            -webkit-tap-highlight-color: transparent !important;
           }
           .pdf-viewer-container ::selection,
           .pdf-viewer-container *::selection {
@@ -160,16 +216,76 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           .pdf-viewer-container *::-moz-selection {
             background: transparent !important;
           }
+          .pdf-viewer-container.protected::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999999;
+            pointer-events: none;
+            animation: fadeIn 0.3s;
+          }
+          .pdf-viewer-container.protected::after {
+            content: 'Screen Capture Detected';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1000000;
+            pointer-events: none;
+            animation: fadeIn 0.3s;
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          @media print {
+            .pdf-viewer-container {
+              display: none !important;
+            }
+          }
+          @media screen {
+            @media (prefers-color-scheme: dark) {
+              .pdf-viewer-container.protected::before {
+                background: rgba(0, 0, 0, 0.95);
+              }
+            }
+          }
         `
       }} />
+      {/* Watermark Overlay */}
+      {!isProtected && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            pointerEvents: 'none',
+            zIndex: 999998,
+            background: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(0,0,0,0.02) 100px, rgba(0,0,0,0.02) 200px)',
+            mixBlendMode: 'multiply',
+          }}
+          aria-hidden="true"
+        />
+      )}
       <div 
         ref={containerRef}
-        className="pdf-viewer-container"
+        className={`pdf-viewer-container ${isProtected ? 'protected' : ''}`}
         style={{
           userSelect: 'none',
           WebkitUserSelect: 'none',
           MozUserSelect: 'none',
           msUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+          WebkitTapHighlightColor: 'transparent',
           pointerEvents: 'auto',
         }}
         onContextMenu={(e) => e.preventDefault()}

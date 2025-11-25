@@ -33,6 +33,125 @@ const LongHaulSummary = () => {
     return () => window.removeEventListener('resize', updateScale)
   }, [])
 
+  // Screenshot and photo protection
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Prevent screenshot shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Print Screen key
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      }
+      
+      // Windows + Shift + S (Snipping Tool)
+      if (e.key === 's' || e.key === 'S') {
+        if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+      }
+      
+      // Windows + G (Game Bar - can take screenshots)
+      if (e.key === 'g' || e.key === 'G') {
+        if (e.metaKey || e.ctrlKey) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+      }
+      
+      // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U (Developer Tools)
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      }
+      
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+        if (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c') {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+      }
+      
+      // Ctrl+U (View Source)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      }
+      
+      // Ctrl+P (Print)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'P' || e.key === 'p')) {
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      }
+    }
+
+    // Prevent right-click context menu
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Prevent print dialog
+    const handleBeforePrint = (e: Event) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Detect visibility change (user switching apps - might be taking screenshot)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is hidden - could be screenshot
+        document.body.style.opacity = '0'
+        setTimeout(() => {
+          document.body.style.opacity = '1'
+        }, 100)
+      }
+    }
+
+    // Prevent drag and drop
+    const handleDragStart = (e: DragEvent) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Prevent selection
+    const handleSelectStart = (e: Event) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Add event listeners
+    document.addEventListener('keydown', handleKeyDown, true)
+    document.addEventListener('contextmenu', handleContextMenu, true)
+    window.addEventListener('beforeprint', handleBeforePrint)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    document.addEventListener('dragstart', handleDragStart, true)
+    document.addEventListener('selectstart', handleSelectStart, true)
+    document.addEventListener('copy', (e) => e.preventDefault(), true)
+    document.addEventListener('cut', (e) => e.preventDefault(), true)
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown, true)
+      document.removeEventListener('contextmenu', handleContextMenu, true)
+      window.removeEventListener('beforeprint', handleBeforePrint)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      document.removeEventListener('dragstart', handleDragStart, true)
+      document.removeEventListener('selectstart', handleSelectStart, true)
+      document.removeEventListener('copy', (e) => e.preventDefault(), true)
+      document.removeEventListener('cut', (e) => e.preventDefault(), true)
+    }
+  }, [])
+
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
   }
@@ -47,7 +166,40 @@ const LongHaulSummary = () => {
   
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+    <>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          * {
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -khtml-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+          }
+          *::selection {
+            background: transparent !important;
+          }
+          *::-moz-selection {
+            background: transparent !important;
+          }
+          img, canvas, video {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+          }
+          @media print {
+            * {
+              display: none !important;
+            }
+          }
+        `
+      }} />
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden" style={{ WebkitUserSelect: 'none', userSelect: 'none' }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
@@ -157,6 +309,7 @@ const LongHaulSummary = () => {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

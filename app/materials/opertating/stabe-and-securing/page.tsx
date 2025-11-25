@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
@@ -13,6 +13,8 @@ const StableAndSecuring = () => {
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [scale, setScale] = useState<number>(1.5)
+  const [isProtected, setIsProtected] = useState<boolean>(false)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   // Adjust scale based on screen size
   useEffect(() => {
@@ -33,6 +35,124 @@ const StableAndSecuring = () => {
     return () => window.removeEventListener('resize', updateScale)
   }, [])
 
+  // Screenshot and screen capture protection
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const content = contentRef.current
+    if (!content) return
+
+    // Detect screen capture using MediaQueryList API
+    let mediaQuery: MediaQueryList | null = null
+    let handleMediaChange: ((e: MediaQueryListEvent) => void) | null = null
+    try {
+      mediaQuery = window.matchMedia('(display-mode: fullscreen)')
+      handleMediaChange = (e: MediaQueryListEvent) => {
+        if (e.matches) {
+          setIsProtected(true)
+          setTimeout(() => setIsProtected(false), 1000)
+        }
+      }
+      mediaQuery.addEventListener('change', handleMediaChange)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_e) {
+      // MediaQueryList not supported
+    }
+
+    // Detect visibility changes (tab switching, app switching)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsProtected(true)
+      } else {
+        setTimeout(() => setIsProtected(false), 500)
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    // Detect blur events (window losing focus)
+    const handleBlur = () => {
+      setIsProtected(true)
+    }
+    const handleFocus = () => {
+      setTimeout(() => setIsProtected(false), 500)
+    }
+    window.addEventListener('blur', handleBlur)
+    window.addEventListener('focus', handleFocus)
+
+    // Detect Print Screen key
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Print Screen key (keyCode 44 or key === 'PrintScreen')
+      if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && e.key === 'S')) {
+        e.preventDefault()
+        setIsProtected(true)
+        setTimeout(() => setIsProtected(false), 1000)
+        return false
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    // Prevent dev tools shortcuts
+    const handleDevTools = (e: KeyboardEvent) => {
+      // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault()
+        return false
+      }
+    }
+    document.addEventListener('keydown', handleDevTools)
+
+    // CSS to prevent screenshots (limited browser support)
+    const style = document.createElement('style')
+    style.textContent = `
+      .protected-content {
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+      .protected-content::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .protected-content.protected::before {
+        opacity: 1;
+      }
+      @media print {
+        .protected-content {
+          display: none !important;
+        }
+      }
+    `
+    document.head.appendChild(style)
+
+    return () => {
+      if (mediaQuery && handleMediaChange) {
+        mediaQuery.removeEventListener('change', handleMediaChange)
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('blur', handleBlur)
+      window.removeEventListener('focus', handleFocus)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('keydown', handleDevTools)
+      document.head.removeChild(style)
+    }
+  }, [])
+
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
   }
@@ -47,7 +167,35 @@ const StableAndSecuring = () => {
   
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+    <>
+      {/* Watermark Overlay for Screenshot Protection */}
+      {!isProtected && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            pointerEvents: 'none',
+            zIndex: 999997,
+            background: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(0,0,0,0.02) 100px, rgba(0,0,0,0.02) 200px)',
+            mixBlendMode: 'multiply',
+          }}
+          aria-hidden="true"
+        />
+      )}
+      <div 
+        ref={contentRef}
+        className={`min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden protected-content ${isProtected ? 'protected' : ''}`}
+        style={{
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          userSelect: 'none',
+          WebkitTouchCallout: 'none',
+        }}
+      >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
@@ -75,7 +223,16 @@ const StableAndSecuring = () => {
           
 
           {/* PDF Single Page Viewer Section - Placed at Bottom */}
-          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 lg:p-12 border border-gray-100/50 mt-8 sm:mt-12 animate-fade-in-up">
+          <div 
+            className="relative bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 lg:p-12 border border-gray-100/50 mt-8 sm:mt-12 animate-fade-in-up"
+            style={{
+              WebkitUserSelect: 'none',
+              MozUserSelect: 'none',
+              msUserSelect: 'none',
+              userSelect: 'none',
+              WebkitTouchCallout: 'none',
+            }}
+          >
             <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 via-indigo-500/5 to-purple-500/5 rounded-2xl md:rounded-3xl"></div>
             
             <div className="relative">
@@ -157,6 +314,7 @@ const StableAndSecuring = () => {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

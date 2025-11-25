@@ -74,7 +74,62 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
       }
 
       const handleKeyDown = (e: KeyboardEvent) => {
-        // Only block if focus is within PDF container
+        // Prevent screenshot shortcuts globally
+        // Print Screen key
+        if (e.key === 'PrintScreen' || e.keyCode === 44) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+        
+        // Windows + Shift + S (Snipping Tool)
+        if (e.key === 's' || e.key === 'S') {
+          if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+          }
+        }
+        
+        // Windows + G (Game Bar)
+        if (e.key === 'g' || e.key === 'G') {
+          if (e.metaKey || e.ctrlKey) {
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+          }
+        }
+        
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J (Developer Tools)
+        if (e.key === 'F12' || e.keyCode === 123) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+        
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+          if (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c') {
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+          }
+        }
+        
+        // Ctrl+U (View Source)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+        
+        // Ctrl+P (Print)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'P' || e.key === 'p')) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+        
+        // Only block copy/paste if focus is within PDF container
         if (container.contains(document.activeElement)) {
           // Disable Ctrl+C, Ctrl+A, Ctrl+V, Ctrl+X, Cmd+C, Cmd+A, Cmd+V, Cmd+X
           if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.key === 'v' || e.key === 'V' || e.key === 'x' || e.key === 'X' || e.key === 'a' || e.key === 'A')) {
@@ -98,13 +153,34 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
         }
       }
 
+      // Prevent print dialog
+      const handleBeforePrint = (e: Event) => {
+        e.preventDefault()
+        return false
+      }
+
+      // Detect visibility change (user switching apps - might be taking screenshot)
+      const handleVisibilityChange = () => {
+        if (document.hidden && container) {
+          // Page is hidden - could be screenshot
+          container.style.opacity = '0'
+          setTimeout(() => {
+            if (container) {
+              container.style.opacity = '1'
+            }
+          }, 100)
+        }
+      }
+
       // Add event listeners
       document.addEventListener('contextmenu', handleContextMenu)
       document.addEventListener('copy', handleCopy, true)
       document.addEventListener('cut', handleCut, true)
-      document.addEventListener('keydown', handleKeyDown)
+      document.addEventListener('keydown', handleKeyDown, true)
       document.addEventListener('selectstart', handleSelectStart, true)
       document.addEventListener('dragstart', handleDragStart, true)
+      window.addEventListener('beforeprint', handleBeforePrint)
+      document.addEventListener('visibilitychange', handleVisibilityChange)
 
       // Cleanup
       return () => {
@@ -112,9 +188,11 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
         document.removeEventListener('contextmenu', handleContextMenu)
         document.removeEventListener('copy', handleCopy, true)
         document.removeEventListener('cut', handleCut, true)
-        document.removeEventListener('keydown', handleKeyDown)
+        document.removeEventListener('keydown', handleKeyDown, true)
         document.removeEventListener('selectstart', handleSelectStart, true)
         document.removeEventListener('dragstart', handleDragStart, true)
+        window.removeEventListener('beforeprint', handleBeforePrint)
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
       }
     }
   }, [])
@@ -143,6 +221,13 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
             -moz-user-select: none !important;
             -ms-user-select: none !important;
             -webkit-touch-callout: none !important;
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+            pointer-events: auto !important;
+            -webkit-tap-highlight-color: transparent !important;
           }
           .pdf-viewer-container ::selection,
           .pdf-viewer-container *::selection {
@@ -151,6 +236,30 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, scale, onDocumentLoad
           .pdf-viewer-container ::-moz-selection,
           .pdf-viewer-container *::-moz-selection {
             background: transparent !important;
+          }
+          .pdf-viewer-container img,
+          .pdf-viewer-container canvas,
+          .pdf-viewer-container video {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+          }
+          @media print {
+            .pdf-viewer-container,
+            .pdf-viewer-container * {
+              display: none !important;
+            }
+          }
+          @media screen {
+            @media (max-width: 768px) {
+              .pdf-viewer-container {
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+              }
+            }
           }
         `
       }} />
