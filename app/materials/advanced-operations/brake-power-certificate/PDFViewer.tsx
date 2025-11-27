@@ -20,14 +20,12 @@ interface PDFViewerProps {
 const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess, onPrevPage, onNextPage }) => {
   const isClient = typeof window !== 'undefined'
   const [pageWidth, setPageWidth] = useState<number | undefined>(undefined)
-  const [isProtected, setIsProtected] = useState<boolean>(true) // Start with protection active
 
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number>(0)
   const touchStartY = useRef<number>(0)
   const touchEndX = useRef<number>(0)
   const touchEndY = useRef<number>(0)
-  const protectionIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     // Ensure client-side setup
@@ -108,163 +106,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         }
       }
 
-      // Enhanced Screenshot and screen capture protection for mobile and desktop - More aggressive
-      let visibilityTimeout: NodeJS.Timeout | null = null
-      const handleVisibilityChange = () => {
-        if (document.hidden) {
-          // Page hidden - likely screenshot taken on mobile or app switch
-          setIsProtected(true)
-          if (visibilityTimeout) clearTimeout(visibilityTimeout)
-          // Keep protection active - NEVER auto-disable when hidden
-        } else {
-          // Page visible again - keep protection active for much longer
-          if (visibilityTimeout) clearTimeout(visibilityTimeout)
-          setIsProtected(true)
-          // Only disable after 5 seconds and only if still focused
-          visibilityTimeout = setTimeout(() => {
-            if (document.hasFocus() && !document.hidden) {
-              setIsProtected(false)
-              // Immediately trigger random protection
-              setTimeout(() => {
-                setIsProtected(true)
-                setTimeout(() => {
-                  if (document.hasFocus() && !document.hidden) {
-                    setIsProtected(false)
-                  }
-                }, 300)
-              }, 100)
-            }
-          }, 5000) // Much longer delay
-        }
-      }
-      document.addEventListener('visibilitychange', handleVisibilityChange)
-
-      const handleBlur = () => {
-        setIsProtected(true)
-        // Keep protection active - NEVER auto-disable on blur
-      }
-      const handleFocus = () => {
-        setIsProtected(true)
-        // Keep protection active for longer, then briefly disable and re-enable
-        setTimeout(() => {
-          if (document.hasFocus() && !document.hidden) {
-            setIsProtected(false)
-            // Immediately re-enable protection briefly
-            setTimeout(() => {
-              setIsProtected(true)
-              setTimeout(() => {
-                if (document.hasFocus() && !document.hidden) {
-                  setIsProtected(false)
-                }
-              }, 400)
-            }, 100)
-          }
-        }, 4000) // Longer delay
-      }
-      window.addEventListener('blur', handleBlur)
-      window.addEventListener('focus', handleFocus)
-
-      // Detect page unload (app closing/switching on mobile)
-      const handleBeforeUnload = () => {
-        setIsProtected(true)
-      }
-      window.addEventListener('beforeunload', handleBeforeUnload)
-      window.addEventListener('pagehide', handleBeforeUnload)
-
-      // Detect Print Screen key (desktop)
-      const handlePrintScreen = (e: KeyboardEvent) => {
-        if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && e.key === 'S')) {
-          e.preventDefault()
-          setIsProtected(true)
-          setTimeout(() => setIsProtected(false), 2000)
-          return false
-        }
-      }
-      document.addEventListener('keydown', handlePrintScreen)
-
-      // Detect screen capture using MediaQueryList
-      let mediaQuery: MediaQueryList | null = null
-      let handleMediaChange: ((e: MediaQueryListEvent) => void) | null = null
-      try {
-        mediaQuery = window.matchMedia('(display-mode: fullscreen)')
-        handleMediaChange = (e: MediaQueryListEvent) => {
-          if (e.matches) {
-            setIsProtected(true)
-            setTimeout(() => setIsProtected(false), 1000)
-          }
-        }
-        mediaQuery.addEventListener('change', handleMediaChange)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (_e) {
-        // MediaQueryList not supported
-      }
-
-      // Mobile-specific: Detect touch events that might indicate screenshot attempt - More aggressive
-      const handleTouchStart = (e: TouchEvent) => {
-        // Multiple simultaneous touches might indicate screenshot gesture
-        if (e.touches.length > 1) {
-          setIsProtected(true)
-          // Keep protection active longer - don't auto-disable immediately
-          setTimeout(() => setIsProtected(false), 5000) // Much longer delay
-        }
-      }
-      document.addEventListener('touchstart', handleTouchStart, { passive: true })
-      
-      // Additional mobile screenshot detection - detect rapid visibility changes
-      let lastVisibilityChange = Date.now()
-      const handleVisibilityChangeAggressive = () => {
-        const now = Date.now()
-        const timeSinceLastChange = now - lastVisibilityChange
-        lastVisibilityChange = now
-        
-        // If visibility changes rapidly (within 500ms), likely screenshot attempt
-        if (timeSinceLastChange < 500) {
-          setIsProtected(true)
-          // Keep protection active - don't auto-disable
-        }
-      }
-      document.addEventListener('visibilitychange', handleVisibilityChangeAggressive)
-
-      // Detect screen orientation changes (mobile)
-      const handleOrientationChange = () => {
-        setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 1000)
-      }
-      window.addEventListener('orientationchange', handleOrientationChange)
-
-      // Periodic check for visibility (mobile screenshot detection) - More frequent and aggressive
-      const visibilityCheck = setInterval(() => {
-        if (document.hidden) {
-          setIsProtected(true)
-          // Keep protection active while hidden - don't auto-disable
-        }
-        // Also check for rapid focus/blur changes
-        if (document.hasFocus && !document.hasFocus()) {
-          setIsProtected(true)
-        }
-      }, 50) // More frequent checks
-
-      // Aggressive random protection - randomly activate protection to make screenshot timing harder
-      const randomProtection = () => {
-        // Randomly activate protection for short durations
-        const randomDelay = Math.random() * 2000 + 1000 // 1-3 seconds
-        const randomDuration = Math.random() * 500 + 200 // 200-700ms
-        
-        setTimeout(() => {
-          setIsProtected(true)
-          setTimeout(() => {
-            // Only disable if no other protection is active
-            if (!document.hidden && document.hasFocus()) {
-              setIsProtected(false)
-            }
-          }, randomDuration)
-        }, randomDelay)
-      }
-      
-      // Start random protection cycle
-      protectionIntervalRef.current = setInterval(() => {
-        randomProtection()
-      }, 3000) // Trigger every 3 seconds
 
       // Add event listeners
       document.addEventListener('contextmenu', handleContextMenu)
@@ -276,8 +117,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
 
       // Cleanup
       return () => {
-        if (visibilityTimeout) clearTimeout(visibilityTimeout)
-        if (protectionIntervalRef.current) clearInterval(protectionIntervalRef.current)
         window.removeEventListener('resize', updateWidth)
         document.removeEventListener('contextmenu', handleContextMenu)
         document.removeEventListener('copy', handleCopy, true)
@@ -285,19 +124,6 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         document.removeEventListener('keydown', handleKeyDown)
         document.removeEventListener('selectstart', handleSelectStart, true)
         document.removeEventListener('dragstart', handleDragStart, true)
-        document.removeEventListener('visibilitychange', handleVisibilityChange)
-        document.removeEventListener('visibilitychange', handleVisibilityChangeAggressive)
-        window.removeEventListener('blur', handleBlur)
-        window.removeEventListener('focus', handleFocus)
-        window.removeEventListener('beforeunload', handleBeforeUnload)
-        window.removeEventListener('pagehide', handleBeforeUnload)
-        document.removeEventListener('keydown', handlePrintScreen)
-        document.removeEventListener('touchstart', handleTouchStart)
-        window.removeEventListener('orientationchange', handleOrientationChange)
-        clearInterval(visibilityCheck)
-        if (mediaQuery && handleMediaChange) {
-          mediaQuery.removeEventListener('change', handleMediaChange)
-        }
       }
     }
   }, [])
@@ -336,141 +162,11 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           .pdf-viewer-container *::-moz-selection {
             background: transparent !important;
           }
-          .pdf-viewer-container.protected::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 999999;
-            pointer-events: none;
-            animation: pulse-black 0.5s infinite;
-          }
-          @keyframes pulse-black {
-            0%, 100% { background: rgba(0, 0, 0, 0.95); }
-            50% { background: rgba(0, 0, 0, 1); }
-          }
-          .pdf-viewer-container.protected::after {
-            content: 'Screenshot Protection Active - Screenshots Not Allowed';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ff0000;
-            font-size: 20px;
-            font-weight: bold;
-            z-index: 1000000;
-            pointer-events: none;
-            animation: pulse-text 0.3s infinite;
-            text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.98);
-            border-radius: 10px;
-            border: 4px solid #ff0000;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 1);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-          }
-          @keyframes pulse-text {
-            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.08); }
-          }
-          /* Make content harder to capture even when protection is "off" */
-          .pdf-viewer-container {
-            position: relative;
-          }
-          .pdf-viewer-container::selection {
-            background: transparent !important;
-          }
-          .pdf-viewer-container *::selection {
-            background: transparent !important;
-          }
-          @media print {
-            .pdf-viewer-container {
-              display: none !important;
-            }
-          }
-          @media screen {
-            @media (prefers-color-scheme: dark) {
-              .pdf-viewer-container.protected::before {
-                background: rgba(0, 0, 0, 0.95);
-              }
-            }
-          }
         `
       }} />
-      {/* Continuous Watermark Overlay for Screenshot Protection - Always Active with stronger opacity */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          pointerEvents: 'none',
-          zIndex: 999998,
-          background: `
-            repeating-linear-gradient(45deg, 
-              transparent, 
-              transparent 30px, 
-              rgba(255,0,0,0.05) 30px, 
-              rgba(255,0,0,0.05) 60px
-            ),
-            repeating-linear-gradient(-45deg, 
-              transparent, 
-              transparent 30px, 
-              rgba(0,0,255,0.05) 30px, 
-              rgba(0,0,255,0.05) 60px
-            )
-          `,
-          mixBlendMode: 'multiply',
-        }}
-        aria-hidden="true"
-      />
-      {/* Additional Text Watermark Overlay - Stronger */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          pointerEvents: 'none',
-          zIndex: 999997,
-          background: 'transparent',
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 150px,
-              rgba(0,0,0,0.03) 150px,
-              rgba(0,0,0,0.03) 151px
-            )
-          `,
-        }}
-        aria-hidden="true"
-      />
-      {/* Additional rotating watermark text overlay */}
-      <div
-        style={{
-          position: 'fixed',
-          top: '20%',
-          left: '10%',
-          width: '80%',
-          height: '60%',
-          pointerEvents: 'none',
-          zIndex: 999996,
-          opacity: 0.15,
-          background: 'transparent',
-          backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,0,0,0.1) 100px, rgba(255,0,0,0.1) 200px)',
-          mixBlendMode: 'multiply',
-        }}
-        aria-hidden="true"
-      />
       <div 
         ref={containerRef}
-        className={`pdf-viewer-container ${isProtected ? 'protected' : ''}`}
+        className="pdf-viewer-container"
         style={{
           userSelect: 'none',
           WebkitUserSelect: 'none',

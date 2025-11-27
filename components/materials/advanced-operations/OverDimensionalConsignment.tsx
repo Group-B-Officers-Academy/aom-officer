@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
@@ -13,8 +13,6 @@ const OverDimensionalConsignment = () => {
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [scale, setScale] = useState<number>(1.5)
-  const [isProtected, setIsProtected] = useState<boolean>(false)
-  const contentRef = useRef<HTMLDivElement>(null)
 
   // Adjust scale based on screen size
   useEffect(() => {
@@ -35,218 +33,6 @@ const OverDimensionalConsignment = () => {
     return () => window.removeEventListener('resize', updateScale)
   }, [])
 
-  // Enhanced Screenshot and screen capture protection for mobile and desktop
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const content = contentRef.current
-    if (!content) return
-
-    // Detect screen capture using MediaQueryList API
-    let mediaQuery: MediaQueryList | null = null
-    let handleMediaChange: ((e: MediaQueryListEvent) => void) | null = null
-    try {
-      mediaQuery = window.matchMedia('(display-mode: fullscreen)')
-      handleMediaChange = (e: MediaQueryListEvent) => {
-        if (e.matches) {
-          setIsProtected(true)
-          setTimeout(() => setIsProtected(false), 1000)
-        }
-      }
-      mediaQuery.addEventListener('change', handleMediaChange)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_e) {
-      // MediaQueryList not supported
-    }
-
-    // Enhanced visibility detection for mobile screenshots
-    let visibilityTimeout: NodeJS.Timeout | null = null
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Page hidden - likely screenshot taken on mobile or app switch
-        setIsProtected(true)
-        if (visibilityTimeout) clearTimeout(visibilityTimeout)
-        visibilityTimeout = setTimeout(() => {
-          setIsProtected(false)
-        }, 2000) // Longer delay for mobile
-      } else {
-        // Page visible again
-        if (visibilityTimeout) clearTimeout(visibilityTimeout)
-        setIsProtected(true)
-        visibilityTimeout = setTimeout(() => {
-          setIsProtected(false)
-        }, 1000)
-      }
-    }
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-
-    // Detect blur events (window losing focus) - mobile app switching
-    const handleBlur = () => {
-      setIsProtected(true)
-    }
-    const handleFocus = () => {
-      setIsProtected(true)
-      setTimeout(() => setIsProtected(false), 1500)
-    }
-    window.addEventListener('blur', handleBlur)
-    window.addEventListener('focus', handleFocus)
-
-    // Detect page unload (app closing/switching on mobile)
-    const handleBeforeUnload = () => {
-      setIsProtected(true)
-    }
-    window.addEventListener('beforeunload', handleBeforeUnload)
-    window.addEventListener('pagehide', handleBeforeUnload)
-
-    // Detect Print Screen key (desktop)
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Print Screen key (keyCode 44 or key === 'PrintScreen')
-      if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && e.key === 'S')) {
-        e.preventDefault()
-        setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 2000)
-        return false
-      }
-    }
-    document.addEventListener('keydown', handleKeyDown)
-
-    // Prevent dev tools shortcuts
-    const handleDevTools = (e: KeyboardEvent) => {
-      // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
-        (e.ctrlKey && e.key === 'U')
-      ) {
-        e.preventDefault()
-        setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 1000)
-        return false
-      }
-    }
-    document.addEventListener('keydown', handleDevTools)
-
-    // Mobile-specific: Detect touch events that might indicate screenshot attempt
-    const handleTouchStart = (e: TouchEvent) => {
-      // Multiple simultaneous touches might indicate screenshot gesture
-      if (e.touches.length > 1) {
-        setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 1500)
-      }
-    }
-    document.addEventListener('touchstart', handleTouchStart, { passive: true })
-
-    // Detect screen orientation changes (mobile)
-    const handleOrientationChange = () => {
-      setIsProtected(true)
-      setTimeout(() => setIsProtected(false), 1000)
-    }
-    window.addEventListener('orientationchange', handleOrientationChange)
-
-    // Enhanced CSS to prevent screenshots (mobile and desktop)
-    const style = document.createElement('style')
-    style.textContent = `
-      .protected-content {
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-        -webkit-tap-highlight-color: transparent !important;
-        -webkit-user-drag: none !important;
-        -khtml-user-drag: none !important;
-        -moz-user-drag: none !important;
-        -o-user-drag: none !important;
-        user-drag: none !important;
-      }
-      .protected-content * {
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-        pointer-events: auto !important;
-      }
-      .protected-content button,
-      .protected-content a {
-        pointer-events: auto !important;
-        z-index: 1000002 !important;
-        position: relative;
-      }
-      .protected-content::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 999999;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-      .protected-content.protected::before {
-        opacity: 1;
-      }
-      .protected-content.protected::after {
-        content: 'Screenshot Protection Active';
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        z-index: 1000000;
-        pointer-events: none;
-        text-align: center;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        border-radius: 10px;
-      }
-      @media print {
-        .protected-content {
-          display: none !important;
-        }
-      }
-      @media screen {
-        @supports (-webkit-touch-callout: none) {
-          .protected-content {
-            -webkit-touch-callout: none !important;
-          }
-        }
-      }
-    `
-    document.head.appendChild(style)
-
-    // Periodic check for visibility (mobile screenshot detection)
-    const visibilityCheck = setInterval(() => {
-      if (document.hidden) {
-        setIsProtected(true)
-      }
-    }, 100)
-
-    return () => {
-      if (visibilityTimeout) clearTimeout(visibilityTimeout)
-      if (mediaQuery && handleMediaChange) {
-        mediaQuery.removeEventListener('change', handleMediaChange)
-      }
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
-      window.removeEventListener('blur', handleBlur)
-      window.removeEventListener('focus', handleFocus)
-      window.removeEventListener('beforeunload', handleBeforeUnload)
-      window.removeEventListener('pagehide', handleBeforeUnload)
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('keydown', handleDevTools)
-      document.removeEventListener('touchstart', handleTouchStart)
-      window.removeEventListener('orientationchange', handleOrientationChange)
-      clearInterval(visibilityCheck)
-      if (document.head.contains(style)) {
-        document.head.removeChild(style)
-      }
-    }
-  }, [])
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
@@ -263,34 +49,7 @@ const OverDimensionalConsignment = () => {
 
   return (
     <>
-      {/* Watermark Overlay for Screenshot Protection */}
-      {!isProtected && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            pointerEvents: 'none',
-            zIndex: 999997,
-            background: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(0,0,0,0.02) 100px, rgba(0,0,0,0.02) 200px)',
-            mixBlendMode: 'multiply',
-          }}
-          aria-hidden="true"
-        />
-      )}
-      <div 
-        ref={contentRef}
-        className={`min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden protected-content ${isProtected ? 'protected' : ''}`}
-        style={{
-          WebkitUserSelect: 'none',
-          MozUserSelect: 'none',
-          msUserSelect: 'none',
-          userSelect: 'none',
-          WebkitTouchCallout: 'none',
-        }}
-      >
+      <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
@@ -318,16 +77,7 @@ const OverDimensionalConsignment = () => {
           
 
           {/* PDF Single Page Viewer Section - Placed at Bottom */}
-          <div 
-            className="relative bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 lg:p-12 border border-gray-100/50 mt-8 sm:mt-12 animate-fade-in-up"
-            style={{
-              WebkitUserSelect: 'none',
-              MozUserSelect: 'none',
-              msUserSelect: 'none',
-              userSelect: 'none',
-              WebkitTouchCallout: 'none',
-            }}
-          >
+          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-8 lg:p-12 border border-gray-100/50 mt-8 sm:mt-12 animate-fade-in-up">
             <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 via-indigo-500/5 to-purple-500/5 rounded-2xl md:rounded-3xl"></div>
             
             <div className="relative">
@@ -356,18 +106,13 @@ const OverDimensionalConsignment = () => {
               </div>
 
               {/* Controls Section */}
-              <div className="bg-gray-50 rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-gray-200" style={{ position: 'relative', zIndex: 1000001 }}>
+              <div className="bg-gray-50 rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-gray-200">
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
                   {/* Navigation Buttons */}
                   <button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      goToPrevPage()
-                    }}
+                    onClick={goToPrevPage}
                     disabled={pageNumber <= 1 || numPages === 0}
                     className="px-3 py-2.5 sm:px-4 sm:py-2.5 md:px-4 md:py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-[70px] sm:min-w-[80px] justify-center touch-manipulation"
-                    style={{ position: 'relative', zIndex: 1000002, pointerEvents: 'auto' }}
                     title="Previous Page"
                   >
                     <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,23 +122,16 @@ const OverDimensionalConsignment = () => {
                   </button>
 
                   {/* Page Number Display */}
-                  <div className="px-4 py-2 sm:px-6 sm:py-2 bg-white rounded-lg border-2 border-blue-500 shadow-md" style={{ position: 'relative', zIndex: 1000002 }}>
+                  <div className="px-4 py-2 sm:px-6 sm:py-2 bg-white rounded-lg border-2 border-blue-500 shadow-md">
                     <span className="text-gray-700 font-bold text-sm sm:text-base md:text-lg whitespace-nowrap">
                       <span className="text-blue-600">{pageNumber}</span> / <span className="text-blue-600">{numPages || '--'}</span>
                     </span>
                   </div>
 
                   <button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      if (pageNumber < numPages && numPages > 0) {
-                        goToNextPage()
-                      }
-                    }}
+                    onClick={goToNextPage}
                     disabled={pageNumber >= numPages || numPages === 0}
                     className="px-3 py-2.5 sm:px-4 sm:py-2.5 md:px-4 md:py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-[70px] sm:min-w-[80px] justify-center touch-manipulation"
-                    style={{ position: 'relative', zIndex: 1000002, pointerEvents: 'auto' }}
                     title="Next Page"
                   >
                     <span>Next</span>
