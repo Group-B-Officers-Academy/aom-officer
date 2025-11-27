@@ -92,7 +92,7 @@ const Rajabhasha = () => {
         "10"
       ],
       correctAnswer: 2,
-      explanation: "Official Languages Act 1963 has 8 sections"
+      explanation: "Official Languages Act 1963 has 9 sections"
     },
     {
       id: 7,
@@ -2564,8 +2564,8 @@ const Rajabhasha = () => {
             "(C) English Language",
             "(D) None of the above"
           ],
-          "correctAnswer": 1,
-          "explanation": "If a State Legislature has not adopted any language, the **Hindi Language** is deemed to be the Official Language for communication between that State and the Union/other states. [cite: 510, 512]"
+          "correctAnswer": 2,
+          "explanation": "If a State Legislature has not adopted any language, the English Language is deemed to be the Official Language for communication between that State and the Union/other states. [cite: 510, 512]"
         },
         {
           "id": 212,
