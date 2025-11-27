@@ -107,33 +107,35 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         }
       }
 
-      // Enhanced Screenshot and screen capture protection for mobile and desktop
+      // Enhanced Screenshot and screen capture protection for mobile and desktop - More aggressive
       let visibilityTimeout: NodeJS.Timeout | null = null
       const handleVisibilityChange = () => {
         if (document.hidden) {
           // Page hidden - likely screenshot taken on mobile or app switch
           setIsProtected(true)
           if (visibilityTimeout) clearTimeout(visibilityTimeout)
-          visibilityTimeout = setTimeout(() => {
-            setIsProtected(false)
-          }, 2000) // Longer delay for mobile
+          // Keep protection active longer - don't auto-disable
+          // visibilityTimeout = setTimeout(() => {
+          //   setIsProtected(false)
+          // }, 5000) // Much longer delay
         } else {
-          // Page visible again
+          // Page visible again - keep protection active for longer
           if (visibilityTimeout) clearTimeout(visibilityTimeout)
           setIsProtected(true)
           visibilityTimeout = setTimeout(() => {
             setIsProtected(false)
-          }, 1000)
+          }, 3000) // Longer delay
         }
       }
       document.addEventListener('visibilitychange', handleVisibilityChange)
 
       const handleBlur = () => {
         setIsProtected(true)
+        // Keep protection active - don't auto-disable on blur
       }
       const handleFocus = () => {
         setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 1500)
+        setTimeout(() => setIsProtected(false), 3000) // Longer delay
       }
       window.addEventListener('blur', handleBlur)
       window.addEventListener('focus', handleFocus)
@@ -173,15 +175,31 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         // MediaQueryList not supported
       }
 
-      // Mobile-specific: Detect touch events that might indicate screenshot attempt
+      // Mobile-specific: Detect touch events that might indicate screenshot attempt - More aggressive
       const handleTouchStart = (e: TouchEvent) => {
         // Multiple simultaneous touches might indicate screenshot gesture
         if (e.touches.length > 1) {
           setIsProtected(true)
-          setTimeout(() => setIsProtected(false), 1500)
+          // Keep protection active longer - don't auto-disable immediately
+          setTimeout(() => setIsProtected(false), 5000) // Much longer delay
         }
       }
       document.addEventListener('touchstart', handleTouchStart, { passive: true })
+      
+      // Additional mobile screenshot detection - detect rapid visibility changes
+      let lastVisibilityChange = Date.now()
+      const handleVisibilityChangeAggressive = () => {
+        const now = Date.now()
+        const timeSinceLastChange = now - lastVisibilityChange
+        lastVisibilityChange = now
+        
+        // If visibility changes rapidly (within 500ms), likely screenshot attempt
+        if (timeSinceLastChange < 500) {
+          setIsProtected(true)
+          // Keep protection active - don't auto-disable
+        }
+      }
+      document.addEventListener('visibilitychange', handleVisibilityChangeAggressive)
 
       // Detect screen orientation changes (mobile)
       const handleOrientationChange = () => {
@@ -190,12 +208,17 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
       }
       window.addEventListener('orientationchange', handleOrientationChange)
 
-      // Periodic check for visibility (mobile screenshot detection)
+      // Periodic check for visibility (mobile screenshot detection) - More frequent and aggressive
       const visibilityCheck = setInterval(() => {
         if (document.hidden) {
           setIsProtected(true)
+          // Keep protection active while hidden - don't auto-disable
         }
-      }, 100)
+        // Also check for rapid focus/blur changes
+        if (document.hasFocus && !document.hasFocus()) {
+          setIsProtected(true)
+        }
+      }, 50) // More frequent checks
 
       // Add event listeners
       document.addEventListener('contextmenu', handleContextMenu)
@@ -216,6 +239,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         document.removeEventListener('selectstart', handleSelectStart, true)
         document.removeEventListener('dragstart', handleDragStart, true)
         document.removeEventListener('visibilitychange', handleVisibilityChange)
+        document.removeEventListener('visibilitychange', handleVisibilityChangeAggressive)
         window.removeEventListener('blur', handleBlur)
         window.removeEventListener('focus', handleFocus)
         window.removeEventListener('beforeunload', handleBeforeUnload)
@@ -272,31 +296,37 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 999999;
             pointer-events: none;
-            animation: fadeIn 0.3s;
+            animation: pulse-black 0.5s infinite;
+          }
+          @keyframes pulse-black {
+            0%, 100% { background: rgba(0, 0, 0, 0.95); }
+            50% { background: rgba(0, 0, 0, 1); }
           }
           .pdf-viewer-container.protected::after {
-            content: 'Screenshot Protection Active';
+            content: 'Screenshot Protection Active - Screenshots Not Allowed';
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
-            font-size: 18px;
+            color: #ff0000;
+            font-size: 20px;
             font-weight: bold;
             z-index: 1000000;
             pointer-events: none;
-            animation: fadeIn 0.3s;
+            animation: pulse-text 0.5s infinite;
             text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.95);
             border-radius: 10px;
+            border: 3px solid #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
           }
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+          @keyframes pulse-text {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
           }
           @media print {
             .pdf-viewer-container {
@@ -312,23 +342,57 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           }
         `
       }} />
-      {/* Watermark Overlay */}
-      {!isProtected && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            pointerEvents: 'none',
-            zIndex: 999998,
-            background: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(0,0,0,0.02) 100px, rgba(0,0,0,0.02) 200px)',
-            mixBlendMode: 'multiply',
-          }}
-          aria-hidden="true"
-        />
-      )}
+      {/* Continuous Watermark Overlay for Screenshot Protection - Always Active */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'none',
+          zIndex: 999998,
+          background: `
+            repeating-linear-gradient(45deg, 
+              transparent, 
+              transparent 50px, 
+              rgba(255,0,0,0.03) 50px, 
+              rgba(255,0,0,0.03) 100px
+            ),
+            repeating-linear-gradient(-45deg, 
+              transparent, 
+              transparent 50px, 
+              rgba(0,0,255,0.03) 50px, 
+              rgba(0,0,255,0.03) 100px
+            )
+          `,
+          mixBlendMode: 'multiply',
+        }}
+        aria-hidden="true"
+      />
+      {/* Additional Text Watermark Overlay */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'none',
+          zIndex: 999997,
+          background: 'transparent',
+          backgroundImage: `
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 200px,
+              rgba(0,0,0,0.02) 200px,
+              rgba(0,0,0,0.02) 201px
+            )
+          `,
+        }}
+        aria-hidden="true"
+      />
       <div 
         ref={containerRef}
         className={`pdf-viewer-container ${isProtected ? 'protected' : ''}`}
