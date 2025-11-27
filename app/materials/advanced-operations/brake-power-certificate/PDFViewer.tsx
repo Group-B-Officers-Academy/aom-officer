@@ -20,13 +20,14 @@ interface PDFViewerProps {
 const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess, onPrevPage, onNextPage }) => {
   const isClient = typeof window !== 'undefined'
   const [pageWidth, setPageWidth] = useState<number | undefined>(undefined)
-  const [isProtected, setIsProtected] = useState<boolean>(false)
+  const [isProtected, setIsProtected] = useState<boolean>(true) // Start with protection active
 
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number>(0)
   const touchStartY = useRef<number>(0)
   const touchEndX = useRef<number>(0)
   const touchEndY = useRef<number>(0)
+  const protectionIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     // Ensure client-side setup
@@ -114,28 +115,51 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           // Page hidden - likely screenshot taken on mobile or app switch
           setIsProtected(true)
           if (visibilityTimeout) clearTimeout(visibilityTimeout)
-          // Keep protection active longer - don't auto-disable
-          // visibilityTimeout = setTimeout(() => {
-          //   setIsProtected(false)
-          // }, 5000) // Much longer delay
+          // Keep protection active - NEVER auto-disable when hidden
         } else {
-          // Page visible again - keep protection active for longer
+          // Page visible again - keep protection active for much longer
           if (visibilityTimeout) clearTimeout(visibilityTimeout)
           setIsProtected(true)
+          // Only disable after 5 seconds and only if still focused
           visibilityTimeout = setTimeout(() => {
-            setIsProtected(false)
-          }, 3000) // Longer delay
+            if (document.hasFocus() && !document.hidden) {
+              setIsProtected(false)
+              // Immediately trigger random protection
+              setTimeout(() => {
+                setIsProtected(true)
+                setTimeout(() => {
+                  if (document.hasFocus() && !document.hidden) {
+                    setIsProtected(false)
+                  }
+                }, 300)
+              }, 100)
+            }
+          }, 5000) // Much longer delay
         }
       }
       document.addEventListener('visibilitychange', handleVisibilityChange)
 
       const handleBlur = () => {
         setIsProtected(true)
-        // Keep protection active - don't auto-disable on blur
+        // Keep protection active - NEVER auto-disable on blur
       }
       const handleFocus = () => {
         setIsProtected(true)
-        setTimeout(() => setIsProtected(false), 3000) // Longer delay
+        // Keep protection active for longer, then briefly disable and re-enable
+        setTimeout(() => {
+          if (document.hasFocus() && !document.hidden) {
+            setIsProtected(false)
+            // Immediately re-enable protection briefly
+            setTimeout(() => {
+              setIsProtected(true)
+              setTimeout(() => {
+                if (document.hasFocus() && !document.hidden) {
+                  setIsProtected(false)
+                }
+              }, 400)
+            }, 100)
+          }
+        }, 4000) // Longer delay
       }
       window.addEventListener('blur', handleBlur)
       window.addEventListener('focus', handleFocus)
@@ -220,6 +244,28 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         }
       }, 50) // More frequent checks
 
+      // Aggressive random protection - randomly activate protection to make screenshot timing harder
+      const randomProtection = () => {
+        // Randomly activate protection for short durations
+        const randomDelay = Math.random() * 2000 + 1000 // 1-3 seconds
+        const randomDuration = Math.random() * 500 + 200 // 200-700ms
+        
+        setTimeout(() => {
+          setIsProtected(true)
+          setTimeout(() => {
+            // Only disable if no other protection is active
+            if (!document.hidden && document.hasFocus()) {
+              setIsProtected(false)
+            }
+          }, randomDuration)
+        }, randomDelay)
+      }
+      
+      // Start random protection cycle
+      protectionIntervalRef.current = setInterval(() => {
+        randomProtection()
+      }, 3000) // Trigger every 3 seconds
+
       // Add event listeners
       document.addEventListener('contextmenu', handleContextMenu)
       document.addEventListener('copy', handleCopy, true)
@@ -231,6 +277,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
       // Cleanup
       return () => {
         if (visibilityTimeout) clearTimeout(visibilityTimeout)
+        if (protectionIntervalRef.current) clearInterval(protectionIntervalRef.current)
         window.removeEventListener('resize', updateWidth)
         document.removeEventListener('contextmenu', handleContextMenu)
         document.removeEventListener('copy', handleCopy, true)
@@ -316,17 +363,28 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
             font-weight: bold;
             z-index: 1000000;
             pointer-events: none;
-            animation: pulse-text 0.5s infinite;
+            animation: pulse-text 0.3s infinite;
             text-align: center;
             padding: 30px;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             border-radius: 10px;
-            border: 3px solid #ff0000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            border: 4px solid #ff0000;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
           }
           @keyframes pulse-text {
             0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
+            50% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.08); }
+          }
+          /* Make content harder to capture even when protection is "off" */
+          .pdf-viewer-container {
+            position: relative;
+          }
+          .pdf-viewer-container::selection {
+            background: transparent !important;
+          }
+          .pdf-viewer-container *::selection {
+            background: transparent !important;
           }
           @media print {
             .pdf-viewer-container {
@@ -342,7 +400,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           }
         `
       }} />
-      {/* Continuous Watermark Overlay for Screenshot Protection - Always Active */}
+      {/* Continuous Watermark Overlay for Screenshot Protection - Always Active with stronger opacity */}
       <div
         style={{
           position: 'fixed',
@@ -355,22 +413,22 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
           background: `
             repeating-linear-gradient(45deg, 
               transparent, 
-              transparent 50px, 
-              rgba(255,0,0,0.03) 50px, 
-              rgba(255,0,0,0.03) 100px
+              transparent 30px, 
+              rgba(255,0,0,0.05) 30px, 
+              rgba(255,0,0,0.05) 60px
             ),
             repeating-linear-gradient(-45deg, 
               transparent, 
-              transparent 50px, 
-              rgba(0,0,255,0.03) 50px, 
-              rgba(0,0,255,0.03) 100px
+              transparent 30px, 
+              rgba(0,0,255,0.05) 30px, 
+              rgba(0,0,255,0.05) 60px
             )
           `,
           mixBlendMode: 'multiply',
         }}
         aria-hidden="true"
       />
-      {/* Additional Text Watermark Overlay */}
+      {/* Additional Text Watermark Overlay - Stronger */}
       <div
         style={{
           position: 'fixed',
@@ -385,11 +443,28 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
             repeating-linear-gradient(
               0deg,
               transparent,
-              transparent 200px,
-              rgba(0,0,0,0.02) 200px,
-              rgba(0,0,0,0.02) 201px
+              transparent 150px,
+              rgba(0,0,0,0.03) 150px,
+              rgba(0,0,0,0.03) 151px
             )
           `,
+        }}
+        aria-hidden="true"
+      />
+      {/* Additional rotating watermark text overlay */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '20%',
+          left: '10%',
+          width: '80%',
+          height: '60%',
+          pointerEvents: 'none',
+          zIndex: 999996,
+          opacity: 0.15,
+          background: 'transparent',
+          backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,0,0,0.1) 100px, rgba(255,0,0,0.1) 200px)',
+          mixBlendMode: 'multiply',
         }}
         aria-hidden="true"
       />

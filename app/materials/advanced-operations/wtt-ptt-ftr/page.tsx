@@ -167,6 +167,12 @@ const WTT_PTT_FTR = () => {
         user-select: none !important;
         pointer-events: auto !important;
       }
+      .protected-content button,
+      .protected-content a {
+        pointer-events: auto !important;
+        z-index: 1000002 !important;
+        position: relative;
+      }
       .protected-content::before {
         content: '';
         position: fixed;
@@ -350,13 +356,18 @@ const WTT_PTT_FTR = () => {
               </div>
 
               {/* Controls Section */}
-              <div className="bg-gray-50 rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-gray-200">
+              <div className="bg-gray-50 rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-gray-200" style={{ position: 'relative', zIndex: 1000001 }}>
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
                   {/* Navigation Buttons */}
                   <button
-                    onClick={goToPrevPage}
-                    disabled={pageNumber <= 1}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      goToPrevPage()
+                    }}
+                    disabled={pageNumber <= 1 || numPages === 0}
                     className="px-3 py-2.5 sm:px-4 sm:py-2.5 md:px-4 md:py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-[70px] sm:min-w-[80px] justify-center touch-manipulation"
+                    style={{ position: 'relative', zIndex: 1000002, pointerEvents: 'auto' }}
                     title="Previous Page"
                   >
                     <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -366,16 +377,23 @@ const WTT_PTT_FTR = () => {
                   </button>
 
                   {/* Page Number Display */}
-                  <div className="px-4 py-2 sm:px-6 sm:py-2 bg-white rounded-lg border-2 border-blue-500 shadow-md">
+                  <div className="px-4 py-2 sm:px-6 sm:py-2 bg-white rounded-lg border-2 border-blue-500 shadow-md" style={{ position: 'relative', zIndex: 1000002 }}>
                     <span className="text-gray-700 font-bold text-sm sm:text-base md:text-lg whitespace-nowrap">
                       <span className="text-blue-600">{pageNumber}</span> / <span className="text-blue-600">{numPages || '--'}</span>
                     </span>
                   </div>
 
                   <button
-                    onClick={goToNextPage}
-                    disabled={pageNumber >= numPages}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      if (pageNumber < numPages && numPages > 0) {
+                        goToNextPage()
+                      }
+                    }}
+                    disabled={pageNumber >= numPages || numPages === 0}
                     className="px-3 py-2.5 sm:px-4 sm:py-2.5 md:px-4 md:py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-[70px] sm:min-w-[80px] justify-center touch-manipulation"
+                    style={{ position: 'relative', zIndex: 1000002, pointerEvents: 'auto' }}
                     title="Next Page"
                   >
                     <span>Next</span>
