@@ -70,30 +70,24 @@ const Home = () => {
             <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
-                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {/* {' & '} */}
-                {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
-                {' AOM CRASH COURSE ALREADY STARTED -JOIN ✅ TODAY'}
+                <Link href="/aom-material-mcq-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM 40 DAYS MATERIAL & MCQ PRACTICE COURSE</Link>
+                {' - JOIN ✅ TODAY'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
             <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
-                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {/* {' & '} */}
-                {/* <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link> */}
-                {' AOM CRASH COURSE ALREADY STARTED -JOIN ✅ TODAY'}
+                <Link href="/aom-material-mcq-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM 40 DAYS MATERIAL & MCQ PRACTICE COURSE</Link>
+                {' - JOIN ✅ TODAY'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
             <span className="text-white font-black text-lg md:text-xl lg:text-2xl flex items-center gap-3 tracking-wide drop-shadow-lg">
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
               <span className="uppercase">🎓 
-                <Link href="/crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM CRASH COURSE</Link>
-                {/* {' & '}
-                <Link href="/super-crash-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM SUPER CRASH COURSE</Link>
-                {' WILL START FROM 31.10.2025 (FRIDAY) 🎓'} */}
+                <Link href="/aom-material-mcq-course" className="underline hover:text-yellow-300 transition-colors duration-200">AOM 40 DAYS MATERIAL & MCQ PRACTICE COURSE</Link>
+                {' - JOIN ✅ TODAY'}
               </span>
               <span className="animate-bounce text-yellow-300 text-2xl md:text-3xl">🎉</span>
             </span>
@@ -119,17 +113,25 @@ const Home = () => {
                   <div className="p-4 md:p-5">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex-1">
-                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">TWO-MONTHS AOM LDCE CRASH COURSE HAS COMMENCED</p>
+                        <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">AOM 40 DAYS MATERIAL AND MCQ PRACTICE COURSE HAS COMMENCED</p>
                         <p className="text-xs md:text-sm text-gray-600 font-semibold mb-1">Seats Filling Fast - Don&apos;t Miss Out!</p>
                         <h3 className="text-lg md:text-xl font-black text-transparent bg-clip-text bg-linear-to-r from-orange-600 via-red-600 to-pink-600">
                           Hurry Up! Join Course Now!
                         </h3>
                       </div>
-                      <div className="shrink-0">
-                        
-                      </div>
                     </div>
-                    
+                    {/* Contact */}
+                    <div className="flex items-center gap-2 bg-green-50 rounded-lg px-3 py-2 shadow-inner mt-2 w-fit">
+                      <span className="text-green-600 text-lg"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="inline text-green-600" viewBox="0 0 32 32">
+                          <path d="M16.023 2.003a13.98 13.98 0 0 0-12.004 21.3L2.01 29.99l6.795-1.997A13.977 13.977 0 1 0 16.024 2.003zm6.635 20.082c-.28.786-1.62 1.541-2.228 1.641-.589.094-1.308.134-2.115-.135-.483-.158-1.096-.356-1.892-.697-3.333-1.436-5.509-4.784-5.677-5.006-.164-.224-1.36-1.81-1.36-3.453 0-1.642.862-2.453 1.167-2.786.304-.334.663-.418.884-.418.227 0 .442.002.632.011.203.009.475-.079.747.57.28.668.954 2.316 1.038 2.484.083.168.137.37.016.595-.121.224-.181.362-.358.562-.173.194-.364.432-.521.58-.173.163-.354.341-.157.672.197.329.878 1.45 1.88 2.348 1.296 1.147 2.39 1.479 2.72 1.646.336.168.534.14.731-.08.198-.22.84-.936 1.066-1.257.224-.319.456-.261.764-.157.304.104 1.924.908 2.256 1.071.334.16.556.238.638.376.086.139.086.813-.195 1.599z"/>
+                        </svg>
+                      </span>
+                      <span className="text-xs md:text-sm font-semibold text-green-700">
+                        WhatsApp: <span className="font-bold tracking-wide">+91 9346999858</span>
+                      </span>
+                      <span className="sr-only">WhatsApp contact for joining course</span>
+                    </div>
                     {/* Arrow indicator */}
                     <div className="mt-3 flex items-center gap-2 text-orange-600 font-bold text-sm">
                       <span className="group-hover:translate-x-1 transition-transform duration-300">Get Started</span>

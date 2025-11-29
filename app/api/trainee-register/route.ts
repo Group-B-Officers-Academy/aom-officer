@@ -34,12 +34,12 @@ const traineeSchema = z.object({
     .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
   courseInterested: z.string()
     .min(1, 'Please select a course')
-    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)', 'AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)'].includes(val), {
       message: 'Please select a valid course'
     }),
   courseJoined: z.string()
     .min(1, 'Please select a course')
-    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)', 'AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)'].includes(val), {
       message: 'Please select a valid course'
     }),
   paymentDone: z.string()

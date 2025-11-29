@@ -35,12 +35,12 @@ const traineeSchema = z.object({
     .regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
   courseInterested: z.string()
     .min(1, 'Please select a course')
-    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)', 'AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)', 'AOM ONLY MCQ PRACTICE COURSE (40DAYS)'].includes(val), {
       message: 'Please select a valid course'
     }),
   courseJoined: z.string()
     .min(1, 'Please select a course')
-    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)'].includes(val), {
+    .refine(val => ['AOM CRASH COURSE (2 MONTHS)', 'AOM SUPER CRASH COURSE (1 MONTH)', 'AOM ADVANCED OPERATIONS (20 DAYS)', 'AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)', 'AOM ONLY MCQ PRACTICE COURSE (40DAYS)'].includes(val), {
       message: 'Please select a valid course'
     }),
   paymentDone: z.string()
@@ -408,6 +408,8 @@ const TraineeRegister = () => {
                 <option value="AOM CRASH COURSE (2 MONTHS)">AOM CRASH COURSE (2 MONTHS)</option>
                 <option value="AOM SUPER CRASH COURSE (1 MONTH)">AOM SUPER CRASH COURSE (1 MONTH)</option>
                 <option value="AOM ADVANCED OPERATIONS (20 DAYS)">AOM ADVANCED OPERATIONS (20 DAYS)</option>
+                <option value="AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)">AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)</option>
+                <option value="AOM ONLY MCQ PRACTICE COURSE (40DAYS)">AOM ONLY MCQ PRACTICE COURSE (40DAYS)</option>
               </select>
               {errors.courseInterested && (
                 <p className="mt-1 text-sm text-red-600">{errors.courseInterested}</p>
@@ -432,6 +434,8 @@ const TraineeRegister = () => {
                 <option value="AOM CRASH COURSE (2 MONTHS)">AOM CRASH COURSE (2 MONTHS)</option>
                 <option value="AOM SUPER CRASH COURSE (1 MONTH)">AOM SUPER CRASH COURSE (1 MONTH)</option>
                 <option value="AOM ADVANCED OPERATIONS (20 DAYS)">AOM ADVANCED OPERATIONS (20 DAYS)</option>
+                <option value="AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)">AOM MATERIAL & MCQ PRACTICE COURSE (40DAYS)</option>
+                <option value="AOM ONLY MCQ PRACTICE COURSE (40DAYS)">AOM ONLY MCQ PRACTICE COURSE (40DAYS)</option>
               </select>
               {errors.courseJoined && (
                 <p className="mt-1 text-sm text-red-600">{errors.courseJoined}</p>

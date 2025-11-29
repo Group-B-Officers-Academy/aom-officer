@@ -66,6 +66,111 @@ const MCQPractice = () => {
       borderColor: 'border-purple-200'
     },
     {
+      id: 'brake-power-certificate',
+      title: 'Brake Power Certificate',
+      description: 'Master brake power certificate requirements, validity periods, BP percentages, rake types, and safety procedures with comprehensive practice questions',
+      href: '/mcq-practice/brake-power-certificate',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      color: 'from-slate-500 to-gray-600',
+      bgColor: 'bg-slate-50',
+      textColor: 'text-slate-700',
+      borderColor: 'border-slate-200'
+    },
+    {
+      id: 'it-applications',
+      title: 'IT Applications',
+      description: 'Master railway IT systems including FOIS, ICMS, COA, RTIS, CMS, SFOORTI, SATSANG, and other digital applications with comprehensive practice questions',
+      href: '/mcq-practice/it-applications',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      color: 'from-blue-500 to-indigo-600',
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-700',
+      borderColor: 'border-blue-200'
+    },
+    {
+      id: 'tt-wtt-ptt-ftr',
+      title: 'Time Table WTT/PTT/FTR',
+      description: 'Master Working Time Table (WTT), Public Time Table (PTT), Trains At A Glance (TAAG), IRTTCC procedures, and Full Tariff Rates (FTR) booking with comprehensive practice questions',
+      href: '/mcq-practice/tt-wtt-ptt-ftr',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      color: 'from-pink-500 to-rose-600',
+      bgColor: 'bg-pink-50',
+      textColor: 'text-pink-700',
+      borderColor: 'border-pink-200'
+    },
+    {
+      id: 'line-capacity-throughput',
+      title: 'Line Capacity & Throughput',
+      description: 'Master line capacity calculations, Scott\'s Formula, throughput optimization, and capacity enhancement measures with comprehensive practice questions',
+      href: '/mcq-practice/line-capacity-throughput',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      color: 'from-cyan-500 to-blue-600',
+      bgColor: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-200'
+    },
+    {
+      id: 'over-dimensional-consignment',
+      title: 'Over Dimensional Consignment',
+      description: 'Master ODC classifications, clearance requirements, sanctioning authorities, and movement procedures with comprehensive practice questions',
+      href: '/mcq-practice/over-dimensional-consignment',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      ),
+      color: 'from-rose-500 to-pink-600',
+      bgColor: 'bg-rose-50',
+      textColor: 'text-rose-700',
+      borderColor: 'border-rose-200'
+    },
+    {
+      id: 'operating-statistics',
+      title: 'Operating Statistics',
+      description: 'Master statistical units, primary units, fundamental units, derived units, and their applications in railway management',
+      href: '/mcq-practice/operating-statistics',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      color: 'from-violet-500 to-purple-600',
+      bgColor: 'bg-violet-50',
+      textColor: 'text-violet-700',
+      borderColor: 'border-violet-200'
+    },
+    {
+      id: 'preferential-traffic-order',
+      title: 'Preferential Traffic Order',
+      description: 'Master PTO-99 traffic priorities, rake allotment procedures, priority classes, and traffic management rules',
+      href: '/mcq-practice/preferential-traffic-order',
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+        </svg>
+      ),
+      color: 'from-emerald-500 to-green-600',
+      bgColor: 'bg-emerald-50',
+      textColor: 'text-emerald-700',
+      borderColor: 'border-emerald-200'
+    },
+    {
       id: 'crew-link',
       title: 'Crew Link',
       description: 'Master crew link procedures, power links, rake links, duty hours, and operational protocols with comprehensive practice questions',
