@@ -318,6 +318,169 @@ const AOMMaterialMCQCourse = () => {
             </div>
           </div>
         </div>
+
+        {/* Big Update Section */}
+        <div className="mt-16 mb-6">
+          <div className="bg-linear-to-r from-yellow-400 via-orange-500 to-red-500 rounded-2xl p-8 shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">  
+            <div className="text-center mb-6">
+              <div className="lg:text-5xl text-3xl mb-4">🎯</div>
+              <h2 className="text-xl md:text-4xl font-bold text-white mb-2">
+                BIG UPDATE – COMPLETE AOM SYLLABUS NOW INSIDE ONE COURSE!
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        {/* What's New Section */}
+        <div className="mb-12">
+          <div className="bg-white rounded-xl p-3 shadow-lg border-l-2 border-blue-500">
+            <div className="flex items-start space-x-4 mb-6">
+              <span className="text-4xl">💡</span>
+              <div className="flex-1">
+                <h3 className="lg:text-2xl text-base font-bold text-gray-800 mb-4">What&apos;s New?</h3>
+                <p className="text-lg text-gray-700 mb-4">
+                  By popular demand, MCQ practice has been extended to every single topic in the AOM LDCE 30% syllabus.
+                </p>
+                <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg p-4 mb-6">
+                  <p className="lg:text-xl text-base font-bold text-blue-700 text-center"> 
+                    One enrolment = total coverage.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Full MCQ Line-Up */}
+            <div className="mt-6">
+              <h4 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
+                <span>👉</span>
+                <span>Full MCQ Line-Up:</span>
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  'G&SR',
+                  'Unified SRs (USRs)',
+                  'Disaster Management',
+                  'Accident Manual',
+                  'Block Working Manual',
+                  'Railway Board JPOs',
+                  'Accident Protocol',
+                  'Advanced Commercial',
+                  'Establishment Rules',
+                  'Financial Rules',
+                  'Official Language Policy'
+                ].map((topic, index) => (
+                  <div
+                    key={index}
+                    className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200 hover:shadow-md transition-shadow duration-200"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-lg">📌</span>
+                      <span className="font-semibold text-gray-800">{topic}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* One Course Total Preparation */}
+        <div className="mb-12">
+          <div className="bg-linear-to-r from-purple-600 to-pink-600 rounded-xl p-3 shadow-lg border-l-2 border-pink-500 text-gray-800">
+            <div className="text-center mb-6">
+              <div className="lg:text-5xl text-3xl mb-4">🚀</div>
+              <h3 className="lg:text-3xl text-lg font-bold mb-6 text-white">One Course : Total Preparation</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { icon: '📌', text: 'Daily MCQs + Detailed Explanations' },
+                { icon: '📌', text: 'Latest Sir-prepared PDFs' },
+                { icon: '📌', text: '24-month portal access (unlimited practice)' },
+                { icon: '📌', text: 'Night slot 22:00–23:00 hrs – perfect for rostered staff' }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm border border-white border-opacity-30"
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="lg:text-2xl text-xl">{item.icon}</span>
+                    <span className="lg:text-lg text-base font-semibold">{item.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <div className="bg-white bg-opacity-20 rounded-lg p-4 inline-block backdrop-blur-sm border border-white border-opacity-30">
+                <p className="lg:text-xl text-base font-bold flex items-center justify-center space-x-2">
+                  <span>👉</span>
+                  <span>LATEST CIRCULARS UPDATE</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bonus Viva-Voce Support */}
+        <div className="mb-12">
+          <div className="bg-white rounded-xl p-3 shadow-lg border-l-2 border-green-500">
+            <div className="flex items-start space-x-4">
+              <span className="lg:text-5xl text-3xl">🎤</span>
+              <div className="flex-1">
+                <h3 className="lg:text-2xl text-base font-bold text-gray-800 mb-4">BONUS – Viva-Voce Support</h3>
+                <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
+                  <div className="flex items-center space-x-3">
+                    <span className="lg:text-3xl text-xl text-green-600">✅</span>
+                    <p className="lg:text-lg text-base font-semibold text-gray-800">
+                      FREE Mock Interviews with an expert panel once you clear the CBT.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action Section */}
+        <div className="mb-12">
+          <div className="bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-3 shadow-2xl border-l-2 border-pink-500 text-white">
+            <div className="text-center space-y-6">
+              <div className="lg:text-5xl text-3xl mb-4">🏛</div>
+              <h3 className="lg:text-3xl text-lg font-bold mb-2">Group B Officers Academy</h3>
+              
+              <div className="bg-white bg-opacity-20 rounded-lg p-3 backdrop-blur-sm border border-white border-opacity-30 max-w-2xl mx-auto text-gray-800">
+                <p className="lg:text-lg text-base font-semibold mb-2">WhatsApp (messages only):</p>
+                <div className="flex flex-wrap items-center justify-center gap-4 lg:text-xl text-base">
+                  <span className="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-300" viewBox="0 0 32 32">
+                      <path d="M16.023 2.003a13.98 13.98 0 0 0-12.004 21.3L2.01 29.99l6.795-1.997A13.977 13.977 0 1 0 16.024 2.003zm6.635 20.082c-.28.786-1.62 1.541-2.228 1.641-.589.094-1.308.134-2.115-.135-.483-.158-1.096-.356-1.892-.697-3.333-1.436-5.509-4.784-5.677-5.006-.164-.224-1.36-1.81-1.36-3.453 0-1.642.862-2.453 1.167-2.786.304-.334.663-.418.884-.418.227 0 .442.002.632.011.203.009.475-.079.747.57.28.668.954 2.316 1.038 2.484.083.168.137.37.016.595-.121.224-.181.362-.358.562-.173.194-.364.432-.521.58-.173.163-.354.341-.157.672.197.329.878 1.45 1.88 2.348 1.296 1.147 2.39 1.479 2.72 1.646.336.168.534.14.731-.08.198-.22.84-.936 1.066-1.257.224-.319.456-.261.764-.157.304.104 1.924.908 2.256 1.071.334.16.556.238.638.376.086.139.086.813-.195 1.599z"/>
+                    </svg>
+                    <span className="font-bold">93469 99858</span>
+                  </span>
+                  <span className="text-white opacity-50">•</span>
+                  <span className="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-300" viewBox="0 0 32 32">
+                      <path d="M16.023 2.003a13.98 13.98 0 0 0-12.004 21.3L2.01 29.99l6.795-1.997A13.977 13.977 0 1 0 16.024 2.003zm6.635 20.082c-.28.786-1.62 1.541-2.228 1.641-.589.094-1.308.134-2.115-.135-.483-.158-1.096-.356-1.892-.697-3.333-1.436-5.509-4.784-5.677-5.006-.164-.224-1.36-1.81-1.36-3.453 0-1.642.862-2.453 1.167-2.786.304-.334.663-.418.884-.418.227 0 .442.002.632.011.203.009.475-.079.747.57.28.668.954 2.316 1.038 2.484.083.168.137.37.016.595-.121.224-.181.362-.358.562-.173.194-.364.432-.521.58-.173.163-.354.341-.157.672.197.329.878 1.45 1.88 2.348 1.296 1.147 2.39 1.479 2.72 1.646.336.168.534.14.731-.08.198-.22.84-.936 1.066-1.257.224-.319.456-.261.764-.157.304.104 1.924.908 2.256 1.071.334.16.556.238.638.376.086.139.086.813-.195 1.599z"/>
+                    </svg>
+                    <span className="font-bold">97017 58170</span>
+                  </span>
+                </div>
+                <p className="lg:text-sm text-xs mt-4 opacity-90">No phone calls please.</p>
+              </div>
+
+              <div className="mt-8 bg-white bg-opacity-20 rounded-xl p-3 backdrop-blur-sm border border-white border-opacity-30 max-w-3xl mx-auto text-gray-800">
+                <p className="lg:text-2xl text-base font-bold flex flex-wrap items-center justify-center gap-2">
+                  <span>Join now</span>
+                  <span className="text-3xl">→</span>
+                  <span>Master the whole syllabus</span>
+                  <span className="text-3xl">→</span>
+                  <span>Ace the exam</span>
+                  <span className="text-3xl">→</span>
+                  <span>Nail the viva!</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
