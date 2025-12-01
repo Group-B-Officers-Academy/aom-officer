@@ -96,7 +96,7 @@ const Operating = () => {
     },
     {
       id: 'control-and-working-of-trains',
-      title: 'Control And Working Of Trains - Chapter 5',
+      title: 'Control And Working Of Stations - Chapter 5',
       description: 'Comprehensive guide for train control systems, working procedures, and operational protocols for railway train operations',
       href: '/materials/opertating/control-and-working-of-trains',
       icon: (

@@ -44,11 +44,21 @@ const Footer = () => {
           })
           
           if (response.ok) {
-            const data = await response.json()
-            setVisitorCount(data.count)
-            
-            // Store in localStorage as backup
-            localStorage.setItem('visitorCount', data.count.toString())
+            const contentType = response.headers.get('content-type')
+            if (contentType && contentType.includes('application/json')) {
+              const data = await response.json()
+              setVisitorCount(data.count)
+              
+              // Store in localStorage as backup
+              localStorage.setItem('visitorCount', data.count.toString())
+            } else {
+              // Response is not JSON, fallback to localStorage
+              const storedCount = localStorage.getItem('visitorCount')
+              const currentCount = storedCount ? parseInt(storedCount) : 0
+              const newCount = currentCount + 1
+              setVisitorCount(newCount)
+              localStorage.setItem('visitorCount', newCount.toString())
+            }
           } else {
             // Fallback to localStorage if server fails
             const storedCount = localStorage.getItem('visitorCount')
@@ -75,8 +85,16 @@ const Footer = () => {
         try {
           const response = await fetch('/api/visitor-count')
           if (response.ok) {
-            const data = await response.json()
-            setVisitorCount(data.count)
+            const contentType = response.headers.get('content-type')
+            if (contentType && contentType.includes('application/json')) {
+              const data = await response.json()
+              setVisitorCount(data.count)
+            } else {
+              // Response is not JSON, fallback to localStorage
+              const storedCount = localStorage.getItem('visitorCount')
+              const currentCount = storedCount ? parseInt(storedCount) : 0
+              setVisitorCount(currentCount)
+            }
           } else {
             // Fallback to localStorage
             const storedCount = localStorage.getItem('visitorCount')

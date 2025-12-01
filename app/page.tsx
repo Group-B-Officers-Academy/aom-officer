@@ -633,7 +633,7 @@ const Home = () => {
                           Sri SREENIVASULU CHEVURU
                         </p> */}
                         <p className="lg:text-xl text-base font-semibold text-gray-800 flex items-center justify-center gap-2">
-                          Senior Instructor from ZRTI
+                          Renewed Instructors across the country
                         </p>
                         <p className="mt-5 text-base md:text-lg text-slate-700 max-w-xl mx-auto italic">
                           Unlock your fullest potential guided by inspired teaching, wisdom, and dedication.<br/>

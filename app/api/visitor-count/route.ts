@@ -9,10 +9,23 @@ export async function GET() {
     const visitorDoc = await db.collection('visitorCount').findOne({ type: 'main' })
     const count = visitorDoc ? visitorDoc.count : 0
     
-    return NextResponse.json({ count })
+    return NextResponse.json({ count }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   } catch (error) {
     console.error('Error fetching visitor count:', error)
-    return NextResponse.json({ count: 0 }, { status: 500 })
+    // Always return JSON, even on error
+    return NextResponse.json(
+      { count: 0, error: 'Failed to fetch visitor count' },
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
   }
 }
 
@@ -34,9 +47,22 @@ export async function POST() {
     const visitorDoc = await db.collection('visitorCount').findOne({ type: 'main' })
     const count = visitorDoc ? visitorDoc.count : 1
     
-    return NextResponse.json({ count, success: true })
+    return NextResponse.json({ count, success: true }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   } catch (error) {
     console.error('Error updating visitor count:', error)
-    return NextResponse.json({ success: false }, { status: 500 })
+    // Always return JSON, even on error
+    return NextResponse.json(
+      { success: false, error: 'Failed to update visitor count' },
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
   }
 }

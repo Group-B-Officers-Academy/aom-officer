@@ -322,7 +322,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ pageNumber, onDocumentLoadSuccess
         }}
       >
         <Document
-          file="/materials/WORKING OF TRAINS.pdf"
+          file="/materials/WORKING OF TRAINS123.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
           loading={
             <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[600px] w-full">
