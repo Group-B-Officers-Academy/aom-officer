@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const RTI = () => {
-  return (
-    <div>RTI</div>
-  )
-}
+// const RTI = () => {
+//   return (
+//     <div>RTI</div>
+//   )
+// }
 
-export default RTI
+// export default RTI

@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Hyderabad = () => {
-  return (
-    <div>Hyderabad Notifications</div>
-  )
-}
+// const Hyderabad = () => {
+//   return (
+//     <div>Hyderabad Notifications</div>
+//   )
+// }
 
-export default Hyderabad
+// export default Hyderabad

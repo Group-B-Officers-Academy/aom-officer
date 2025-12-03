@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Manuals = () => {
-  return (
-    <div>Manuals</div>
-  )
-}
+// const Manuals = () => {
+//   return (
+//     <div>Manuals</div>
+//   )
+// }
 
-export default Manuals
+// export default Manuals

@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-const EighthPayCommissionMaterial = () => {
-  return (
-    <div>
-        <h1>Eighth Pay Commission Material</h1>
-    </div>
-  )
-}
+// const EighthPayCommissionMaterial = () => {
+//   return (
+//     <div>
+//         <h1>Eighth Pay Commission Material</h1>
+//     </div>
+//   )
+// }
 
-export default EighthPayCommissionMaterial
+// export default EighthPayCommissionMaterial

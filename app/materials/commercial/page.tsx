@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Commercial = () => {
-  return (
-    <div>Commercial</div>
-  )
-}
+// const Commercial = () => {
+//   return (
+//     <div>Commercial</div>
+//   )
+// }
 
-export default Commercial
+// export default Commercial

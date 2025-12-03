@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const HOER = () => {
-  return (
-    <div>HOER</div>
-  )
-}
+// const HOER = () => {
+//   return (
+//     <div>HOER</div>
+//   )
+// }
 
-export default HOER
+// export default HOER

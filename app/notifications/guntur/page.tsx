@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Guntur = () => {
-  return (
-    <div>Guntur</div>
-  )
-}
+// const Guntur = () => {
+//   return (
+//     <div>Guntur</div>
+//   )
+// }
 
-export default Guntur
+// export default Guntur

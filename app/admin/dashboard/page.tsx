@@ -1,845 +1,845 @@
-'use client'
-import React, { useState, useEffect, useCallback } from 'react'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { useToast } from '../../../components/Toast'
+// 'use client'
+// import React, { useState, useEffect, useCallback } from 'react'
+// import Image from 'next/image'
+// import { useRouter } from 'next/navigation'
+// import { useToast } from '../../../components/Toast'
 
-interface ContactMessage {
-  _id: string
-  name: string
-  email: string
-  phone: string
-  message: string
-  createdAt: string
-}
+// interface ContactMessage {
+//   _id: string
+//   name: string
+//   email: string
+//   phone: string
+//   message: string
+//   createdAt: string
+// }
 
-interface TraineeRegistration {
-  _id: string
-  name: string
-  designation: string
-  workingPost: string
-  department: string
-  preparingFor: string
-  courseInterested?: string
-  courseJoined?: string
-  division: string
-  zone: string
-  phone: string
-  address: string
-  email: string
-  registrationDate: string
-  lastUpdated: string
-  status?: string
-  paymentDone?: string
-}
+// interface TraineeRegistration {
+//   _id: string
+//   name: string
+//   designation: string
+//   workingPost: string
+//   department: string
+//   preparingFor: string
+//   courseInterested?: string
+//   courseJoined?: string
+//   division: string
+//   zone: string
+//   phone: string
+//   address: string
+//   email: string
+//   registrationDate: string
+//   lastUpdated: string
+//   status?: string
+//   paymentDone?: string
+// }
 
-interface ExpertRegistration {
-  _id: string
-  name: string
-  designation: string
-  workingPost: string
-  department: string
-  preparingFor: string
-  division: string
-  zone: string
-  phone: string
-  address: string
-  email: string
-  registrationDate: string
-  lastUpdated: string
-  status?: string
-}
+// interface ExpertRegistration {
+//   _id: string
+//   name: string
+//   designation: string
+//   workingPost: string
+//   department: string
+//   preparingFor: string
+//   division: string
+//   zone: string
+//   phone: string
+//   address: string
+//   email: string
+//   registrationDate: string
+//   lastUpdated: string
+//   status?: string
+// }
 
-const AdminDashboard = () => {
-  const [messages, setMessages] = useState<ContactMessage[]>([])
-  const [trainees, setTrainees] = useState<TraineeRegistration[]>([])
-  const [experts, setExperts] = useState<ExpertRegistration[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [adminSession, setAdminSession] = useState<{ username: string } | null>(null)
-  const [activeTab, setActiveTab] = useState<'messages' | 'trainees' | 'experts'>('messages')
-  const [traineeSearchQuery, setTraineeSearchQuery] = useState('')
-  const router = useRouter()
-  const { addToast } = useToast()
+// const AdminDashboard = () => {
+//   const [messages, setMessages] = useState<ContactMessage[]>([])
+//   const [trainees, setTrainees] = useState<TraineeRegistration[]>([])
+//   const [experts, setExperts] = useState<ExpertRegistration[]>([])
+//   const [isLoading, setIsLoading] = useState(true)
+//   const [adminSession, setAdminSession] = useState<{ username: string } | null>(null)
+//   const [activeTab, setActiveTab] = useState<'messages' | 'trainees' | 'experts'>('messages')
+//   const [traineeSearchQuery, setTraineeSearchQuery] = useState('')
+//   const router = useRouter()
+//   const { addToast } = useToast()
 
-  const fetchContactMessages = useCallback(async () => {
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//   const fetchContactMessages = useCallback(async () => {
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/contact-messages', {
-        headers: {
-          'admin-session': JSON.stringify(session)
-        }
-      })
-      const result = await response.json()
+//       const response = await fetch('/api/admin/contact-messages', {
+//         headers: {
+//           'admin-session': JSON.stringify(session)
+//         }
+//       })
+//       const result = await response.json()
       
-      if (response.ok) {
-        setMessages(result.messages)
-      } else {
-        console.error('Error fetching messages:', result.error)
-        if (response.status === 401) {
-          router.push('/login')
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching messages:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [router])
+//       if (response.ok) {
+//         setMessages(result.messages)
+//       } else {
+//         console.error('Error fetching messages:', result.error)
+//         if (response.status === 401) {
+//           router.push('/login')
+//         }
+//       }
+//     } catch (error) {
+//       console.error('Error fetching messages:', error)
+//     } finally {
+//       setIsLoading(false)
+//     }
+//   }, [router])
 
-  const fetchTrainees = useCallback(async () => {
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//   const fetchTrainees = useCallback(async () => {
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/trainees', {
-        headers: {
-          'admin-session': JSON.stringify(session)
-        }
-      })
-      const result = await response.json()
+//       const response = await fetch('/api/admin/trainees', {
+//         headers: {
+//           'admin-session': JSON.stringify(session)
+//         }
+//       })
+//       const result = await response.json()
       
-      if (response.ok) {
-        setTrainees(result.trainees)
-      } else {
-        console.error('Error fetching trainees:', result.error)
-        if (response.status === 401) {
-          router.push('/login')
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching trainees:', error)
-    }
-  }, [router])
+//       if (response.ok) {
+//         setTrainees(result.trainees)
+//       } else {
+//         console.error('Error fetching trainees:', result.error)
+//         if (response.status === 401) {
+//           router.push('/login')
+//         }
+//       }
+//     } catch (error) {
+//       console.error('Error fetching trainees:', error)
+//     }
+//   }, [router])
 
-  const fetchExperts = useCallback(async () => {
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//   const fetchExperts = useCallback(async () => {
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/experts', {
-        headers: {
-          'admin-session': JSON.stringify(session)
-        }
-      })
-      const result = await response.json()
+//       const response = await fetch('/api/admin/experts', {
+//         headers: {
+//           'admin-session': JSON.stringify(session)
+//         }
+//       })
+//       const result = await response.json()
       
-      if (response.ok) {
-        setExperts(result.experts)
-      } else {
-        console.error('Error fetching experts:', result.error)
-        if (response.status === 401) {
-          router.push('/login')
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching experts:', error)
-    }
-  }, [router])
+//       if (response.ok) {
+//         setExperts(result.experts)
+//       } else {
+//         console.error('Error fetching experts:', result.error)
+//         if (response.status === 401) {
+//           router.push('/login')
+//         }
+//       }
+//     } catch (error) {
+//       console.error('Error fetching experts:', error)
+//     }
+//   }, [router])
 
-  useEffect(() => {
-    // Check admin session
-    const session = localStorage.getItem('adminSession')
-    if (!session) {
-      router.push('/login')
-      return
-    }
+//   useEffect(() => {
+//     // Check admin session
+//     const session = localStorage.getItem('adminSession')
+//     if (!session) {
+//       router.push('/login')
+//       return
+//     }
     
-    setAdminSession(JSON.parse(session))
-    fetchContactMessages()
-    fetchTrainees()
-    fetchExperts()
-  }, [router, fetchContactMessages, fetchTrainees, fetchExperts])
+//     setAdminSession(JSON.parse(session))
+//     fetchContactMessages()
+//     fetchTrainees()
+//     fetchExperts()
+//   }, [router, fetchContactMessages, fetchTrainees, fetchExperts])
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminSession')
+//   const handleLogout = () => {
+//     localStorage.removeItem('adminSession')
     
-    // Clear admin cookie
-    document.cookie = 'adminSession=; path=/; max-age=0'
+//     // Clear admin cookie
+//     document.cookie = 'adminSession=; path=/; max-age=0'
     
-    window.dispatchEvent(new Event('adminSessionUpdated'))
-    router.push('/login')
-  }
+//     window.dispatchEvent(new Event('adminSessionUpdated'))
+//     router.push('/login')
+//   }
 
-  // Handle trainee registration status update
-  const handleTraineeStatusUpdate = async (id: string, status: string) => {
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//   // Handle trainee registration status update
+//   const handleTraineeStatusUpdate = async (id: string, status: string) => {
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/trainees', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'admin-session': JSON.stringify(session)
-        },
-        body: JSON.stringify({ id, status })
-      })
+//       const response = await fetch('/api/admin/trainees', {
+//         method: 'PATCH',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'admin-session': JSON.stringify(session)
+//         },
+//         body: JSON.stringify({ id, status })
+//       })
 
-      if (response.ok) {
-        // Refresh trainees list
-        fetchTrainees()
-      } else {
-        console.error('Failed to update trainee status')
-      }
-    } catch (error) {
-      console.error('Error updating trainee status:', error)
-    }
-  }
+//       if (response.ok) {
+//         // Refresh trainees list
+//         fetchTrainees()
+//       } else {
+//         console.error('Failed to update trainee status')
+//       }
+//     } catch (error) {
+//       console.error('Error updating trainee status:', error)
+//     }
+//   }
 
-  // Handle expert registration status update
-  const handleExpertStatusUpdate = async (id: string, status: string) => {
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//   // Handle expert registration status update
+//   const handleExpertStatusUpdate = async (id: string, status: string) => {
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/experts', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'admin-session': JSON.stringify(session)
-        },
-        body: JSON.stringify({ id, status })
-      })
+//       const response = await fetch('/api/admin/experts', {
+//         method: 'PATCH',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'admin-session': JSON.stringify(session)
+//         },
+//         body: JSON.stringify({ id, status })
+//       })
 
-      if (response.ok) {
-        // Refresh experts list
-        fetchExperts()
-      } else {
-        console.error('Failed to update expert status')
-      }
-    } catch (error) {
-      console.error('Error updating expert status:', error)
-    }
-  }
+//       if (response.ok) {
+//         // Refresh experts list
+//         fetchExperts()
+//       } else {
+//         console.error('Failed to update expert status')
+//       }
+//     } catch (error) {
+//       console.error('Error updating expert status:', error)
+//     }
+//   }
 
-  // Handle contact message deletion
-  const handleDeleteMessage = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this contact message? This action cannot be undone.')) {
-      return
-    }
+//   // Handle contact message deletion
+//   const handleDeleteMessage = async (id: string) => {
+//     if (!confirm('Are you sure you want to delete this contact message? This action cannot be undone.')) {
+//       return
+//     }
 
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/contact-messages', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'admin-session': JSON.stringify(session)
-        },
-        body: JSON.stringify({ id })
-      })
+//       const response = await fetch('/api/admin/contact-messages', {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'admin-session': JSON.stringify(session)
+//         },
+//         body: JSON.stringify({ id })
+//       })
 
-      if (response.ok) {
-        // Refresh messages list
-        fetchContactMessages()
-        addToast('Deleted Successfully', 'success')
-      } else {
-        const result = await response.json()
-        addToast(result.error || 'Failed to delete contact message', 'error')
-      }
-    } catch (error) {
-      console.error('Error deleting contact message:', error)
-      addToast('Failed to delete contact message', 'error')
-    }
-  }
+//       if (response.ok) {
+//         // Refresh messages list
+//         fetchContactMessages()
+//         addToast('Deleted Successfully', 'success')
+//       } else {
+//         const result = await response.json()
+//         addToast(result.error || 'Failed to delete contact message', 'error')
+//       }
+//     } catch (error) {
+//       console.error('Error deleting contact message:', error)
+//       addToast('Failed to delete contact message', 'error')
+//     }
+//   }
 
-  // Handle trainee registration deletion
-  const handleDeleteTrainee = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this trainee registration? This action cannot be undone.')) {
-      return
-    }
+//   // Handle trainee registration deletion
+//   const handleDeleteTrainee = async (id: string) => {
+//     if (!confirm('Are you sure you want to delete this trainee registration? This action cannot be undone.')) {
+//       return
+//     }
 
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/trainees', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'admin-session': JSON.stringify(session)
-        },
-        body: JSON.stringify({ id })
-      })
+//       const response = await fetch('/api/admin/trainees', {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'admin-session': JSON.stringify(session)
+//         },
+//         body: JSON.stringify({ id })
+//       })
 
-      if (response.ok) {
-        // Refresh trainees list
-        fetchTrainees()
-        addToast('Deleted Successfully', 'success')
-      } else {
-        const result = await response.json()
-        addToast(result.error || 'Failed to delete trainee registration', 'error')
-      }
-    } catch (error) {
-      console.error('Error deleting trainee registration:', error)
-      addToast('Failed to delete trainee registration', 'error')
-    }
-  }
+//       if (response.ok) {
+//         // Refresh trainees list
+//         fetchTrainees()
+//         addToast('Deleted Successfully', 'success')
+//       } else {
+//         const result = await response.json()
+//         addToast(result.error || 'Failed to delete trainee registration', 'error')
+//       }
+//     } catch (error) {
+//       console.error('Error deleting trainee registration:', error)
+//       addToast('Failed to delete trainee registration', 'error')
+//     }
+//   }
 
-  // Handle expert registration deletion
-  const handleDeleteExpert = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this expert registration? This action cannot be undone.')) {
-      return
-    }
+//   // Handle expert registration deletion
+//   const handleDeleteExpert = async (id: string) => {
+//     if (!confirm('Are you sure you want to delete this expert registration? This action cannot be undone.')) {
+//       return
+//     }
 
-    try {
-      const adminSession = localStorage.getItem('adminSession')
-      const session = adminSession ? JSON.parse(adminSession) : null
+//     try {
+//       const adminSession = localStorage.getItem('adminSession')
+//       const session = adminSession ? JSON.parse(adminSession) : null
       
-      const response = await fetch('/api/admin/experts', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'admin-session': JSON.stringify(session)
-        },
-        body: JSON.stringify({ id })
-      })
+//       const response = await fetch('/api/admin/experts', {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'admin-session': JSON.stringify(session)
+//         },
+//         body: JSON.stringify({ id })
+//       })
 
-      if (response.ok) {
-        // Refresh experts list
-        fetchExperts()
-        addToast('Deleted Successfully', 'success')
-      } else {
-        const result = await response.json()
-        addToast(result.error || 'Failed to delete expert registration', 'error')
-      }
-    } catch (error) {
-      console.error('Error deleting expert registration:', error)
-      addToast('Failed to delete expert registration', 'error')
-    }
-  }
+//       if (response.ok) {
+//         // Refresh experts list
+//         fetchExperts()
+//         addToast('Deleted Successfully', 'success')
+//       } else {
+//         const result = await response.json()
+//         addToast(result.error || 'Failed to delete expert registration', 'error')
+//       }
+//     } catch (error) {
+//       console.error('Error deleting expert registration:', error)
+//       addToast('Failed to delete expert registration', 'error')
+//     }
+//   }
 
-  const getStatusBadge = (status: string = 'pending') => {
-    const statusColors = {
-      pending: 'bg-yellow-100 text-yellow-800',
-      approved: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800'
-    }
+//   const getStatusBadge = (status: string = 'pending') => {
+//     const statusColors = {
+//       pending: 'bg-yellow-100 text-yellow-800',
+//       approved: 'bg-green-100 text-green-800',
+//       rejected: 'bg-red-100 text-red-800'
+//     }
     
-    const colorClass = statusColors[status as keyof typeof statusColors] || statusColors.pending
+//     const colorClass = statusColors[status as keyof typeof statusColors] || statusColors.pending
     
-    return (
-      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${colorClass}`}>
-        {status.charAt(0).toUpperCase() + status.slice(1)}
-      </span>
-    )
-  }
+//     return (
+//       <span className={`px-2 py-1 text-xs font-semibold rounded-full ${colorClass}`}>
+//         {status.charAt(0).toUpperCase() + status.slice(1)}
+//       </span>
+//     )
+//   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  }
+//   const formatDate = (dateString: string) => {
+//     return new Date(dateString).toLocaleString('en-IN', {
+//       year: 'numeric',
+//       month: 'short',
+//       day: 'numeric',
+//       hour: '2-digit',
+//       minute: '2-digit'
+//     })
+//   }
 
-  // Filter trainees based on search query (name, email, phone)
-  const filteredTrainees = trainees.filter((trainee) => {
-    if (!traineeSearchQuery.trim()) return true
+//   // Filter trainees based on search query (name, email, phone)
+//   const filteredTrainees = trainees.filter((trainee) => {
+//     if (!traineeSearchQuery.trim()) return true
     
-    const query = traineeSearchQuery.toLowerCase().trim()
-    const name = trainee.name?.toLowerCase() || ''
-    const email = trainee.email?.toLowerCase() || ''
-    const phone = trainee.phone?.toLowerCase() || ''
+//     const query = traineeSearchQuery.toLowerCase().trim()
+//     const name = trainee.name?.toLowerCase() || ''
+//     const email = trainee.email?.toLowerCase() || ''
+//     const phone = trainee.phone?.toLowerCase() || ''
     
-    return name.includes(query) || email.includes(query) || phone.includes(query)
-  })
+//     return name.includes(query) || email.includes(query) || phone.includes(query)
+//   })
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
-        </div>
-      </div>
-    )
-  }
+//   if (isLoading) {
+//     return (
+//       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+//         <div className="text-center">
+//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+//           <p className="text-gray-600">Loading dashboard...</p>
+//         </div>
+//       </div>
+//     )
+//   }
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <Image
-                src="/logo.jpg"
-                alt="Group B Officers Academy"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
-                Welcome, {adminSession?.username}
-              </span>
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       {/* Header */}
+//       <header className="bg-white shadow-sm border-b">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//           <div className="flex justify-between items-center h-16">
+//             <div className="flex items-center space-x-3">
+//               <Image
+//                 src="/logo.jpg"
+//                 alt="Group B Officers Academy"
+//                 width={40}
+//                 height={40}
+//                 className="rounded-full"
+//               />
+//               <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
+//             </div>
+//             <div className="flex items-center space-x-4">
+//               <span className="text-sm text-gray-600">
+//                 Welcome, {adminSession?.username}
+//               </span>
+//               <button
+//                 onClick={handleLogout}
+//                 className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+//               >
+//                 Logout
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Tabs */}
-        <div className="bg-white rounded-lg shadow mb-8">
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8 px-6">
-              <button
-                onClick={() => setActiveTab('messages')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'messages'
-                    ? 'border-red-500 text-red-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                Contact Messages ({messages.length})
-              </button>
-              <button
-                onClick={() => setActiveTab('trainees')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'trainees'
-                    ? 'border-red-500 text-red-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                Trainee Registrations ({trainees.length})
-              </button>
-              <button
-                onClick={() => setActiveTab('experts')}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'experts'
-                    ? 'border-red-500 text-red-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                Expert Registrations ({experts.length})
-              </button>
-            </nav>
-          </div>
-        </div>
+//       {/* Main Content */}
+//       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+//         {/* Tabs */}
+//         <div className="bg-white rounded-lg shadow mb-8">
+//           <div className="border-b border-gray-200">
+//             <nav className="-mb-px flex space-x-8 px-6">
+//               <button
+//                 onClick={() => setActiveTab('messages')}
+//                 className={`py-4 px-1 border-b-2 font-medium text-sm ${
+//                   activeTab === 'messages'
+//                     ? 'border-red-500 text-red-600'
+//                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+//                 }`}
+//               >
+//                 Contact Messages ({messages.length})
+//               </button>
+//               <button
+//                 onClick={() => setActiveTab('trainees')}
+//                 className={`py-4 px-1 border-b-2 font-medium text-sm ${
+//                   activeTab === 'trainees'
+//                     ? 'border-red-500 text-red-600'
+//                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+//                 }`}
+//               >
+//                 Trainee Registrations ({trainees.length})
+//               </button>
+//               <button
+//                 onClick={() => setActiveTab('experts')}
+//                 className={`py-4 px-1 border-b-2 font-medium text-sm ${
+//                   activeTab === 'experts'
+//                     ? 'border-red-500 text-red-600'
+//                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+//                 }`}
+//               >
+//                 Expert Registrations ({experts.length})
+//               </button>
+//             </nav>
+//           </div>
+//         </div>
 
-        {/* Contact Messages Table */}
-        {activeTab === 'messages' && (
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Contact Messages</h2>
-            <p className="text-sm text-gray-600">Manage all contact form submissions</p>
-          </div>
+//         {/* Contact Messages Table */}
+//         {activeTab === 'messages' && (
+//         <div className="bg-white rounded-lg shadow">
+//           <div className="px-6 py-4 border-b border-gray-200">
+//             <h2 className="text-lg font-semibold text-gray-900">Contact Messages</h2>
+//             <p className="text-sm text-gray-600">Manage all contact form submissions</p>
+//           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Phone
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Message
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {messages.map((message) => (
-                  <tr key={message._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {message.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {message.email}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {message.phone || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                      {message.message}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {formatDate(message.createdAt)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button
-                        onClick={() => handleDeleteMessage(message._id)}
-                        className="bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-red-700 transition-colors"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+//           <div className="overflow-x-auto">
+//             <table className="min-w-full divide-y divide-gray-200">
+//               <thead className="bg-gray-50">
+//                 <tr>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Name
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Email
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Phone
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Message
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Date
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Actions
+//                   </th>
+//                 </tr>
+//               </thead>
+//               <tbody className="bg-white divide-y divide-gray-200">
+//                 {messages.map((message) => (
+//                   <tr key={message._id} className="hover:bg-gray-50">
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+//                       {message.name}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {message.email}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {message.phone || 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+//                       {message.message}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {formatDate(message.createdAt)}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+//                       <button
+//                         onClick={() => handleDeleteMessage(message._id)}
+//                         className="bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-red-700 transition-colors"
+//                       >
+//                         Delete
+//                       </button>
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
 
-          {messages.length === 0 && (
-            <div className="text-center py-12">
-              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No messages</h3>
-              <p className="mt-1 text-sm text-gray-500">No contact messages have been submitted yet.</p>
-            </div>
-          )}
-        </div>
-        )}
+//           {messages.length === 0 && (
+//             <div className="text-center py-12">
+//               <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+//               </svg>
+//               <h3 className="mt-2 text-sm font-medium text-gray-900">No messages</h3>
+//               <p className="mt-1 text-sm text-gray-500">No contact messages have been submitted yet.</p>
+//             </div>
+//           )}
+//         </div>
+//         )}
 
-        {/* Trainee Registrations Table */}
-        {activeTab === 'trainees' && (
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <div className="flex justify-between items-center mb-4">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">Trainee Registrations</h2>
-                <p className="text-sm text-gray-600">Manage all trainee registrations</p>
-              </div>
-            </div>
-            {/* Search Input */}
-            <div className="mt-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search by Name, Email, or Phone..."
-                  value={traineeSearchQuery}
-                  onChange={(e) => setTraineeSearchQuery(e.target.value)}
-                  className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
-                />
-                <svg
-                  className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                {traineeSearchQuery && (
-                  <button
-                    onClick={() => setTraineeSearchQuery('')}
-                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
-                  >
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-              {traineeSearchQuery && (
-                <p className="mt-2 text-sm text-gray-500">
-                  Showing {filteredTrainees.length} of {trainees.length} registrations
-                </p>
-              )}
-            </div>
-          </div>
+//         {/* Trainee Registrations Table */}
+//         {activeTab === 'trainees' && (
+//         <div className="bg-white rounded-lg shadow">
+//           <div className="px-6 py-4 border-b border-gray-200">
+//             <div className="flex justify-between items-center mb-4">
+//               <div>
+//                 <h2 className="text-lg font-semibold text-gray-900">Trainee Registrations</h2>
+//                 <p className="text-sm text-gray-600">Manage all trainee registrations</p>
+//               </div>
+//             </div>
+//             {/* Search Input */}
+//             <div className="mt-4">
+//               <div className="relative">
+//                 <input
+//                   type="text"
+//                   placeholder="Search by Name, Email, or Phone..."
+//                   value={traineeSearchQuery}
+//                   onChange={(e) => setTraineeSearchQuery(e.target.value)}
+//                   className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+//                 />
+//                 <svg
+//                   className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth={2}
+//                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+//                   />
+//                 </svg>
+//                 {traineeSearchQuery && (
+//                   <button
+//                     onClick={() => setTraineeSearchQuery('')}
+//                     className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+//                   >
+//                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+//                     </svg>
+//                   </button>
+//                 )}
+//               </div>
+//               {traineeSearchQuery && (
+//                 <p className="mt-2 text-sm text-gray-500">
+//                   Showing {filteredTrainees.length} of {trainees.length} registrations
+//                 </p>
+//               )}
+//             </div>
+//           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Designation
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Department
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Division
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Zone
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Preparing For
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Course Interested
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Course Joined
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Payment
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Phone
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Registration Date
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredTrainees.map((trainee) => (
-                  <tr key={trainee._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {trainee.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.designation}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.department}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.division || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.zone || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.preparingFor || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
-                      {trainee.courseInterested && trainee.courseInterested.trim() !== '' ? trainee.courseInterested : 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
-                      {trainee.courseJoined && trainee.courseJoined.trim() !== '' ? trainee.courseJoined : 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {trainee.paymentDone && trainee.paymentDone.toLowerCase() === 'yes' ? (
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                          Yes
-                        </span>
-                      ) : (
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
-                          {trainee.paymentDone || 'No'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.email}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {trainee.phone}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {getStatusBadge(trainee.status)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleTraineeStatusUpdate(trainee._id, 'approved')}
-                          disabled={trainee.status === 'approved'}
-                          className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
-                            trainee.status === 'approved'
-                              ? 'bg-green-200 text-green-700 cursor-not-allowed'
-                              : 'bg-green-600 text-white hover:bg-green-700'
-                          }`}
-                        >
-                          Accept
-                        </button>
-                        <button
-                          onClick={() => handleTraineeStatusUpdate(trainee._id, 'rejected')}
-                          disabled={trainee.status === 'rejected'}
-                          className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
-                            trainee.status === 'rejected'
-                              ? 'bg-red-200 text-red-700 cursor-not-allowed'
-                              : 'bg-red-600 text-white hover:bg-red-700'
-                          }`}
-                        >
-                          Reject
-                        </button>
-                        <button
-                          onClick={() => handleDeleteTrainee(trainee._id)}
-                          className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
-                          title="Delete registration"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {formatDate(trainee.registrationDate)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+//           <div className="overflow-x-auto">
+//             <table className="min-w-full divide-y divide-gray-200">
+//               <thead className="bg-gray-50">
+//                 <tr>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Name
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Designation
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Department
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Division
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Zone
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Preparing For
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Course Interested
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Course Joined
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Payment
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Email
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Phone
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Status
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Actions
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Registration Date
+//                   </th>
+//                 </tr>
+//               </thead>
+//               <tbody className="bg-white divide-y divide-gray-200">
+//                 {filteredTrainees.map((trainee) => (
+//                   <tr key={trainee._id} className="hover:bg-gray-50">
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+//                       {trainee.name}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.designation}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.department}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.division || 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.zone || 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.preparingFor || 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
+//                       {trainee.courseInterested && trainee.courseInterested.trim() !== '' ? trainee.courseInterested : 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
+//                       {trainee.courseJoined && trainee.courseJoined.trim() !== '' ? trainee.courseJoined : 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap">
+//                       {trainee.paymentDone && trainee.paymentDone.toLowerCase() === 'yes' ? (
+//                         <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+//                           Yes
+//                         </span>
+//                       ) : (
+//                         <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+//                           {trainee.paymentDone || 'No'}
+//                         </span>
+//                       )}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.email}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {trainee.phone}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap">
+//                       {getStatusBadge(trainee.status)}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+//                       <div className="flex space-x-2">
+//                         <button
+//                           onClick={() => handleTraineeStatusUpdate(trainee._id, 'approved')}
+//                           disabled={trainee.status === 'approved'}
+//                           className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
+//                             trainee.status === 'approved'
+//                               ? 'bg-green-200 text-green-700 cursor-not-allowed'
+//                               : 'bg-green-600 text-white hover:bg-green-700'
+//                           }`}
+//                         >
+//                           Accept
+//                         </button>
+//                         <button
+//                           onClick={() => handleTraineeStatusUpdate(trainee._id, 'rejected')}
+//                           disabled={trainee.status === 'rejected'}
+//                           className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
+//                             trainee.status === 'rejected'
+//                               ? 'bg-red-200 text-red-700 cursor-not-allowed'
+//                               : 'bg-red-600 text-white hover:bg-red-700'
+//                           }`}
+//                         >
+//                           Reject
+//                         </button>
+//                         <button
+//                           onClick={() => handleDeleteTrainee(trainee._id)}
+//                           className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+//                           title="Delete registration"
+//                         >
+//                           Delete
+//                         </button>
+//                       </div>
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {formatDate(trainee.registrationDate)}
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
 
-          {trainees.length === 0 && (
-            <div className="text-center py-12">
-              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No trainee registrations</h3>
-              <p className="mt-1 text-sm text-gray-500">No trainee registrations have been submitted yet.</p>
-            </div>
-          )}
-          {trainees.length > 0 && filteredTrainees.length === 0 && (
-            <div className="text-center py-12">
-              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No matching results</h3>
-              <p className="mt-1 text-sm text-gray-500">No trainee registrations match your search query.</p>
-            </div>
-          )}
-        </div>
-        )}
+//           {trainees.length === 0 && (
+//             <div className="text-center py-12">
+//               <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+//               </svg>
+//               <h3 className="mt-2 text-sm font-medium text-gray-900">No trainee registrations</h3>
+//               <p className="mt-1 text-sm text-gray-500">No trainee registrations have been submitted yet.</p>
+//             </div>
+//           )}
+//           {trainees.length > 0 && filteredTrainees.length === 0 && (
+//             <div className="text-center py-12">
+//               <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+//               </svg>
+//               <h3 className="mt-2 text-sm font-medium text-gray-900">No matching results</h3>
+//               <p className="mt-1 text-sm text-gray-500">No trainee registrations match your search query.</p>
+//             </div>
+//           )}
+//         </div>
+//         )}
 
-        {/* Expert Registrations Table */}
-        {activeTab === 'experts' && (
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Expert Registrations</h2>
-            <p className="text-sm text-gray-600">Manage all expert registrations</p>
-          </div>
+//         {/* Expert Registrations Table */}
+//         {activeTab === 'experts' && (
+//         <div className="bg-white rounded-lg shadow">
+//           <div className="px-6 py-4 border-b border-gray-200">
+//             <h2 className="text-lg font-semibold text-gray-900">Expert Registrations</h2>
+//             <p className="text-sm text-gray-600">Manage all expert registrations</p>
+//           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Designation
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Department
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Expert For
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Phone
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Registration Date
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {experts.map((expert) => (
-                  <tr key={expert._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {expert.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expert.designation}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expert.department}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expert.preparingFor || 'N/A'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expert.email}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expert.phone}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {getStatusBadge(expert.status)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleExpertStatusUpdate(expert._id, 'approved')}
-                          disabled={expert.status === 'approved'}
-                          className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
-                            expert.status === 'approved'
-                              ? 'bg-green-200 text-green-700 cursor-not-allowed'
-                              : 'bg-green-600 text-white hover:bg-green-700'
-                          }`}
-                        >
-                          Accept
-                        </button>
-                        <button
-                          onClick={() => handleExpertStatusUpdate(expert._id, 'rejected')}
-                          disabled={expert.status === 'rejected'}
-                          className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
-                            expert.status === 'rejected'
-                              ? 'bg-red-200 text-red-700 cursor-not-allowed'
-                              : 'bg-red-600 text-white hover:bg-red-700'
-                          }`}
-                        >
-                          Reject
-                        </button>
-                        <button
-                          onClick={() => handleDeleteExpert(expert._id)}
-                          className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
-                          title="Delete registration"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {formatDate(expert.registrationDate)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+//           <div className="overflow-x-auto">
+//             <table className="min-w-full divide-y divide-gray-200">
+//               <thead className="bg-gray-50">
+//                 <tr>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Name
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Designation
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Department
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Expert For
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Email
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Phone
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Status
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Actions
+//                   </th>
+//                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//                     Registration Date
+//                   </th>
+//                 </tr>
+//               </thead>
+//               <tbody className="bg-white divide-y divide-gray-200">
+//                 {experts.map((expert) => (
+//                   <tr key={expert._id} className="hover:bg-gray-50">
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+//                       {expert.name}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {expert.designation}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {expert.department}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {expert.preparingFor || 'N/A'}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {expert.email}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {expert.phone}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap">
+//                       {getStatusBadge(expert.status)}
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+//                       <div className="flex space-x-2">
+//                         <button
+//                           onClick={() => handleExpertStatusUpdate(expert._id, 'approved')}
+//                           disabled={expert.status === 'approved'}
+//                           className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
+//                             expert.status === 'approved'
+//                               ? 'bg-green-200 text-green-700 cursor-not-allowed'
+//                               : 'bg-green-600 text-white hover:bg-green-700'
+//                           }`}
+//                         >
+//                           Accept
+//                         </button>
+//                         <button
+//                           onClick={() => handleExpertStatusUpdate(expert._id, 'rejected')}
+//                           disabled={expert.status === 'rejected'}
+//                           className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
+//                             expert.status === 'rejected'
+//                               ? 'bg-red-200 text-red-700 cursor-not-allowed'
+//                               : 'bg-red-600 text-white hover:bg-red-700'
+//                           }`}
+//                         >
+//                           Reject
+//                         </button>
+//                         <button
+//                           onClick={() => handleDeleteExpert(expert._id)}
+//                           className="px-3 py-1 rounded text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
+//                           title="Delete registration"
+//                         >
+//                           Delete
+//                         </button>
+//                       </div>
+//                     </td>
+//                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+//                       {formatDate(expert.registrationDate)}
+//                     </td>
+//                   </tr>
+//                 ))}
+//               </tbody>
+//             </table>
+//           </div>
 
-          {experts.length === 0 && (
-            <div className="text-center py-12">
-              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No expert registrations</h3>
-              <p className="mt-1 text-sm text-gray-500">No expert registrations have been submitted yet.</p>
-            </div>
-          )}
-        </div>
-        )}
-      </main>
-    </div>
-  )
-}
+//           {experts.length === 0 && (
+//             <div className="text-center py-12">
+//               <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+//               </svg>
+//               <h3 className="mt-2 text-sm font-medium text-gray-900">No expert registrations</h3>
+//               <p className="mt-1 text-sm text-gray-500">No expert registrations have been submitted yet.</p>
+//             </div>
+//           )}
+//         </div>
+//         )}
+//       </main>
+//     </div>
+//   )
+// }
 
-export default AdminDashboard
+// export default AdminDashboard

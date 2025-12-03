@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Nanded = () => {
-  return (
-    <div>Nanded</div>
-  )
-}
+// const Nanded = () => {
+//   return (
+//     <div>Nanded</div>
+//   )
+// }
 
-export default Nanded
+// export default Nanded

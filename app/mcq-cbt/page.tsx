@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-const MCQCBTPage = () => {
-  return (
-    <div>
-      <h1>MCQ CBT Page</h1>
-    </div>
-  )
-}
+// const MCQCBTPage = () => {
+//   return (
+//     <div>
+//       <h1>MCQ CBT Page</h1>
+//     </div>
+//   )
+// }
 
-export default MCQCBTPage;
+// export default MCQCBTPage;

@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Operating = () => {
-  return (
-    <div>Operating</div>
-  )
-}
+// const Operating = () => {
+//   return (
+//     <div>Operating</div>
+//   )
+// }
 
-export default Operating
+// export default Operating

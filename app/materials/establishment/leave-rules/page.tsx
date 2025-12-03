@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const LeaveRules = () => {
-  return (
-    <div>LeaveRules</div>
-  )
-}
+// const LeaveRules = () => {
+//   return (
+//     <div>LeaveRules</div>
+//   )
+// }
 
-export default LeaveRules
+// export default LeaveRules

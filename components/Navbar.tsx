@@ -1,975 +1,975 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+// 'use client'
+// import React, { useState, useEffect } from 'react'
+// import Link from 'next/link'
+// import Image from 'next/image'
+// import { useRouter } from 'next/navigation'
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isRegisterDropdownOpen, setIsRegisterDropdownOpen] = useState(false)
-  const [isMobileRegisterOpen, setIsMobileRegisterOpen] = useState(false)
-  const [isTraineeCoursesDropdownOpen, setIsTraineeCoursesDropdownOpen] = useState(false)
-  const [isMobileTraineeCoursesOpen, setIsMobileTraineeCoursesOpen] = useState(false)
-  const [isMottoDropdownOpen, setIsMottoDropdownOpen] = useState(false)
-  const [isMobileMottoOpen, setIsMobileMottoOpen] = useState(false)
-  const [isMcqDropdownOpen, setIsMcqDropdownOpen] = useState(false)
-  const [isMobileMcqOpen, setIsMobileMcqOpen] = useState(false)
-  const [isManualsDropdownOpen, setIsManualsDropdownOpen] = useState(false)
-  const [isMobileManualsOpen, setIsMobileManualsOpen] = useState(false)
-  const [isOperatingDropdownOpen, setIsOperatingDropdownOpen] = useState(false)
-  const [isMobileOperatingOpen, setIsMobileOperatingOpen] = useState(false)
-  const [isMaterialsEstablishmentDropdownOpen, setIsMaterialsEstablishmentDropdownOpen] = useState(false)
-  const [isMobileMaterialsEstablishmentOpen, setIsMobileMaterialsEstablishmentOpen] = useState(false)
-  const [isEstablishmentDropdownOpen, setIsEstablishmentDropdownOpen] = useState(false)
-  const [isMobileEstablishmentOpen, setIsMobileEstablishmentOpen] = useState(false)
-  const [isMaterialsDropdownOpen, setIsMaterialsDropdownOpen] = useState(false)
-  const [isMobileMaterialsOpen, setIsMobileMaterialsOpen] = useState(false)
-  const [isNotificationsDropdownOpen, setIsNotificationsDropdownOpen] = useState(false)
-  const [isMobileNotificationsOpen, setIsMobileNotificationsOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const router = useRouter()
+// const Navbar = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const [isRegisterDropdownOpen, setIsRegisterDropdownOpen] = useState(false)
+//   const [isMobileRegisterOpen, setIsMobileRegisterOpen] = useState(false)
+//   const [isTraineeCoursesDropdownOpen, setIsTraineeCoursesDropdownOpen] = useState(false)
+//   const [isMobileTraineeCoursesOpen, setIsMobileTraineeCoursesOpen] = useState(false)
+//   const [isMottoDropdownOpen, setIsMottoDropdownOpen] = useState(false)
+//   const [isMobileMottoOpen, setIsMobileMottoOpen] = useState(false)
+//   const [isMcqDropdownOpen, setIsMcqDropdownOpen] = useState(false)
+//   const [isMobileMcqOpen, setIsMobileMcqOpen] = useState(false)
+//   const [isManualsDropdownOpen, setIsManualsDropdownOpen] = useState(false)
+//   const [isMobileManualsOpen, setIsMobileManualsOpen] = useState(false)
+//   const [isOperatingDropdownOpen, setIsOperatingDropdownOpen] = useState(false)
+//   const [isMobileOperatingOpen, setIsMobileOperatingOpen] = useState(false)
+//   const [isMaterialsEstablishmentDropdownOpen, setIsMaterialsEstablishmentDropdownOpen] = useState(false)
+//   const [isMobileMaterialsEstablishmentOpen, setIsMobileMaterialsEstablishmentOpen] = useState(false)
+//   const [isEstablishmentDropdownOpen, setIsEstablishmentDropdownOpen] = useState(false)
+//   const [isMobileEstablishmentOpen, setIsMobileEstablishmentOpen] = useState(false)
+//   const [isMaterialsDropdownOpen, setIsMaterialsDropdownOpen] = useState(false)
+//   const [isMobileMaterialsOpen, setIsMobileMaterialsOpen] = useState(false)
+//   const [isNotificationsDropdownOpen, setIsNotificationsDropdownOpen] = useState(false)
+//   const [isMobileNotificationsOpen, setIsMobileNotificationsOpen] = useState(false)
+//   const [isLoggedIn, setIsLoggedIn] = useState(false)
+//   const [isAdmin, setIsAdmin] = useState(false)
+//   const router = useRouter()
 
-  // Check login status on mount and when session changes
-  useEffect(() => {
-    const checkLoginStatus = () => {
-      const userSession = localStorage.getItem('userSession')
-      const adminSession = localStorage.getItem('adminSession')
+//   // Check login status on mount and when session changes
+//   useEffect(() => {
+//     const checkLoginStatus = () => {
+//       const userSession = localStorage.getItem('userSession')
+//       const adminSession = localStorage.getItem('adminSession')
       
-      if (userSession || adminSession) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
+//       if (userSession || adminSession) {
+//         setIsLoggedIn(true)
+//       } else {
+//         setIsLoggedIn(false)
+//       }
 
-      // Check if admin is logged in
-      if (adminSession) {
-        try {
-          const adminData = JSON.parse(adminSession)
-          setIsAdmin(adminData.role === 'admin' || adminData.username === 'adminaom')
-        } catch {
-          setIsAdmin(false)
-        }
-      } else {
-        setIsAdmin(false)
-      }
-    }
+//       // Check if admin is logged in
+//       if (adminSession) {
+//         try {
+//           const adminData = JSON.parse(adminSession)
+//           setIsAdmin(adminData.role === 'admin' || adminData.username === 'adminaom')
+//         } catch {
+//           setIsAdmin(false)
+//         }
+//       } else {
+//         setIsAdmin(false)
+//       }
+//     }
 
-    checkLoginStatus()
+//     checkLoginStatus()
     
-    // Listen for custom events (admin login, etc.)
-    window.addEventListener('adminSessionUpdated', checkLoginStatus)
-    window.addEventListener('storage', checkLoginStatus)
+//     // Listen for custom events (admin login, etc.)
+//     window.addEventListener('adminSessionUpdated', checkLoginStatus)
+//     window.addEventListener('storage', checkLoginStatus)
 
-    return () => {
-      window.removeEventListener('adminSessionUpdated', checkLoginStatus)
-      window.removeEventListener('storage', checkLoginStatus)
-    }
-  }, [])
+//     return () => {
+//       window.removeEventListener('adminSessionUpdated', checkLoginStatus)
+//       window.removeEventListener('storage', checkLoginStatus)
+//     }
+//   }, [])
 
-  // Handle logout
-  const handleLogout = () => {
-    // Clear localStorage
-    localStorage.removeItem('userSession')
-    localStorage.removeItem('adminSession')
+//   // Handle logout
+//   const handleLogout = () => {
+//     // Clear localStorage
+//     localStorage.removeItem('userSession')
+//     localStorage.removeItem('adminSession')
     
-    // Clear cookies
-    document.cookie = 'userSession=; path=/; max-age=0'
-    document.cookie = 'adminSession=; path=/; max-age=0'
+//     // Clear cookies
+//     document.cookie = 'userSession=; path=/; max-age=0'
+//     document.cookie = 'adminSession=; path=/; max-age=0'
     
-    // Update state
-    setIsLoggedIn(false)
+//     // Update state
+//     setIsLoggedIn(false)
     
-    // Dispatch event
-    window.dispatchEvent(new Event('adminSessionUpdated'))
+//     // Dispatch event
+//     window.dispatchEvent(new Event('adminSessionUpdated'))
     
-    // Redirect to home
-    router.push('/')
-  }
+//     // Redirect to home
+//     router.push('/')
+//   }
 
-  return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="max-w-8xl mx-auto px-5">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-1">
-              <Image
-                src="/logo.jpg"
-                alt="Group B Officers Academy Logo"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <span className="lg:text-lg text-base font-bold text-blue-900">GROUP B OFFICERS ACADEMY</span>
-            </Link>
-          </div>
+//   return (
+//     <nav className="bg-white shadow-lg sticky top-0 z-50">
+//       <div className="max-w-8xl mx-auto px-5">
+//         <div className="flex justify-between items-center h-16">
+//           {/* Logo */}
+//           <div className="flex items-center">
+//             <Link href="/" className="flex items-center space-x-1">
+//               <Image
+//                 src="/logo.jpg"
+//                 alt="Group B Officers Academy Logo"
+//                 width={40}
+//                 height={40}
+//                 className="rounded-full"
+//               />
+//               <span className="lg:text-lg text-base font-bold text-blue-900">GROUP B OFFICERS ACADEMY</span>
+//             </Link>
+//           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
-              Home
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
-              About
-            </Link>
-            <div className="relative" onMouseEnter={() => setIsNotificationsDropdownOpen(true)} onMouseLeave={() => setIsNotificationsDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Notifications
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isNotificationsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/notifications/group-b" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span className="font-medium">Group B</span>
-                  </Link>
-                  <Link href="/notifications/guntakal" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Guntakal</span>
-                  </Link>
-                  <Link href="/notifications/guntur" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Guntur</span>
-                  </Link>
-                  <Link href="/notifications/hyderabad" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Hyderabad</span>
-                  </Link>
-                  <Link href="/notifications/nanded" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Nanded</span>
-                  </Link>
-                  <Link href="/notifications/secunderabad" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Secunderabad</span>
-                  </Link>
-                  <Link href="/notifications/vijayawada" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="font-medium">Vijayawada</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div className="relative" onMouseEnter={() => setIsMottoDropdownOpen(true)} onMouseLeave={() => setIsMottoDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Motto
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isMottoDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/motto" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                    </svg>
-                    <span className="font-medium">Motto</span>
-                  </Link>
-                  <Link href="/mission" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    <span className="font-medium">Mission</span>
-                  </Link>
-                  <Link href="/vision" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    <span className="font-medium">Vision</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div className="relative" onMouseEnter={() => setIsTraineeCoursesDropdownOpen(true)} onMouseLeave={() => setIsTraineeCoursesDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Courses
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isTraineeCoursesDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/aom-material-mcq-course" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//           {/* Desktop Navigation */}
+//           <div className="hidden lg:flex items-center space-x-4">
+//             <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+//               Home
+//             </Link>
+//             <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+//               About
+//             </Link>
+//             <div className="relative" onMouseEnter={() => setIsNotificationsDropdownOpen(true)} onMouseLeave={() => setIsNotificationsDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Notifications
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isNotificationsDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/notifications/group-b" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+//                     </svg>
+//                     <span className="font-medium">Group B</span>
+//                   </Link>
+//                   <Link href="/notifications/guntakal" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Guntakal</span>
+//                   </Link>
+//                   <Link href="/notifications/guntur" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Guntur</span>
+//                   </Link>
+//                   <Link href="/notifications/hyderabad" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Hyderabad</span>
+//                   </Link>
+//                   <Link href="/notifications/nanded" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Nanded</span>
+//                   </Link>
+//                   <Link href="/notifications/secunderabad" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Secunderabad</span>
+//                   </Link>
+//                   <Link href="/notifications/vijayawada" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                     </svg>
+//                     <span className="font-medium">Vijayawada</span>
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+//             <div className="relative" onMouseEnter={() => setIsMottoDropdownOpen(true)} onMouseLeave={() => setIsMottoDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Motto
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isMottoDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/motto" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+//                     </svg>
+//                     <span className="font-medium">Motto</span>
+//                   </Link>
+//                   <Link href="/mission" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+//                     </svg>
+//                     <span className="font-medium">Mission</span>
+//                   </Link>
+//                   <Link href="/vision" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+//                     </svg>
+//                     <span className="font-medium">Vision</span>
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+//             <div className="relative" onMouseEnter={() => setIsTraineeCoursesDropdownOpen(true)} onMouseLeave={() => setIsTraineeCoursesDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Courses
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isTraineeCoursesDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/aom-material-mcq-course" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
                     
-                    <span className="font-medium">AOM 40 Days Material and MCQ Practice Course</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div className="relative" onMouseEnter={() => setIsManualsDropdownOpen(true)} onMouseLeave={() => setIsManualsDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Manuals
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isManualsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <div className="relative" onMouseEnter={() => setIsOperatingDropdownOpen(true)} onMouseLeave={() => setIsOperatingDropdownOpen(false)}>
-                    <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                      <div className="flex items-center">
-                        <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span className="font-medium">Operating</span>
-                      </div>
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    {isOperatingDropdownOpen && (
-                      <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                        <Link href="/manuals/operating/gsr" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">G&SR</span>
-                        </Link>
-                        <Link href="/manuals/operating/optg-manual" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Operating Manual</span>
-                        </Link>
-                        <Link href="/manuals/operating/accident-manual" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Accident Manual</span>
-                        </Link>
-                        <Link href="/manuals/operating/bwm" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">BWM</span>
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                  <Link href="/manuals/commercial" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span className="font-medium">Commercial</span>
-                  </Link>
-                  <Link href="/manuals/finance" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
-                    <span className="font-medium">Finance</span>
-                  </Link>
-                  <div className="relative" onMouseEnter={() => setIsEstablishmentDropdownOpen(true)} onMouseLeave={() => setIsEstablishmentDropdownOpen(false)}>
-                    <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                      <div className="flex items-center">
-                        <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                        <span className="font-medium">Establishment</span>
-                      </div>
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    {isEstablishmentDropdownOpen && (
-                      <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                        <Link href="/manuals/establishment/dar" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">DAR</span>
-                        </Link>
-                        <Link href="/manuals/establishment/conduct-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Conduct Rules</span>
-                        </Link>
-                        <Link href="/manuals/establishment/leave-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Leave Rules</span>
-                        </Link>
-                        <Link href="/manuals/establishment/hoer" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">HOER</span>
-                        </Link>
-                        <Link href="/manuals/establishment/rti" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">RTI</span>
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="relative" onMouseEnter={() => setIsMaterialsDropdownOpen(true)} onMouseLeave={() => setIsMaterialsDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Materials
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isMaterialsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/materials/opertating" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="font-medium">Operating</span>
-                  </Link>
-                  <Link href="/materials/advanced-operations" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z" />
-                    </svg>
-                    <span className="font-medium">Advanced Operations</span>
-                  </Link>
-                  <Link href="/materials/kavach" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    <span className="font-medium">Kavach</span>
-                  </Link>
-                  <Link href="/materials/abbreviations" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <span className="font-medium">Abbreviations</span>
-                  </Link>
-                  <Link href="/materials/eighth-pay-commission" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="font-medium">Eighth Pay Commission</span>
-                  </Link>
-                  <Link href="/materials/commercial" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span className="font-medium">Commercial</span>
-                  </Link>
-                  <Link href="/materials/finance" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
-                    <span className="font-medium">Finance</span>
-                  </Link>
-                  <div className="relative" onMouseEnter={() => setIsMaterialsEstablishmentDropdownOpen(true)} onMouseLeave={() => setIsMaterialsEstablishmentDropdownOpen(false)}>
-                    <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                      <div className="flex items-center">
-                        <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                        <span className="font-medium">Establishment</span>
-                      </div>
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    {isMaterialsEstablishmentDropdownOpen && (
-                      <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                        <Link href="/materials/establishment/dar" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">DAR</span>
-                        </Link>
-                        <Link href="/materials/establishment/conduct-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Conduct Rules</span>
-                        </Link>
-                        <Link href="/materials/establishment/leave-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">Leave Rules</span>
-                        </Link>
-                        <Link href="/materials/establishment/hoer" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">HOER</span>
-                        </Link>
-                        <Link href="/materials/establishment/rti" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                          <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          <span className="font-medium">RTI</span>
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="relative" onMouseEnter={() => setIsMcqDropdownOpen(true)} onMouseLeave={() => setIsMcqDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                MCQ
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isMcqDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/mcq-practice" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    <span className="font-medium">MCQ Practice</span>
-                  </Link>
-                  <Link href="/mcq-cbt" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span className="font-medium">MCQ CBT</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
-              Contact
-            </Link>
-            <div className="relative" onMouseEnter={() => setIsRegisterDropdownOpen(true)} onMouseLeave={() => setIsRegisterDropdownOpen(false)}>
-              <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
-                Register
-                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isRegisterDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                  <Link href="/register/trainee-register" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <span className="font-medium">Trainee Register</span>
-                  </Link>
-                  <Link href="/register/experts-register" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <svg className="w-5 h-5 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                    <span className="font-medium">Experts Register</span>
-                  </Link>
-                </div>
-              )}
-            </div>
-                          {isLoggedIn ? (
-                <>
-                  {isAdmin && (
-                    <Link 
-                      href="/admin/dashboard"
-                      className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200 mr-2"
-                    >
-                      Admin
-                    </Link>
-                  )}
-                  <button 
-                    onClick={handleLogout}
-                    className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                  Login
-                </Link>
-              )}
-          </div>
+//                     <span className="font-medium">AOM 40 Days Material and MCQ Practice Course</span>
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+//             <div className="relative" onMouseEnter={() => setIsManualsDropdownOpen(true)} onMouseLeave={() => setIsManualsDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Manuals
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isManualsDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <div className="relative" onMouseEnter={() => setIsOperatingDropdownOpen(true)} onMouseLeave={() => setIsOperatingDropdownOpen(false)}>
+//                     <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                       <div className="flex items-center">
+//                         <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                         </svg>
+//                         <span className="font-medium">Operating</span>
+//                       </div>
+//                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//                       </svg>
+//                     </button>
+//                     {isOperatingDropdownOpen && (
+//                       <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                         <Link href="/manuals/operating/gsr" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">G&SR</span>
+//                         </Link>
+//                         <Link href="/manuals/operating/optg-manual" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Operating Manual</span>
+//                         </Link>
+//                         <Link href="/manuals/operating/accident-manual" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Accident Manual</span>
+//                         </Link>
+//                         <Link href="/manuals/operating/bwm" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">BWM</span>
+//                         </Link>
+//                       </div>
+//                     )}
+//                   </div>
+//                   <Link href="/manuals/commercial" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                     </svg>
+//                     <span className="font-medium">Commercial</span>
+//                   </Link>
+//                   <Link href="/manuals/finance" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+//                     </svg>
+//                     <span className="font-medium">Finance</span>
+//                   </Link>
+//                   <div className="relative" onMouseEnter={() => setIsEstablishmentDropdownOpen(true)} onMouseLeave={() => setIsEstablishmentDropdownOpen(false)}>
+//                     <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                       <div className="flex items-center">
+//                         <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                         </svg>
+//                         <span className="font-medium">Establishment</span>
+//                       </div>
+//                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//                       </svg>
+//                     </button>
+//                     {isEstablishmentDropdownOpen && (
+//                       <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                         <Link href="/manuals/establishment/dar" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">DAR</span>
+//                         </Link>
+//                         <Link href="/manuals/establishment/conduct-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Conduct Rules</span>
+//                         </Link>
+//                         <Link href="/manuals/establishment/leave-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Leave Rules</span>
+//                         </Link>
+//                         <Link href="/manuals/establishment/hoer" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">HOER</span>
+//                         </Link>
+//                         <Link href="/manuals/establishment/rti" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">RTI</span>
+//                         </Link>
+//                       </div>
+//                     )}
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//             <div className="relative" onMouseEnter={() => setIsMaterialsDropdownOpen(true)} onMouseLeave={() => setIsMaterialsDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Materials
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isMaterialsDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/materials/opertating" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                     </svg>
+//                     <span className="font-medium">Operating</span>
+//                   </Link>
+//                   <Link href="/materials/advanced-operations" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z" />
+//                     </svg>
+//                     <span className="font-medium">Advanced Operations</span>
+//                   </Link>
+//                   <Link href="/materials/kavach" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+//                     </svg>
+//                     <span className="font-medium">Kavach</span>
+//                   </Link>
+//                   <Link href="/materials/abbreviations" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+//                     </svg>
+//                     <span className="font-medium">Abbreviations</span>
+//                   </Link>
+//                   <Link href="/materials/eighth-pay-commission" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                     </svg>
+//                     <span className="font-medium">Eighth Pay Commission</span>
+//                   </Link>
+//                   <Link href="/materials/commercial" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                     </svg>
+//                     <span className="font-medium">Commercial</span>
+//                   </Link>
+//                   <Link href="/materials/finance" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+//                     </svg>
+//                     <span className="font-medium">Finance</span>
+//                   </Link>
+//                   <div className="relative" onMouseEnter={() => setIsMaterialsEstablishmentDropdownOpen(true)} onMouseLeave={() => setIsMaterialsEstablishmentDropdownOpen(false)}>
+//                     <button className="w-full flex items-center justify-between px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                       <div className="flex items-center">
+//                         <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                         </svg>
+//                         <span className="font-medium">Establishment</span>
+//                       </div>
+//                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+//                       </svg>
+//                     </button>
+//                     {isMaterialsEstablishmentDropdownOpen && (
+//                       <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                         <Link href="/materials/establishment/dar" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">DAR</span>
+//                         </Link>
+//                         <Link href="/materials/establishment/conduct-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Conduct Rules</span>
+//                         </Link>
+//                         <Link href="/materials/establishment/leave-rules" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">Leave Rules</span>
+//                         </Link>
+//                         <Link href="/materials/establishment/hoer" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">HOER</span>
+//                         </Link>
+//                         <Link href="/materials/establishment/rti" className="flex items-center px-2 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                           <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           <span className="font-medium">RTI</span>
+//                         </Link>
+//                       </div>
+//                     )}
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//             <div className="relative" onMouseEnter={() => setIsMcqDropdownOpen(true)} onMouseLeave={() => setIsMcqDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 MCQ
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isMcqDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/mcq-practice" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+//                     </svg>
+//                     <span className="font-medium">MCQ Practice</span>
+//                   </Link>
+//                   <Link href="/mcq-cbt" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//                     </svg>
+//                     <span className="font-medium">MCQ CBT</span>
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+//             <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors duration-200">
+//               Contact
+//             </Link>
+//             <div className="relative" onMouseEnter={() => setIsRegisterDropdownOpen(true)} onMouseLeave={() => setIsRegisterDropdownOpen(false)}>
+//               <button className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center">
+//                 Register
+//                 <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                 </svg>
+//               </button>
+//               {isRegisterDropdownOpen && (
+//                 <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
+//                   <Link href="/register/trainee-register" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+//                     </svg>
+//                     <span className="font-medium">Trainee Register</span>
+//                   </Link>
+//                   <Link href="/register/experts-register" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+//                     <svg className="w-5 h-5 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+//                     </svg>
+//                     <span className="font-medium">Experts Register</span>
+//                   </Link>
+//                 </div>
+//               )}
+//             </div>
+//                           {isLoggedIn ? (
+//                 <>
+//                   {isAdmin && (
+//                     <Link 
+//                       href="/admin/dashboard"
+//                       className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200 mr-2"
+//                     >
+//                       Admin
+//                     </Link>
+//                   )}
+//                   <button 
+//                     onClick={handleLogout}
+//                     className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
+//                   >
+//                     Logout
+//                   </button>
+//                 </>
+//               ) : (
+//                 <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+//                   Login
+//                 </Link>
+//               )}
+//           </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
+//           {/* Mobile menu button */}
+//           <div className="lg:hidden">
+//             <button
+//               onClick={() => setIsMenuOpen(!isMenuOpen)}
+//               className="text-gray-700 hover:text-blue-600 focus:outline-none"
+//             >
+//               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                 {isMenuOpen ? (
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+//                 ) : (
+//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+//                 )}
+//               </svg>
+//             </button>
+//           </div>
+//         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 rounded-lg mt-2">
-              <Link href="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Home
-              </Link>
-              <Link href="/about" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
-                About
-              </Link>
-              <div>
-                <button 
-                  onClick={() => setIsMobileNotificationsOpen(!isMobileNotificationsOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Notifications
-                  <svg className={`h-4 w-4 transition-transform ${isMobileNotificationsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileNotificationsOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/notifications/group-b" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                      </svg>
-                      Group B
-                    </Link>
-                    <Link href="/notifications/guntakal" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Guntakal
-                    </Link>
-                    <Link href="/notifications/guntur" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Guntur
-                    </Link>
-                    <Link href="/notifications/hyderabad" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Hyderabad
-                    </Link>
-                    <Link href="/notifications/nanded" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Nanded
-                    </Link>
-                    <Link href="/notifications/secunderabad" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Secunderabad
-                    </Link>
-                    <Link href="/notifications/vijayawada" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      Vijayawada
-                    </Link>
-                  </div>
-                )}
-              </div>
-              <div>
-                <button 
-                  onClick={() => setIsMobileMottoOpen(!isMobileMottoOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Motto
-                  <svg className={`h-4 w-4 transition-transform ${isMobileMottoOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileMottoOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/motto" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                      </svg>
-                      Motto
-                    </Link>
-                    <Link href="/mission" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                      Mission
-                    </Link>
-                    <Link href="/vision" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      Vision
-                    </Link>
-                  </div>
-                )}
-              </div>
-              <div>
-                <button 
-                  onClick={() => setIsMobileTraineeCoursesOpen(!isMobileTraineeCoursesOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Courses
-                  <svg className={`h-4 w-4 transition-transform ${isMobileTraineeCoursesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileTraineeCoursesOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/aom-material-mcq-course" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
-                      AOM Material MCQ Course
-                    </Link>
-                  </div>
-                )}
-              </div>
-              <div>
-                <button 
-                  onClick={() => setIsMobileManualsOpen(!isMobileManualsOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Manuals
-                  <svg className={`h-4 w-4 transition-transform ${isMobileManualsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileManualsOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <div>
-                      <button 
-                        onClick={() => setIsMobileOperatingOpen(!isMobileOperatingOpen)}
-                        className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
-                      >
-                        <div className="flex items-center">
-                          <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          Operating
-                        </div>
-                        <svg className={`h-4 w-4 transition-transform ${isMobileOperatingOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      {isMobileOperatingOpen && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          <Link href="/manuals/operating/gsr" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            G&SR
-                          </Link>
-                          <Link href="/manuals/operating/optg-manual" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Operating Manual
-                          </Link>
-                          <Link href="/manuals/operating/accident-manual" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Accident Manual
-                          </Link>
-                          <Link href="/manuals/operating/bwm" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            BWM
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                    <Link href="/manuals/commercial" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      Commercial
-                    </Link>
-                    <Link href="/manuals/finance" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                      </svg>
-                      Finance
-                    </Link>
-                    <div>
-                      <button 
-                        onClick={() => setIsMobileEstablishmentOpen(!isMobileEstablishmentOpen)}
-                        className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
-                      >
-                        <div className="flex items-center">
-                          <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                          </svg>
-                          Establishment
-                        </div>
-                        <svg className={`h-4 w-4 transition-transform ${isMobileEstablishmentOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      {isMobileEstablishmentOpen && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          <Link href="/manuals/establishment/dar" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            DAR
-                          </Link>
-                          <Link href="/manuals/establishment/conduct-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Conduct Rules
-                          </Link>
-                          <Link href="/manuals/establishment/leave-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Leave Rules
-                          </Link>
-                          <Link href="/manuals/establishment/hoer" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            HOER
-                          </Link>
-                          <Link href="/manuals/establishment/rti" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            RTI
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div>
-                <button 
-                  onClick={() => setIsMobileMaterialsOpen(!isMobileMaterialsOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Materials
-                  <svg className={`h-4 w-4 transition-transform ${isMobileMaterialsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileMaterialsOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/materials/opertating" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      Operating
-                    </Link>
-                    <Link href="/materials/advanced-operations" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z" />
-                      </svg>
-                      Advanced Operations
-                    </Link>
-                    <Link href="/materials/kavach" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                      Kavach
-                    </Link>
-                    <Link href="/materials/abbreviations" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                      Abbreviations
-                    </Link>
-                    <Link href="/materials/eighth-pay-commission" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      Eighth Pay Commission
-                    </Link>
-                    <Link href="/materials/commercial" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      Commercial
-                    </Link>
-                    <Link href="/materials/finance" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                      </svg>
-                      Finance
-                    </Link>
-                    <div>
-                      <button 
-                        onClick={() => setIsMobileMaterialsEstablishmentOpen(!isMobileMaterialsEstablishmentOpen)}
-                        className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
-                      >
-                        <div className="flex items-center">
-                          <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                          </svg>
-                          Establishment
-                        </div>
-                        <svg className={`h-4 w-4 transition-transform ${isMobileMaterialsEstablishmentOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                      {isMobileMaterialsEstablishmentOpen && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          <Link href="/materials/establishment/dar" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            DAR
-                          </Link>
-                          <Link href="/materials/establishment/conduct-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Conduct Rules
-                          </Link>
-                          <Link href="/materials/establishment/leave-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Leave Rules
-                          </Link>
-                          <Link href="/materials/establishment/hoer" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            HOER
-                          </Link>
-                          <Link href="/materials/establishment/rti" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
-                            <svg className="w-3 h-3 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            RTI
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div>
-                <button 
-                  onClick={() => setIsMobileMcqOpen(!isMobileMcqOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  MCQ
-                  <svg className={`h-4 w-4 transition-transform ${isMobileMcqOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileMcqOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/mcq-practice" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                      MCQ Practice
-                    </Link>
-                    <Link href="/mcq-cbt" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      MCQ CBT
-                    </Link>
-                  </div>
-                )}
-              </div>
-              <Link href="/contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Contact
-              </Link>
-              <div>
-                <button 
-                  onClick={() => setIsMobileRegisterOpen(!isMobileRegisterOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                >
-                  Register
-                  <svg className={`h-4 w-4 transition-transform ${isMobileRegisterOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {isMobileRegisterOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
-                    <Link href="/register/trainee-register" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                      Trainee Register
-                    </Link>
-                    <Link href="/register/experts-register" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
-                      <svg className="w-4 h-4 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
-                      Experts Register
-                    </Link>
-                  </div>
-                )}
-              </div>
-                              {isLoggedIn ? (
-                  <>
-                    {isAdmin && (
-                      <Link 
-                        href="/admin/dashboard"
-                        onClick={() => setIsMenuOpen(false)}
-                        className="w-full block px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors mb-2"
-                      >
-                        Admin
-                      </Link>
-                    )}
-                    <button 
-                      onClick={() => {
-                        handleLogout()
-                        setIsMenuOpen(false)
-                      }}
-                      className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                    >
-                      Logout
-                    </button>
-                  </>
-                ) : (
-                  <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                    Login
-                  </Link>
-                )}
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
-  )
-}
+//         {/* Mobile Navigation */}
+//         {isMenuOpen && (
+//           <div className="lg:hidden">
+//             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 rounded-lg mt-2">
+//               <Link href="/" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
+//                 Home
+//               </Link>
+//               <Link href="/about" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
+//                 About
+//               </Link>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileNotificationsOpen(!isMobileNotificationsOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Notifications
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileNotificationsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileNotificationsOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/notifications/group-b" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+//                       </svg>
+//                       Group B
+//                     </Link>
+//                     <Link href="/notifications/guntakal" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Guntakal
+//                     </Link>
+//                     <Link href="/notifications/guntur" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Guntur
+//                     </Link>
+//                     <Link href="/notifications/hyderabad" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Hyderabad
+//                     </Link>
+//                     <Link href="/notifications/nanded" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Nanded
+//                     </Link>
+//                     <Link href="/notifications/secunderabad" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Secunderabad
+//                     </Link>
+//                     <Link href="/notifications/vijayawada" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//                       </svg>
+//                       Vijayawada
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileMottoOpen(!isMobileMottoOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Motto
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileMottoOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileMottoOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/motto" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+//                       </svg>
+//                       Motto
+//                     </Link>
+//                     <Link href="/mission" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+//                       </svg>
+//                       Mission
+//                     </Link>
+//                     <Link href="/vision" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+//                       </svg>
+//                       Vision
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileTraineeCoursesOpen(!isMobileTraineeCoursesOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Courses
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileTraineeCoursesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileTraineeCoursesOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/aom-material-mcq-course" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+//                       </svg>
+//                       AOM Material MCQ Course
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileManualsOpen(!isMobileManualsOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Manuals
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileManualsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileManualsOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <div>
+//                       <button 
+//                         onClick={() => setIsMobileOperatingOpen(!isMobileOperatingOpen)}
+//                         className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
+//                       >
+//                         <div className="flex items-center">
+//                           <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                           </svg>
+//                           Operating
+//                         </div>
+//                         <svg className={`h-4 w-4 transition-transform ${isMobileOperatingOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                         </svg>
+//                       </button>
+//                       {isMobileOperatingOpen && (
+//                         <div className="ml-6 mt-1 space-y-1">
+//                           <Link href="/manuals/operating/gsr" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             G&SR
+//                           </Link>
+//                           <Link href="/manuals/operating/optg-manual" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Operating Manual
+//                           </Link>
+//                           <Link href="/manuals/operating/accident-manual" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Accident Manual
+//                           </Link>
+//                           <Link href="/manuals/operating/bwm" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             BWM
+//                           </Link>
+//                         </div>
+//                       )}
+//                     </div>
+//                     <Link href="/manuals/commercial" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                       </svg>
+//                       Commercial
+//                     </Link>
+//                     <Link href="/manuals/finance" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+//                       </svg>
+//                       Finance
+//                     </Link>
+//                     <div>
+//                       <button 
+//                         onClick={() => setIsMobileEstablishmentOpen(!isMobileEstablishmentOpen)}
+//                         className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
+//                       >
+//                         <div className="flex items-center">
+//                           <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                           </svg>
+//                           Establishment
+//                         </div>
+//                         <svg className={`h-4 w-4 transition-transform ${isMobileEstablishmentOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                         </svg>
+//                       </button>
+//                       {isMobileEstablishmentOpen && (
+//                         <div className="ml-6 mt-1 space-y-1">
+//                           <Link href="/manuals/establishment/dar" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             DAR
+//                           </Link>
+//                           <Link href="/manuals/establishment/conduct-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Conduct Rules
+//                           </Link>
+//                           <Link href="/manuals/establishment/leave-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Leave Rules
+//                           </Link>
+//                           <Link href="/manuals/establishment/hoer" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             HOER
+//                           </Link>
+//                           <Link href="/manuals/establishment/rti" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             RTI
+//                           </Link>
+//                         </div>
+//                       )}
+//                     </div>
+//                   </div>
+//                 )}
+//               </div>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileMaterialsOpen(!isMobileMaterialsOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Materials
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileMaterialsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileMaterialsOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/materials/opertating" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                       </svg>
+//                       Operating
+//                     </Link>
+//                     <Link href="/materials/advanced-operations" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 113 12a9 9 0 0118 0z" />
+//                       </svg>
+//                       Advanced Operations
+//                     </Link>
+//                     <Link href="/materials/kavach" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+//                       </svg>
+//                       Kavach
+//                     </Link>
+//                     <Link href="/materials/abbreviations" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+//                       </svg>
+//                       Abbreviations
+//                     </Link>
+//                     <Link href="/materials/eighth-pay-commission" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                       </svg>
+//                       Eighth Pay Commission
+//                     </Link>
+//                     <Link href="/materials/commercial" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                       </svg>
+//                       Commercial
+//                     </Link>
+//                     <Link href="/materials/finance" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+//                       </svg>
+//                       Finance
+//                     </Link>
+//                     <div>
+//                       <button 
+//                         onClick={() => setIsMobileMaterialsEstablishmentOpen(!isMobileMaterialsEstablishmentOpen)}
+//                         className="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm"
+//                       >
+//                         <div className="flex items-center">
+//                           <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+//                           </svg>
+//                           Establishment
+//                         </div>
+//                         <svg className={`h-4 w-4 transition-transform ${isMobileMaterialsEstablishmentOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                         </svg>
+//                       </button>
+//                       {isMobileMaterialsEstablishmentOpen && (
+//                         <div className="ml-6 mt-1 space-y-1">
+//                           <Link href="/materials/establishment/dar" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             DAR
+//                           </Link>
+//                           <Link href="/materials/establishment/conduct-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Conduct Rules
+//                           </Link>
+//                           <Link href="/materials/establishment/leave-rules" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             Leave Rules
+//                           </Link>
+//                           <Link href="/materials/establishment/hoer" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             HOER
+//                           </Link>
+//                           <Link href="/materials/establishment/rti" className="flex items-center px-3 py-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-xs" onClick={() => setIsMenuOpen(false)}>
+//                             <svg className="w-3 h-3 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+//                             </svg>
+//                             RTI
+//                           </Link>
+//                         </div>
+//                       )}
+//                     </div>
+//                   </div>
+//                 )}
+//               </div>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileMcqOpen(!isMobileMcqOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   MCQ
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileMcqOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileMcqOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/mcq-practice" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+//                       </svg>
+//                       MCQ Practice
+//                     </Link>
+//                     <Link href="/mcq-cbt" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//                       </svg>
+//                       MCQ CBT
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <Link href="/contact" className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" onClick={() => setIsMenuOpen(false)}>
+//                 Contact
+//               </Link>
+//               <div>
+//                 <button 
+//                   onClick={() => setIsMobileRegisterOpen(!isMobileRegisterOpen)}
+//                   className="w-full flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+//                 >
+//                   Register
+//                   <svg className={`h-4 w-4 transition-transform ${isMobileRegisterOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+//                   </svg>
+//                 </button>
+//                 {isMobileRegisterOpen && (
+//                   <div className="ml-4 mt-1 space-y-1">
+//                     <Link href="/register/trainee-register" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+//                       </svg>
+//                       Trainee Register
+//                     </Link>
+//                     <Link href="/register/experts-register" className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors text-sm" onClick={() => setIsMenuOpen(false)}>
+//                       <svg className="w-4 h-4 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+//                       </svg>
+//                       Experts Register
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//                               {isLoggedIn ? (
+//                   <>
+//                     {isAdmin && (
+//                       <Link 
+//                         href="/admin/dashboard"
+//                         onClick={() => setIsMenuOpen(false)}
+//                         className="w-full block px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors mb-2"
+//                       >
+//                         Admin
+//                       </Link>
+//                     )}
+//                     <button 
+//                       onClick={() => {
+//                         handleLogout()
+//                         setIsMenuOpen(false)
+//                       }}
+//                       className="w-full block px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+//                     >
+//                       Logout
+//                     </button>
+//                   </>
+//                 ) : (
+//                   <Link href="/login" className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => setIsMenuOpen(false)}>
+//                     Login
+//                   </Link>
+//                 )}
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </nav>
+//   )
+// }
 
-export default Navbar
+// export default Navbar

@@ -1,136 +1,136 @@
-'use client'
+// 'use client'
 
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 
-// Digital LED Display Component
-const DigitalDigit = ({ digit }: { digit: string }) => {
-  return (
-    <span className="digital-digit font-mono">
-      {digit}
-    </span>
-  )
-}
+// // Digital LED Display Component
+// const DigitalDigit = ({ digit }: { digit: string }) => {
+//   return (
+//     <span className="digital-digit font-mono">
+//       {digit}
+//     </span>
+//   )
+// }
 
-const DigitalCounter = ({ count }: { count: number }) => {
-  // Format count to 8 digits with leading zeros
-  const displayCount = count.toString().padStart(8, '0')
+// const DigitalCounter = ({ count }: { count: number }) => {
+//   // Format count to 8 digits with leading zeros
+//   const displayCount = count.toString().padStart(8, '0')
   
-  return (
-    <div className="digital-counter">
-      {displayCount.split('').map((digit, index) => (
-        <DigitalDigit key={index} digit={digit} />
-      ))}
-    </div>
-  )
-}
+//   return (
+//     <div className="digital-counter">
+//       {displayCount.split('').map((digit, index) => (
+//         <DigitalDigit key={index} digit={digit} />
+//       ))}
+//     </div>
+//   )
+// }
 
-const Footer = () => {
-  const [visitorCount, setVisitorCount] = useState<number>(0)
+// const Footer = () => {
+//   const [visitorCount, setVisitorCount] = useState<number>(0)
 
-  useEffect(() => {
-    const trackVisitor = async () => {
-      // Check if this is a new session (first time visiting in this browser session)
-      const sessionKey = 'visitorSession'
-      const hasVisitedThisSession = sessionStorage.getItem(sessionKey)
+//   useEffect(() => {
+//     const trackVisitor = async () => {
+//       // Check if this is a new session (first time visiting in this browser session)
+//       const sessionKey = 'visitorSession'
+//       const hasVisitedThisSession = sessionStorage.getItem(sessionKey)
       
-      if (!hasVisitedThisSession) {
-        try {
-          // Increment visitor count on server
-          const response = await fetch('/api/visitor-count', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
+//       if (!hasVisitedThisSession) {
+//         try {
+//           // Increment visitor count on server
+//           const response = await fetch('/api/visitor-count', {
+//             method: 'POST',
+//             headers: {
+//               'Content-Type': 'application/json',
+//             },
+//           })
           
-          if (response.ok) {
-            const contentType = response.headers.get('content-type')
-            if (contentType && contentType.includes('application/json')) {
-              const data = await response.json()
-              setVisitorCount(data.count)
+//           if (response.ok) {
+//             const contentType = response.headers.get('content-type')
+//             if (contentType && contentType.includes('application/json')) {
+//               const data = await response.json()
+//               setVisitorCount(data.count)
               
-              // Store in localStorage as backup
-              localStorage.setItem('visitorCount', data.count.toString())
-            } else {
-              // Response is not JSON, fallback to localStorage
-              const storedCount = localStorage.getItem('visitorCount')
-              const currentCount = storedCount ? parseInt(storedCount) : 0
-              const newCount = currentCount + 1
-              setVisitorCount(newCount)
-              localStorage.setItem('visitorCount', newCount.toString())
-            }
-          } else {
-            // Fallback to localStorage if server fails
-            const storedCount = localStorage.getItem('visitorCount')
-            const currentCount = storedCount ? parseInt(storedCount) : 0
-            const newCount = currentCount + 1
-            setVisitorCount(newCount)
-            localStorage.setItem('visitorCount', newCount.toString())
-          }
+//               // Store in localStorage as backup
+//               localStorage.setItem('visitorCount', data.count.toString())
+//             } else {
+//               // Response is not JSON, fallback to localStorage
+//               const storedCount = localStorage.getItem('visitorCount')
+//               const currentCount = storedCount ? parseInt(storedCount) : 0
+//               const newCount = currentCount + 1
+//               setVisitorCount(newCount)
+//               localStorage.setItem('visitorCount', newCount.toString())
+//             }
+//           } else {
+//             // Fallback to localStorage if server fails
+//             const storedCount = localStorage.getItem('visitorCount')
+//             const currentCount = storedCount ? parseInt(storedCount) : 0
+//             const newCount = currentCount + 1
+//             setVisitorCount(newCount)
+//             localStorage.setItem('visitorCount', newCount.toString())
+//           }
           
-          // Mark this session as visited
-          sessionStorage.setItem(sessionKey, 'true')
-        } catch (error) {
-          console.error('Error tracking visitor:', error)
-          // Fallback to localStorage
-          const storedCount = localStorage.getItem('visitorCount')
-          const currentCount = storedCount ? parseInt(storedCount) : 0
-          const newCount = currentCount + 1
-          setVisitorCount(newCount)
-          localStorage.setItem('visitorCount', newCount.toString())
-          sessionStorage.setItem(sessionKey, 'true')
-        }
-      } else {
-        // Load existing count from server
-        try {
-          const response = await fetch('/api/visitor-count')
-          if (response.ok) {
-            const contentType = response.headers.get('content-type')
-            if (contentType && contentType.includes('application/json')) {
-              const data = await response.json()
-              setVisitorCount(data.count)
-            } else {
-              // Response is not JSON, fallback to localStorage
-              const storedCount = localStorage.getItem('visitorCount')
-              const currentCount = storedCount ? parseInt(storedCount) : 0
-              setVisitorCount(currentCount)
-            }
-          } else {
-            // Fallback to localStorage
-            const storedCount = localStorage.getItem('visitorCount')
-            const currentCount = storedCount ? parseInt(storedCount) : 0
-            setVisitorCount(currentCount)
-          }
-        } catch (error) {
-          console.error('Error fetching visitor count:', error)
-          // Fallback to localStorage
-          const storedCount = localStorage.getItem('visitorCount')
-          const currentCount = storedCount ? parseInt(storedCount) : 0
-          setVisitorCount(currentCount)
-        }
-      }
-    }
+//           // Mark this session as visited
+//           sessionStorage.setItem(sessionKey, 'true')
+//         } catch (error) {
+//           console.error('Error tracking visitor:', error)
+//           // Fallback to localStorage
+//           const storedCount = localStorage.getItem('visitorCount')
+//           const currentCount = storedCount ? parseInt(storedCount) : 0
+//           const newCount = currentCount + 1
+//           setVisitorCount(newCount)
+//           localStorage.setItem('visitorCount', newCount.toString())
+//           sessionStorage.setItem(sessionKey, 'true')
+//         }
+//       } else {
+//         // Load existing count from server
+//         try {
+//           const response = await fetch('/api/visitor-count')
+//           if (response.ok) {
+//             const contentType = response.headers.get('content-type')
+//             if (contentType && contentType.includes('application/json')) {
+//               const data = await response.json()
+//               setVisitorCount(data.count)
+//             } else {
+//               // Response is not JSON, fallback to localStorage
+//               const storedCount = localStorage.getItem('visitorCount')
+//               const currentCount = storedCount ? parseInt(storedCount) : 0
+//               setVisitorCount(currentCount)
+//             }
+//           } else {
+//             // Fallback to localStorage
+//             const storedCount = localStorage.getItem('visitorCount')
+//             const currentCount = storedCount ? parseInt(storedCount) : 0
+//             setVisitorCount(currentCount)
+//           }
+//         } catch (error) {
+//           console.error('Error fetching visitor count:', error)
+//           // Fallback to localStorage
+//           const storedCount = localStorage.getItem('visitorCount')
+//           const currentCount = storedCount ? parseInt(storedCount) : 0
+//           setVisitorCount(currentCount)
+//         }
+//       }
+//     }
 
-    trackVisitor()
-  }, [])
+//     trackVisitor()
+//   }, [])
 
-  return (
-    <footer className="bg-gray-900 text-white lg:py-8 py-4 lg:px-6 px-4 mt-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-400 text-sm text-center mb-4 md:mb-0">
-            Group B Officers Academy Copyright © {new Date().getFullYear()}. <br/> All rights reserved.
-          </div>
-          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-            <div className="text-gray-400 text-sm flex items-center gap-2">
-              <div className="leading-relaxed">
-                Total Visitors:
-              </div>
-              <DigitalCounter count={visitorCount} />
-            </div>
-          </div>
-        </div>
-      </footer>
-  )
-}
+//   return (
+//     <footer className="bg-gray-900 text-white lg:py-8 py-4 lg:px-6 px-4 mt-auto">
+//         <div className="flex flex-col md:flex-row justify-between items-center">
+//           <div className="text-gray-400 text-sm text-center mb-4 md:mb-0">
+//             Group B Officers Academy Copyright © {new Date().getFullYear()}. <br/> All rights reserved.
+//           </div>
+//           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+//             <div className="text-gray-400 text-sm flex items-center gap-2">
+//               <div className="leading-relaxed">
+//                 Total Visitors:
+//               </div>
+//               <DigitalCounter count={visitorCount} />
+//             </div>
+//           </div>
+//         </div>
+//       </footer>
+//   )
+// }
 
-export default Footer
+// export default Footer

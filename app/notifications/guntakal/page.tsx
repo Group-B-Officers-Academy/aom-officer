@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Guntakal = () => {
-  return (
-    <div>Guntakal</div>
-  )
-}
+// const Guntakal = () => {
+//   return (
+//     <div>Guntakal</div>
+//   )
+// }
 
-export default Guntakal
+// export default Guntakal

@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Finance = () => {
-  return (
-    <div>Finance</div>
-  )
-}
+// const Finance = () => {
+//   return (
+//     <div>Finance</div>
+//   )
+// }
 
-export default Finance
+// export default Finance

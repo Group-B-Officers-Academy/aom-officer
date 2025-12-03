@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const Establishment = () => {
-  return (
-    <div>Establishment</div>
-  )
-}
+// const Establishment = () => {
+//   return (
+//     <div>Establishment</div>
+//   )
+// }
 
-export default Establishment
+// export default Establishment
